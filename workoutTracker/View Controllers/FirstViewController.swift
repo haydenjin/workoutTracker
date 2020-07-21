@@ -6,9 +6,12 @@
 //  Copyright © 2020 Hayden jin. All rights reserved.
 //
 
+
+// Uncomment out functions when ready
+
 import UIKit
 
-class FirstViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FirstViewController: UIViewController, UITableViewDelegate /*UITableViewDataSource*/ {
 
 
     @IBOutlet weak var AddNewWorkout: UIButton!
@@ -22,7 +25,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         
         // Assigning the FirstViewController as the datasource of the tableview
-        tableView.dataSource = self
+        //tableView.dataSource = self
         
         // Assigning the FirstViewController as the delegate of the tableview
         tableView.delegate = self
@@ -33,10 +36,9 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return workoutsGlobal.count
     }
-    
+    /*
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        
     }
-
-
+    */
 }
