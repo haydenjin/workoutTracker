@@ -1,30 +1,49 @@
 //
-//  HomeViewController.swift
+//  FirstViewController.swift
 //  workoutTracker
 //
-//  Created by Hayden jin on 2020-07-20.
+//  Created by Hayden jin on 2020-07-16.
 //  Copyright © 2020 Hayden jin. All rights reserved.
 //
 
+
+// Uncomment out functions when ready
+
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDelegate /*UITableViewDataSource*/ {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    @IBOutlet weak var AddNewWorkout: UIButton!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func logoutTapped(_ sender: Any) {
+        AppManager.shared.logout()
     }
     
-
+    
+    // An array of WorkoutsGlobal which is empty at first
+    var workoutsGlobal = [WorkoutsGlobal]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Assigning the FirstViewController as the datasource of the tableview
+        //tableView.dataSource = self
+        
+        // Assigning the FirstViewController as the delegate of the tableview
+        tableView.delegate = self
+        
+    }
+    
+    // Returns the number of global workouts
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return workoutsGlobal.count
+    }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
     }
     */
-
 }

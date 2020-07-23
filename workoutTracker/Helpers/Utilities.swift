@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 
+
 class Utilities {
     
     static func styleTextField(_ textfield:UITextField) {
@@ -31,16 +32,17 @@ class Utilities {
     static func styleHollowButton(_ button:UIButton) {
         
         // Hollow rounded corner style
+        button.backgroundColor = UIColor.init(red: 48/255, green: 40/255, blue: 140/255, alpha: 1)
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.cornerRadius = 25.0
-        button.tintColor = UIColor.black
+        button.tintColor = UIColor.white
     }
     
     static func isPasswordValid(_ password : String) -> Bool {
         
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
+        // Password must have (One character)(One uppercase character)(One special character)(Is at least 6 characters long)
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}$")
         return passwordTest.evaluate(with: password)
     }
-    
 }
