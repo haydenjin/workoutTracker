@@ -18,10 +18,6 @@ class HomeViewController: UIViewController, UITableViewDelegate /*UITableViewDat
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func logoutTapped(_ sender: Any) {
-        AppManager.shared.logout()
-    }
-    
     
     // An array of WorkoutsGlobal which is empty at first
     var workoutsGlobal = [WorkoutsGlobal]()

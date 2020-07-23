@@ -18,7 +18,7 @@
 		BC65EC7D24C0B2E600AB3B30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC7C24C0B2E600AB3B30 /* AppDelegate.swift */; };
 		BC65EC7F24C0B2E600AB3B30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC7E24C0B2E600AB3B30 /* SceneDelegate.swift */; };
 		BC65EC8124C0B2E600AB3B30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC8024C0B2E600AB3B30 /* HomeViewController.swift */; };
-		BC65EC8324C0B2E600AB3B30 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC8224C0B2E600AB3B30 /* SecondViewController.swift */; };
+		BC65EC8324C0B2E600AB3B30 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC8224C0B2E600AB3B30 /* SettingsViewController.swift */; };
 		BC65EC8624C0B2E600AB3B30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC65EC8424C0B2E600AB3B30 /* Main.storyboard */; };
 		BC65EC8824C0B2E700AB3B30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC65EC8724C0B2E700AB3B30 /* Assets.xcassets */; };
 		BC65EC8B24C0B2E700AB3B30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC65EC8924C0B2E700AB3B30 /* LaunchScreen.storyboard */; };
@@ -26,6 +26,8 @@
 		BC65EC9524C0BB3200AB3B30 /* Exercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC9424C0BB3200AB3B30 /* Exercises.swift */; };
 		BC74A8E824C15F500064BA9C /* NewWorkouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC74A8E724C15F500064BA9C /* NewWorkouts.swift */; };
 		BC91EEE624C6911C0074193A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC91EEE524C6911C0074193A /* Utilities.swift */; };
+		BCD4D71624C913AE00F4498B /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D71524C913AE00F4498B /* AddExerciseViewController.swift */; };
+		BCD4D71824C9385800F4498B /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D71724C9385800F4498B /* PopupViewController.swift */; };
 		BCD9A22A24C68506001F502B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9A22924C68506001F502B /* SignupViewController.swift */; };
 		BCD9A22C24C68514001F502B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9A22B24C68514001F502B /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
@@ -45,7 +47,7 @@
 		BC65EC7C24C0B2E600AB3B30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC65EC7E24C0B2E600AB3B30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BC65EC8024C0B2E600AB3B30 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		BC65EC8224C0B2E600AB3B30 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		BC65EC8224C0B2E600AB3B30 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BC65EC8524C0B2E600AB3B30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BC65EC8724C0B2E700AB3B30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC65EC8A24C0B2E700AB3B30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +56,8 @@
 		BC65EC9424C0BB3200AB3B30 /* Exercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercises.swift; sourceTree = "<group>"; };
 		BC74A8E724C15F500064BA9C /* NewWorkouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkouts.swift; sourceTree = "<group>"; };
 		BC91EEE524C6911C0074193A /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		BCD4D71524C913AE00F4498B /* AddExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewController.swift; sourceTree = "<group>"; };
+		BCD4D71724C9385800F4498B /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		BCD9A22924C68506001F502B /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		BCD9A22B24C68514001F502B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,8 +155,10 @@
 				BCD9A22924C68506001F502B /* SignupViewController.swift */,
 				BCD9A22B24C68514001F502B /* LoginViewController.swift */,
 				BC65EC8024C0B2E600AB3B30 /* HomeViewController.swift */,
-				BC65EC8224C0B2E600AB3B30 /* SecondViewController.swift */,
+				BC65EC8224C0B2E600AB3B30 /* SettingsViewController.swift */,
 				BC088C1224C89B29005ACD22 /* AddWorkoutViewController.swift */,
+				BCD4D71524C913AE00F4498B /* AddExerciseViewController.swift */,
+				BCD4D71724C9385800F4498B /* PopupViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -277,8 +283,10 @@
 				BC65EC9324C0BAA100AB3B30 /* WorkoutGlobal.swift in Sources */,
 				BC088C1324C89B29005ACD22 /* AddWorkoutViewController.swift in Sources */,
 				BC65EC9524C0BB3200AB3B30 /* Exercises.swift in Sources */,
-				BC65EC8324C0B2E600AB3B30 /* SecondViewController.swift in Sources */,
+				BC65EC8324C0B2E600AB3B30 /* SettingsViewController.swift in Sources */,
+				BCD4D71824C9385800F4498B /* PopupViewController.swift in Sources */,
 				BC20590324C6933E0013383C /* RootViewController.swift in Sources */,
+				BCD4D71624C913AE00F4498B /* AddExerciseViewController.swift in Sources */,
 				BC65EC8124C0B2E600AB3B30 /* HomeViewController.swift in Sources */,
 				BC088C1724C8CB6E005ACD22 /* AppManager.swift in Sources */,
 				BC65EC7D24C0B2E600AB3B30 /* AppDelegate.swift in Sources */,
