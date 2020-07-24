@@ -48,12 +48,15 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRK-tS-4Xd">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRK-tS-4Xd">
                                                             <rect key="frame" x="114" y="0.0" width="164" height="30.5"/>
-                                                            <state key="normal" title="Logout"/>
+                                                            <state key="normal" title="Edit"/>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1R-1n-1h8">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1R-1n-1h8">
                                                             <rect key="frame" x="278" y="0.0" width="96" height="30.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="96" id="KdN-xv-tir"/>
+                                                            </constraints>
                                                             <state key="normal" title="Start Workout"/>
                                                         </button>
                                                     </subviews>
@@ -172,6 +175,56 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CS5-nC-8ki">
                                         <rect key="frame" x="0.0" y="640" width="414" height="128"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommonExercisesCell" id="8ED-j8-MHp" customClass="CommonExercisesTableViewCell" customModule="workoutTracker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="56.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8ED-j8-MHp" id="epy-6J-Io6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G8N-3v-rK1">
+                                                            <rect key="frame" x="20" y="11" width="374" height="34.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjk-Kg-o9F">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="214" height="34.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mXR-R0-2ZN">
+                                                                    <rect key="frame" x="224" y="0.0" width="70" height="34.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                </textField>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reps" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGn-4s-ZrV">
+                                                                    <rect key="frame" x="304" y="0.0" width="70" height="34.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="70" id="TY0-9c-nAD"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                </textField>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="mXR-R0-2ZN" firstAttribute="width" secondItem="lGn-4s-ZrV" secondAttribute="width" id="d6L-lM-pDP"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="G8N-3v-rK1" firstAttribute="leading" secondItem="epy-6J-Io6" secondAttribute="leadingMargin" id="BEI-O7-auh"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="G8N-3v-rK1" secondAttribute="bottom" id="Ntr-Z2-QjX"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="G8N-3v-rK1" secondAttribute="trailing" id="b9t-c0-foT"/>
+                                                        <constraint firstItem="G8N-3v-rK1" firstAttribute="top" secondItem="epy-6J-Io6" secondAttribute="topMargin" id="cK0-fU-iBX"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="name" destination="Sjk-Kg-o9F" id="Tqd-4j-pL1"/>
+                                                    <outlet property="reps" destination="lGn-4s-ZrV" id="f6J-61-01V"/>
+                                                    <outlet property="weights" destination="mXR-R0-2ZN" id="g5F-KW-rhg"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
                                     </tableView>
                                 </subviews>
                                 <constraints>
@@ -191,6 +244,9 @@
                         <viewLayoutGuide key="safeArea" id="ese-Aj-rsp"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ple-Tc-NRV"/>
+                    <connections>
+                        <outlet property="tableView" destination="CS5-nC-8ki" id="54n-Xv-7Yi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ta-gm-ffC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -294,6 +350,12 @@
                             <constraint firstItem="U6v-ba-SGx" firstAttribute="bottom" secondItem="Xzb-uF-bvP" secondAttribute="bottom" id="WKb-4r-nI1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="U6v-ba-SGx"/>
+                        <connections>
+                            <outlet property="additionalNotes" destination="gRO-fr-6ip" id="bkU-MO-Oi0"/>
+                            <outlet property="nameOfExercise" destination="UuH-J9-Rqo" id="BjS-Gy-JCc"/>
+                            <outlet property="reps" destination="wkz-ju-ixt" id="hNe-Hf-31S"/>
+                            <outlet property="weight" destination="q8z-pc-0nf" id="baI-CT-cVu"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kao-YP-Py3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
