@@ -151,7 +151,7 @@
         <!--Add Exercise View Controller-->
         <scene sceneID="wd5-bc-dOR">
             <objects>
-                <viewController id="RVD-7r-Z3h" customClass="AddExerciseViewController" customModule="workoutTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddExercise" id="RVD-7r-Z3h" customClass="AddExerciseViewController" customModule="workoutTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="agV-aT-ZqQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -160,20 +160,21 @@
                                 <rect key="frame" x="0.0" y="40" width="414" height="768"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="p1G-Se-XbV">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="610"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="BNl-GG-OzB"/>
+                                        </constraints>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itK-C2-OFc">
-                                        <rect key="frame" x="0.0" y="610" width="414" height="30"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="50"/>
                                         <state key="normal" title="Add Custom Exercise"/>
                                         <connections>
-                                            <segue destination="vq4-c4-FJz" kind="popoverPresentation" popoverAnchorView="itK-C2-OFc" id="MYn-DW-SXc">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
+                                            <segue destination="vq4-c4-FJz" kind="show" id="in4-Y5-LL0"/>
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CS5-nC-8ki">
-                                        <rect key="frame" x="0.0" y="640" width="414" height="128"/>
+                                        <rect key="frame" x="0.0" y="100" width="414" height="668"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommonExercisesCell" id="8ED-j8-MHp" customClass="CommonExercisesTableViewCell" customModule="workoutTracker" customModuleProvider="target">
@@ -187,27 +188,33 @@
                                                             <rect key="frame" x="20" y="11" width="374" height="34.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjk-Kg-o9F">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="214" height="34.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="134" height="34.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mXR-R0-2ZN">
-                                                                    <rect key="frame" x="224" y="0.0" width="70" height="34.5"/>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sets" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8cB-Zk-jf8">
+                                                                    <rect key="frame" x="144" y="0.0" width="70" height="34.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reps" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGn-4s-ZrV">
-                                                                    <rect key="frame" x="304" y="0.0" width="70" height="34.5"/>
+                                                                    <rect key="frame" x="224" y="0.0" width="70" height="34.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="70" id="TY0-9c-nAD"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mXR-R0-2ZN">
+                                                                    <rect key="frame" x="304" y="0.0" width="70" height="34.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                </textField>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="mXR-R0-2ZN" firstAttribute="width" secondItem="lGn-4s-ZrV" secondAttribute="width" id="d6L-lM-pDP"/>
+                                                                <constraint firstItem="8cB-Zk-jf8" firstAttribute="width" secondItem="lGn-4s-ZrV" secondAttribute="width" id="ewU-qV-SEJ"/>
                                                             </constraints>
                                                         </stackView>
                                                     </subviews>
@@ -221,6 +228,7 @@
                                                 <connections>
                                                     <outlet property="name" destination="Sjk-Kg-o9F" id="Tqd-4j-pL1"/>
                                                     <outlet property="reps" destination="lGn-4s-ZrV" id="f6J-61-01V"/>
+                                                    <outlet property="sets" destination="8cB-Zk-jf8" id="eHh-gI-txl"/>
                                                     <outlet property="weights" destination="mXR-R0-2ZN" id="g5F-KW-rhg"/>
                                                 </connections>
                                             </tableViewCell>
@@ -228,6 +236,7 @@
                                     </tableView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="p1G-Se-XbV" firstAttribute="height" secondItem="itK-C2-OFc" secondAttribute="height" id="UGH-dQ-7jG"/>
                                     <constraint firstItem="p1G-Se-XbV" firstAttribute="leading" secondItem="t0P-LY-8Nt" secondAttribute="leading" id="bU3-zx-fa9"/>
                                     <constraint firstAttribute="trailing" secondItem="p1G-Se-XbV" secondAttribute="trailing" id="e3k-WV-hzq"/>
                                     <constraint firstItem="p1G-Se-XbV" firstAttribute="top" secondItem="t0P-LY-8Nt" secondAttribute="top" id="oUn-ZT-ISa"/>
@@ -261,7 +270,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xzb-uF-bvP">
-                                <rect key="frame" x="0.0" y="40" width="414" height="398"/>
+                                <rect key="frame" x="0.0" y="40" width="414" height="438"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This custom exercise will be added to your profile so you can use it when creating future workouts as well!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sk8-bS-aMp">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="38"/>
@@ -288,26 +297,26 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="joY-wc-LEZ">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlR-Qj-Lta">
                                         <rect key="frame" x="0.0" y="278" width="414" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llo-E3-qxn">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sets" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dh-qb-eL2">
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="Bc4-PY-Nto"/>
+                                                    <constraint firstAttribute="width" constant="200" id="zPw-Ul-7uq"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="100" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q8z-pc-0nf">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="3" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7qM-83-OeD">
                                                 <rect key="frame" x="200" y="0.0" width="214" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Rpe-cm-InL"/>
+                                            <constraint firstAttribute="height" constant="40" id="DRC-nr-Kof"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVK-2x-2Uq">
@@ -332,12 +341,37 @@
                                             <constraint firstAttribute="height" constant="40" id="uTe-9d-8FB"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ic-kB-kGP">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="joY-wc-LEZ">
                                         <rect key="frame" x="0.0" y="358" width="414" height="40"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llo-E3-qxn">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="Bc4-PY-Nto"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="100" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q8z-pc-0nf">
+                                                <rect key="frame" x="200" y="0.0" width="214" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Rpe-cm-InL"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ic-kB-kGP">
+                                        <rect key="frame" x="0.0" y="398" width="414" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="kMV-dk-fl2"/>
                                         </constraints>
                                         <state key="normal" title="Add Exercise"/>
+                                        <connections>
+                                            <action selector="addExerciseTapped:" destination="vq4-c4-FJz" eventType="touchUpInside" id="S7o-P9-R16"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -350,17 +384,19 @@
                             <constraint firstItem="U6v-ba-SGx" firstAttribute="bottom" secondItem="Xzb-uF-bvP" secondAttribute="bottom" id="WKb-4r-nI1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="U6v-ba-SGx"/>
-                        <connections>
-                            <outlet property="additionalNotes" destination="gRO-fr-6ip" id="bkU-MO-Oi0"/>
-                            <outlet property="nameOfExercise" destination="UuH-J9-Rqo" id="BjS-Gy-JCc"/>
-                            <outlet property="reps" destination="wkz-ju-ixt" id="hNe-Hf-31S"/>
-                            <outlet property="weight" destination="q8z-pc-0nf" id="baI-CT-cVu"/>
-                        </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="gMx-DB-ZYk"/>
+                    <connections>
+                        <outlet property="nameOfExercise" destination="UuH-J9-Rqo" id="W8c-Ec-giS"/>
+                        <outlet property="notes" destination="gRO-fr-6ip" id="6Pl-KL-2Wz"/>
+                        <outlet property="numberOfReps" destination="wkz-ju-ixt" id="JH0-J7-GlJ"/>
+                        <outlet property="numberOfSets" destination="7qM-83-OeD" id="bbL-XG-wB7"/>
+                        <outlet property="weight" destination="q8z-pc-0nf" id="Vhd-Pe-Wlq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kao-YP-Py3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1642" y="-1663"/>
+            <point key="canvasLocation" x="1814" y="-1910"/>
         </scene>
         <!--Settings-->
         <scene sceneID="wg7-f3-ORb">

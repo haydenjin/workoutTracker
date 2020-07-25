@@ -30,11 +30,11 @@ class AddExerciseViewController: UIViewController, UITableViewDelegate, UITableV
     func addExercises() {
         
         let backSquat = Exercises()
-        backSquat.addNewExercise(name: "Back Squat", notes: "Try to keep knees behind your toes, lower till legs are parallel", weight: 245, reps: 6)
+        backSquat.addNewEmptyExercise(name: "Back Squat", notes: "Try to keep knees behind your toes, lower till legs are parallel")
         commonExercises.append(backSquat)
         
         let benchPress = Exercises()
-        benchPress.addNewExercise(name: "Bench Press", notes: "Lower bar until it touches your chest, then push back up until your arms are locked", weight: 145, reps: 6)
+        benchPress.addNewExercise(name: "Bench Press", notes: "Lower bar until it touches your chest, then push back up until your arms are locked", weight: 145, reps: 6, sets: 3)
         commonExercises.append(benchPress)
     }
     

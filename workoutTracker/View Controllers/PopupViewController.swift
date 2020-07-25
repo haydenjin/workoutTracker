@@ -10,7 +10,38 @@ import UIKit
 import Firebase
 
 class PopupViewController: UIViewController {
+    
+    @IBOutlet weak var nameOfExercise: UITextField!
+    @IBOutlet weak var notes: UITextField!
+    @IBOutlet weak var numberOfSets: UITextField!
+    @IBOutlet weak var numberOfReps: UITextField!
+    @IBOutlet weak var weight: UITextField!
+    
+    // Button user clicks when they are done making the exercise
+    @IBAction func addExerciseTapped(_ sender: Any) {
+        
+        // Get a reference to the database
+        let db = Firestore.firestore()
+        
+        // Create some variables
+        let name = nameOfExercise.text
+        let exerciseNotes = notes.text
+        let sets = numberOfSets.text
+        let reps = numberOfReps.text
+        let weightNumber = weight.text
+        
+        // Get current user ID
+        let userId = Auth.auth().currentUser!.uid
+        
+        // Add a new document to the users file
+        db.collection("users").document("\(userId)").setData(["Name": name!, "Notes": exerciseNotes!, "Sets": sets!, "Reps": reps!, "Weight": weightNumber!,], merge: true)
+        
+        // Move back to the prev screen
+        self.dismiss(animated: true, completion: nil)
+    }
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

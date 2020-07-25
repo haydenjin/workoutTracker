@@ -15,13 +15,20 @@ class Exercises {
     
     var name = ""
     var notes = ""
-    var weight:Int?
-    var reps:Int?
+    var weight:Int = 0
+    var reps:Int = 0
+    var sets:Int = 0
     
-    func addNewExercise(name:String, notes:String, weight:Int, reps:Int) {
+    func addNewExercise(name:String, notes:String, weight:Int, reps:Int, sets:Int) {
         self.name = name
         self.notes = notes
         self.weight = weight
         self.reps = reps
+        self.sets = sets
+    }
+    
+    func addNewEmptyExercise(name:String, notes:String) {
+        self.name = name
+        self.notes = notes
     }
 }

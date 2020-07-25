@@ -15,7 +15,6 @@ class HomeViewController: UIViewController, UITableViewDelegate /*UITableViewDat
 
 
     @IBOutlet weak var AddNewWorkout: UIButton!
-    
     @IBOutlet weak var tableView: UITableView!
     
     

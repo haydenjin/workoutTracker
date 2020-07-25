@@ -13,6 +13,7 @@ class CommonExercisesTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var weights: UITextField!
     @IBOutlet weak var reps: UITextField!
+    @IBOutlet weak var sets: UITextField!
     
     // Empty variable for the exercise this cell will display
     var exercise:Exercises?
@@ -41,8 +42,9 @@ class CommonExercisesTableViewCell: UITableViewCell {
         
         // Start setting the fields
         self.name.text = exercise?.name
-        self.weights.text = "\(String(describing: exercise?.weight))"
-        self.reps.text = "\(String(describing: exercise?.reps))"
+        self.weights.text = String(exercise!.weight)
+        self.reps.text = String(exercise!.reps)
+        self.sets.text = String(exercise!.sets)
         
     }
 }
