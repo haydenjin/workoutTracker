@@ -11,6 +11,8 @@
 		BC088C1324C89B29005ACD22 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088C1224C89B29005ACD22 /* AddWorkoutViewController.swift */; };
 		BC088C1524C8A80B005ACD22 /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088C1424C8A80B005ACD22 /* AppContainerViewController.swift */; };
 		BC088C1724C8CB6E005ACD22 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088C1624C8CB6E005ACD22 /* AppManager.swift */; };
+		BC15C30124CD093900AAF0C4 /* UserAddedExercisesArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC15C30024CD093900AAF0C4 /* UserAddedExercisesArray.swift */; };
+		BC15C30324CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC15C30224CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift */; };
 		BC20590324C6933E0013383C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20590224C6933E0013383C /* RootViewController.swift */; };
 		BC20590524C69A630013383C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC20590424C69A630013383C /* GoogleService-Info.plist */; };
 		BC211D6C24C3887D00DDE08A /* UserAddedExercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC211D6B24C3887D00DDE08A /* UserAddedExercises.swift */; };
@@ -40,6 +42,8 @@
 		BC088C1224C89B29005ACD22 /* AddWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutViewController.swift; sourceTree = "<group>"; };
 		BC088C1424C8A80B005ACD22 /* AppContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
 		BC088C1624C8CB6E005ACD22 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		BC15C30024CD093900AAF0C4 /* UserAddedExercisesArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddedExercisesArray.swift; sourceTree = "<group>"; };
+		BC15C30224CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExercisesTableViewCell.swift; sourceTree = "<group>"; };
 		BC20590224C6933E0013383C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		BC20590424C69A630013383C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC211D6B24C3887D00DDE08A /* UserAddedExercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddedExercises.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 				BC74A8E724C15F500064BA9C /* NewWorkouts.swift */,
 				BC65EC9424C0BB3200AB3B30 /* Exercises.swift */,
 				BC211D6B24C3887D00DDE08A /* UserAddedExercises.swift */,
+				BC15C30024CD093900AAF0C4 /* UserAddedExercisesArray.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				BCB78B4324CA9E1800304CC3 /* CommonExercisesTableViewCell.swift */,
+				BC15C30224CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -303,8 +309,10 @@
 				BC65EC7D24C0B2E600AB3B30 /* AppDelegate.swift in Sources */,
 				BCB78B4424CA9E1800304CC3 /* CommonExercisesTableViewCell.swift in Sources */,
 				BC91EEE624C6911C0074193A /* Utilities.swift in Sources */,
+				BC15C30324CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift in Sources */,
 				BC74A8E824C15F500064BA9C /* NewWorkouts.swift in Sources */,
 				BC65EC7F24C0B2E600AB3B30 /* SceneDelegate.swift in Sources */,
+				BC15C30124CD093900AAF0C4 /* UserAddedExercisesArray.swift in Sources */,
 				BC29812B24C7E1930058D756 /* Constants.swift in Sources */,
 				BCD9A22C24C68514001F502B /* LoginViewController.swift in Sources */,
 				BC211D6C24C3887D00DDE08A /* UserAddedExercises.swift in Sources */,

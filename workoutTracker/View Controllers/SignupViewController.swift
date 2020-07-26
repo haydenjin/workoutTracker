@@ -66,7 +66,7 @@ class SignupViewController: UIViewController {
     }
     
     // Function to output error messages
-    func showError(_ message:String) {
+        func showError(_ message:String) {
         
         // Change the error label and make it visible
         errorLabel.text = message

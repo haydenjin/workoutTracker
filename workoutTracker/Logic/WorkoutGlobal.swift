@@ -9,11 +9,6 @@
 import Foundation
 
 // This class will contain all objects of newly created workouts in screen one
-
-
-
-
-
 class WorkoutsGlobal {
     
     var newWorkout = [NewWorkout]()
