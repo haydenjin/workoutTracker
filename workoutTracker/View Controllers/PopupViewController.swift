@@ -19,9 +19,9 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var weight: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     
-    // Variable to get array we want
-    var copiedExercisesArray: Array = Array<Any>()
-    
+    // Empty array of user added exercises, this array will only ever have max one exercise
+    var exerciseArray = [Exercises]()
+   
     // MARK: - Button is tapped
     
     // Button user clicks when they are done making the exercise
@@ -43,7 +43,6 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
             // Create some variables
             let name = nameOfExercise.text!
             let exerciseNotes = notes.text
-            // Put a guard in place after
             let sets = Int(numberOfSets.text!)
             let reps = Int(numberOfReps.text!)
             let weightNumber = Int(weight.text!)
@@ -54,52 +53,31 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
             // Add a new document to the users file
             db.collection("users").document("\(userId)").collection("exercises").document("\(name)").setData(["Name": name, "Notes": exerciseNotes!, "Sets": sets!, "Reps": reps!, "Weight": weightNumber!,], merge: true)
             
-            // Creating the exercise and saving it in the array
-            let exercise = UserAddedExercises()
-            exercise.addExercises(name: name, notes: exerciseNotes ?? "", weight: weightNumber!, reps: reps!, sets: sets!)
-            copiedExercisesArray.append(exercise)
+            // Transitioning the screen back to add exercise screen
+            performSegue(withIdentifier: "unwindSegueToAddExercise", sender: self)
             
-            // Move back to the prev screen
-            // setting the variable as the home view
-            let addExercises = self.storyboard?.instantiateViewController(withIdentifier: "AddExercise")
-            
-            // Setting the user view as the homeVC
-            self.view.window?.rootViewController = addExercises
-            // Setting the current view and making it visible
-            self.view.window?.makeKeyAndVisible()
-            
-            // Dismisses the window to go back one view
-            //self.dismiss(animated: true, completion: nil)
         }
     }
     
+    // Function needed to pass data back to a previous viewcontroller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Create some variables
+        let name = nameOfExercise.text!
+        let exerciseNotes = notes.text
+        let sets = Int(numberOfSets.text!)
+        let reps = Int(numberOfReps.text!)
+        let weightNumber = Int(weight.text!)
+        
+        // Creating the exercise and saving it in the array
+        let exercise = Exercises()
+        exercise.addNewExercise(name: name, notes: exerciseNotes ?? "", weight: weightNumber!, reps: reps!, sets: sets!)
+        exerciseArray.append(exercise)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Creating an object of the class in order to get the variables
-        let copyArray: UserAddedExercisesArray = UserAddedExercisesArray()
-        
-        // Setting the variable to the array we want
-        copiedExercisesArray = copyArray.workoutExercisesArray
-
-        // Get a reference to the database
-        //let db = Firestore.firestore()
-        
-        // Adding a new document for the new exercise
-        //db.collection("users").addDocument(data: ["name":"squat", "weight":245, "reps":8, "notes":"N/A"])
-        
-        // Creating a new document and keeping a variable that references the document
-        //let newDoc = db.collection("users").document()
-        
-        // Overides the information in the referenced document, other options avalible too (Merge, etc)
-        // "id" is storing the id of this document, is retrived by newDoc.documentID
-        //newDoc.setData(["test":12, "test2":"tdee", "id":newDoc.documentID])
-        
-        // Creating a document with a specific document id
-        //db.collection("users").document("Hayden's-workouts").setData(["bench":300, "squat":800])
-        
-        // Deleting a document
-        //db.collection("users")
     }
 
     // MARK: - Validation

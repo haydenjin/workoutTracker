@@ -7,28 +7,23 @@
 //
 
 import Foundation
+import UIKit
 
-// This class will contain all common exercises for quick addition to workouts
-// User added workouts will be stored in a separate file
+// This class will contain all exercises
 
 class Exercises {
     
     var name = ""
     var notes = ""
-    var weight:Int = 0
-    var reps:Int = 0
-    var sets:Int = 0
+    var weights = 0
+    var reps = 0
+    var sets = 0
     
     func addNewExercise(name:String, notes:String, weight:Int, reps:Int, sets:Int) {
         self.name = name
         self.notes = notes
-        self.weight = weight
+        self.weights = weight
         self.reps = reps
         self.sets = sets
-    }
-    
-    func addNewEmptyExercise(name:String, notes:String) {
-        self.name = name
-        self.notes = notes
     }
 }

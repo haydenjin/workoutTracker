@@ -44,7 +44,7 @@ class WorkoutExercisesTableViewCell: UITableViewCell {
         
         // Start setting the fields
         self.nameLabel.text = exercise?.name
-        self.weight.text = String(exercise!.weight)
+        self.weight.text = String(exercise!.weights)
         self.reps.text = String(exercise!.reps)
         self.sets.text = String(exercise!.sets)
         

@@ -42,7 +42,7 @@ class CommonExercisesTableViewCell: UITableViewCell {
         
         // Start setting the fields
         self.name.text = exercise?.name
-        self.weights.text = String(exercise!.weight)
+        self.weights.text = String(exercise!.weights)
         self.reps.text = String(exercise!.reps)
         self.sets.text = String(exercise!.sets)
         

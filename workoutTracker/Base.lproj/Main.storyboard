@@ -499,9 +499,11 @@
                         <outlet property="numberOfReps" destination="wkz-ju-ixt" id="JH0-J7-GlJ"/>
                         <outlet property="numberOfSets" destination="7qM-83-OeD" id="bbL-XG-wB7"/>
                         <outlet property="weight" destination="q8z-pc-0nf" id="Vhd-Pe-Wlq"/>
+                        <segue destination="0vQ-yP-Bix" kind="unwind" identifier="unwindSegueToAddExercise" unwindAction="unwindToAddExercise:" id="gFd-N1-7tX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kao-YP-Py3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="0vQ-yP-Bix" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1814" y="-1910"/>
         </scene>
@@ -793,8 +795,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZxG-cH-F7d"/>
-        <segue reference="qzA-xG-hLc"/>
+        <segue reference="qGH-d2-63o"/>
+        <segue reference="Z37-o9-csr"/>
         <segue reference="NUi-rc-e5j"/>
     </inferredMetricsTieBreakers>
     <resources>
