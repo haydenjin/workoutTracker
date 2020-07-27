@@ -269,7 +269,7 @@
                                         <rect key="frame" x="0.0" y="160" width="414" height="648"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommonExercisesCell" id="8ED-j8-MHp" customClass="CommonExercisesTableViewCell" customModule="workoutTracker" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutExercisesCell" id="8ED-j8-MHp" customClass="WorkoutExercisesTableViewCell" customModule="workoutTracker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="56.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8ED-j8-MHp" id="epy-6J-Io6">
@@ -318,10 +318,10 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="name" destination="Sjk-Kg-o9F" id="Tqd-4j-pL1"/>
-                                                    <outlet property="reps" destination="lGn-4s-ZrV" id="f6J-61-01V"/>
-                                                    <outlet property="sets" destination="8cB-Zk-jf8" id="eHh-gI-txl"/>
-                                                    <outlet property="weights" destination="mXR-R0-2ZN" id="g5F-KW-rhg"/>
+                                                    <outlet property="nameLabel" destination="Sjk-Kg-o9F" id="cbi-iG-MNi"/>
+                                                    <outlet property="reps" destination="lGn-4s-ZrV" id="YqI-SM-Dqy"/>
+                                                    <outlet property="sets" destination="8cB-Zk-jf8" id="IEQ-e4-ODN"/>
+                                                    <outlet property="weight" destination="mXR-R0-2ZN" id="Nzt-GW-9oi"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -795,8 +795,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qGH-d2-63o"/>
-        <segue reference="Z37-o9-csr"/>
+        <segue reference="ZxG-cH-F7d"/>
+        <segue reference="qzA-xG-hLc"/>
         <segue reference="NUi-rc-e5j"/>
     </inferredMetricsTieBreakers>
     <resources>

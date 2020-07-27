@@ -26,7 +26,6 @@
 		BC65EC9524C0BB3200AB3B30 /* Exercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC9424C0BB3200AB3B30 /* Exercises.swift */; };
 		BC74A8E824C15F500064BA9C /* NewWorkouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC74A8E724C15F500064BA9C /* NewWorkouts.swift */; };
 		BC91EEE624C6911C0074193A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC91EEE524C6911C0074193A /* Utilities.swift */; };
-		BCB78B4424CA9E1800304CC3 /* CommonExercisesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB78B4324CA9E1800304CC3 /* CommonExercisesTableViewCell.swift */; };
 		BCD4D71624C913AE00F4498B /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D71524C913AE00F4498B /* AddExerciseViewController.swift */; };
 		BCD4D71824C9385800F4498B /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D71724C9385800F4498B /* PopupViewController.swift */; };
 		BCD9A22A24C68506001F502B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9A22924C68506001F502B /* SignupViewController.swift */; };
@@ -57,7 +56,6 @@
 		BC65EC9424C0BB3200AB3B30 /* Exercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercises.swift; sourceTree = "<group>"; };
 		BC74A8E724C15F500064BA9C /* NewWorkouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkouts.swift; sourceTree = "<group>"; };
 		BC91EEE524C6911C0074193A /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		BCB78B4324CA9E1800304CC3 /* CommonExercisesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExercisesTableViewCell.swift; sourceTree = "<group>"; };
 		BCD4D71524C913AE00F4498B /* AddExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewController.swift; sourceTree = "<group>"; };
 		BCD4D71724C9385800F4498B /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		BCD9A22924C68506001F502B /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 		BCB78B4224CA9DD000304CC3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BCB78B4324CA9E1800304CC3 /* CommonExercisesTableViewCell.swift */,
 				BC15C30224CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift */,
 			);
 			path = Views;
@@ -301,7 +298,6 @@
 				BC65EC8124C0B2E600AB3B30 /* HomeViewController.swift in Sources */,
 				BC088C1724C8CB6E005ACD22 /* AppManager.swift in Sources */,
 				BC65EC7D24C0B2E600AB3B30 /* AppDelegate.swift in Sources */,
-				BCB78B4424CA9E1800304CC3 /* CommonExercisesTableViewCell.swift in Sources */,
 				BC91EEE624C6911C0074193A /* Utilities.swift in Sources */,
 				BC15C30324CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift in Sources */,
 				BC74A8E824C15F500064BA9C /* NewWorkouts.swift in Sources */,

@@ -46,7 +46,7 @@ class AddExerciseViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Picking what cell displays this data
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CommonExercisesCell", for: indexPath) as! CommonExercisesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutExercisesCell", for: indexPath) as! WorkoutExercisesTableViewCell
         
         // Configure cell with data with the object in each array slot
         let exercise = self.commonExercises[indexPath.row]
