@@ -12,6 +12,8 @@ import Firebase
 
 class PopupViewController: UIViewController, UITextFieldDelegate {
     
+    // MARK: - Connections & variables
+    
     @IBOutlet weak var nameOfExercise: UITextField!
     @IBOutlet weak var notes: UITextField!
     @IBOutlet weak var numberOfSets: UITextField!
@@ -23,6 +25,11 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
     var exerciseArray = [Exercises]()
    
     // MARK: - Button is tapped
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        
+        dismiss(animated: true, completion: nil)
+    }
     
     // Button user clicks when they are done making the exercise
     @IBAction func addExerciseTapped(_ sender: Any) {
@@ -68,6 +75,14 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
         let sets = Int(numberOfSets.text!)
         let reps = Int(numberOfReps.text!)
         let weightNumber = Int(weight.text!)
+        
+        if name == "" {
+            return
+        }
+        
+        if (sets == nil) || (reps == nil) || (weightNumber == nil) {
+            return
+        }
         
         // Creating the exercise and saving it in the array
         let exercise = Exercises()
@@ -141,11 +156,11 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
         // Make itself the delegate
         textfield.delegate = self
         
-        // Set the return as (done)
-        textfield.returnKeyType = .done
-        
         // Makes it a number text field
         textfield.keyboardType = .numberPad
+        
+        // Set the return as (done)
+        textfield.returnKeyType = .next
         
         // Center the screen on the text field when clicked
         textfield.center = self.view.center
