@@ -22,9 +22,9 @@
 		BC65EC8624C0B2E600AB3B30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC65EC8424C0B2E600AB3B30 /* Main.storyboard */; };
 		BC65EC8824C0B2E700AB3B30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC65EC8724C0B2E700AB3B30 /* Assets.xcassets */; };
 		BC65EC8B24C0B2E700AB3B30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC65EC8924C0B2E700AB3B30 /* LaunchScreen.storyboard */; };
-		BC65EC9324C0BAA100AB3B30 /* WorkoutGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC9224C0BAA100AB3B30 /* WorkoutGlobal.swift */; };
 		BC65EC9524C0BB3200AB3B30 /* Exercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC9424C0BB3200AB3B30 /* Exercises.swift */; };
-		BC74A8E824C15F500064BA9C /* NewWorkouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC74A8E724C15F500064BA9C /* NewWorkouts.swift */; };
+		BC726E6424D0809600B14BF7 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC726E6324D0809600B14BF7 /* HomeTableViewCell.swift */; };
+		BC74A8E824C15F500064BA9C /* Workouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC74A8E724C15F500064BA9C /* Workouts.swift */; };
 		BC91EEE624C6911C0074193A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC91EEE524C6911C0074193A /* Utilities.swift */; };
 		BCD4D71824C9385800F4498B /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D71724C9385800F4498B /* PopupViewController.swift */; };
 		BCD9A22A24C68506001F502B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9A22924C68506001F502B /* SignupViewController.swift */; };
@@ -51,9 +51,9 @@
 		BC65EC8724C0B2E700AB3B30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC65EC8A24C0B2E700AB3B30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC65EC8C24C0B2E700AB3B30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC65EC9224C0BAA100AB3B30 /* WorkoutGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutGlobal.swift; sourceTree = "<group>"; };
 		BC65EC9424C0BB3200AB3B30 /* Exercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercises.swift; sourceTree = "<group>"; };
-		BC74A8E724C15F500064BA9C /* NewWorkouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkouts.swift; sourceTree = "<group>"; };
+		BC726E6324D0809600B14BF7 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		BC74A8E724C15F500064BA9C /* Workouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workouts.swift; sourceTree = "<group>"; };
 		BC91EEE524C6911C0074193A /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		BCD4D71724C9385800F4498B /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		BCD9A22924C68506001F502B /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -92,8 +92,7 @@
 		BC088C1124C897D1005ACD22 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				BC65EC9224C0BAA100AB3B30 /* WorkoutGlobal.swift */,
-				BC74A8E724C15F500064BA9C /* NewWorkouts.swift */,
+				BC74A8E724C15F500064BA9C /* Workouts.swift */,
 				BC65EC9424C0BB3200AB3B30 /* Exercises.swift */,
 			);
 			path = Logic;
@@ -149,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				BC15C30224CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift */,
+				BC726E6324D0809600B14BF7 /* HomeTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,7 +285,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCD9A22A24C68506001F502B /* SignupViewController.swift in Sources */,
-				BC65EC9324C0BAA100AB3B30 /* WorkoutGlobal.swift in Sources */,
 				BC088C1324C89B29005ACD22 /* AddWorkoutViewController.swift in Sources */,
 				BC65EC9524C0BB3200AB3B30 /* Exercises.swift in Sources */,
 				BC65EC8324C0B2E600AB3B30 /* SettingsViewController.swift in Sources */,
@@ -296,10 +295,11 @@
 				BC65EC7D24C0B2E600AB3B30 /* AppDelegate.swift in Sources */,
 				BC91EEE624C6911C0074193A /* Utilities.swift in Sources */,
 				BC15C30324CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift in Sources */,
-				BC74A8E824C15F500064BA9C /* NewWorkouts.swift in Sources */,
+				BC74A8E824C15F500064BA9C /* Workouts.swift in Sources */,
 				BC65EC7F24C0B2E600AB3B30 /* SceneDelegate.swift in Sources */,
 				BC29812B24C7E1930058D756 /* Constants.swift in Sources */,
 				BCD9A22C24C68514001F502B /* LoginViewController.swift in Sources */,
+				BC726E6424D0809600B14BF7 /* HomeTableViewCell.swift in Sources */,
 				BC088C1524C8A80B005ACD22 /* AppContainerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

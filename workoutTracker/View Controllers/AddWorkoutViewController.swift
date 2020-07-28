@@ -13,22 +13,22 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // Array holding all exercises for a workout
     var exerciseArrayCopy = [Exercises]()
-    @IBOutlet weak var errorLabel: UILabel!
     
+    // Array of Workouts to send back (empty at first)
+    var workoutsArray = [Workouts]()
+    
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var workoutName: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
-    
-    // Gets the data from the Popup screen
-    @IBAction func unwindToAddExercise(_ unwindSegue: UIStoryboardSegue) {
-        if let sourceViewController = unwindSegue.source as? PopupViewController {
-            
-            // Copying the data from the other viewcontroller and combining (Merging) the arrays
-            exerciseArrayCopy += sourceViewController.exerciseArray
-        }
-    }
+    // Variable to keep track of when the workout is done being made, this stops the prepare for segue from firing constantly when we dont want to add objects to our array
+    var buttonTapped = false
+
     
     @IBAction func completeWorkoutTapped(_ sender: Any) {
+        
+        // Turns the button to true
+        buttonTapped = true
         
         // Validate the fields
         let error = validateFields()
@@ -46,15 +46,18 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
             // Get current user ID
             let userId = Auth.auth().currentUser!.uid
             
+            // Setting the name of the workout
             let name = workoutName.text!
             
             // Adds the array of exercises to the database
-            let workout = db.collection("users").document("\(userId)").collection("workouts").document("\(name)")
+            let workout = db.collection("users").document("\(userId)").collection("\(name)")
             
             for num in 0...(exerciseArrayCopy.count - 1) {
-                workout.setData(["Name": exerciseArrayCopy[num].name, "Notes": exerciseArrayCopy[num].notes, "Reps": exerciseArrayCopy[num].reps, "Sets": exerciseArrayCopy[num].sets, "Weight": exerciseArrayCopy[num].weights], merge: true)
+                workout.document("\(exerciseArrayCopy[num].name)").setData(["Name": exerciseArrayCopy[num].name, "Notes": exerciseArrayCopy[num].notes, "Reps": exerciseArrayCopy[num].reps, "Sets": exerciseArrayCopy[num].sets, "Weight": exerciseArrayCopy[num].weights], merge: false)
             }
-
+            
+            // Transitioning the screen back to add exercise screen
+            performSegue(withIdentifier: "unwindSegueToHome", sender: self)
         }
     }
     
@@ -74,7 +77,6 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewWillAppear(animated)
         
         // Reloading the data so it can be displayed
-        print("Count: \(exerciseArrayCopy.count)")
         tableView.reloadData()
     }
     
@@ -140,5 +142,33 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+
+
+    // MARK: - Sending back information
+
+    // Function needed to pass data back to a previous viewcontroller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Checks if the button was tapped
+        if buttonTapped == true {
+            
+            // Creating the workout to be sent back
+            let workout = Workouts()
+            workout.name = workoutName.text!
+            workout.exercises = exerciseArrayCopy
+            workoutsArray.append(workout)
+        }
+    }
+
+    // MARK: - Reciving Information
+
+        // Gets the data from the Popup screen
+        @IBAction func unwindToAddExercise(_ unwindSegue: UIStoryboardSegue) {
+        if let sourceViewController = unwindSegue.source as? PopupViewController {
+            
+            // Copying the data from the other viewcontroller and combining (Merging) the arrays
+            exerciseArrayCopy += sourceViewController.exerciseArray
+        }
     }
 }

@@ -66,6 +66,8 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // MARK: - Sending back information
+    
     // Function needed to pass data back to a previous viewcontroller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

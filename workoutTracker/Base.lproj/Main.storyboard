@@ -38,34 +38,37 @@
                                         <rect key="frame" x="0.0" y="40" width="414" height="802"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Z2A-fY-IEy">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="30.5"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeCell" id="Z2A-fY-IEy" customClass="HomeTableViewCell" customModule="workoutTracker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="60.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z2A-fY-IEy" id="0eO-MW-hrB">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="30.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ary-3P-pX3">
-                                                            <rect key="frame" x="20" y="0.0" width="374" height="30.5"/>
+                                                            <rect key="frame" x="20" y="0.0" width="374" height="60.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xr-jU-pjh">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="114" height="30.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="114" height="60.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRK-tS-4Xd">
-                                                                    <rect key="frame" x="114" y="0.0" width="164" height="30.5"/>
+                                                                    <rect key="frame" x="114" y="0.0" width="164" height="60.5"/>
                                                                     <state key="normal" title="Edit"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1R-1n-1h8">
-                                                                    <rect key="frame" x="278" y="0.0" width="96" height="30.5"/>
+                                                                    <rect key="frame" x="278" y="0.0" width="96" height="60.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="96" id="KdN-xv-tir"/>
                                                                     </constraints>
                                                                     <state key="normal" title="Start Workout"/>
                                                                 </button>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="60" id="kXA-Pr-2Zp"/>
+                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
@@ -75,6 +78,9 @@
                                                         <constraint firstItem="Ary-3P-pX3" firstAttribute="leading" secondItem="0eO-MW-hrB" secondAttribute="leading" constant="20" id="gik-Az-52H"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="workoutName" destination="1Xr-jU-pjh" id="ej5-DG-DxK"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -241,11 +247,13 @@
                         <outlet property="errorLabel" destination="r98-cL-KnP" id="TbX-Sh-kpC"/>
                         <outlet property="tableView" destination="yrl-uU-qpd" id="QZX-Va-bsI"/>
                         <outlet property="workoutName" destination="eya-7C-OOL" id="CLR-6s-wkm"/>
+                        <segue destination="MZq-H9-XA8" kind="unwind" identifier="unwindSegueToHome" unwindAction="unwindToHome:" id="ySk-8t-vQH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKE-4T-eRK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="MZq-H9-XA8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="104" y="-1665"/>
+            <point key="canvasLocation" x="162" y="-2072"/>
         </scene>
         <!--Popup View Controller-->
         <scene sceneID="Ryk-cH-GUx">
@@ -400,7 +408,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kao-YP-Py3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="0vQ-yP-Bix" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="917" y="-1664"/>
+            <point key="canvasLocation" x="975" y="-2071"/>
         </scene>
         <!--Settings-->
         <scene sceneID="wg7-f3-ORb">
@@ -690,6 +698,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Z37-o9-csr"/>
         <segue reference="NUi-rc-e5j"/>
     </inferredMetricsTieBreakers>
     <resources>

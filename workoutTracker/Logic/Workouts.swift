@@ -10,13 +10,9 @@ import Foundation
 
 // File containing exercises for an individual workout
 
-class NewWorkout {
+class Workouts {
     
     var name = ""
     var exercises = [Exercises]()
     
-    func addNewExercise() {
-        
-        
-    }
 }
