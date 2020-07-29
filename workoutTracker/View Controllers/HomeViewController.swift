@@ -19,9 +19,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var AddNewWorkout: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    
     // An array of Workouts which is empty at first
     var workouts = [Workouts]()
+    
+    
+    // MARK: - View Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.reloadData()
     }
     
+    // MARK: - Tableview Functions
+    
     // Returns the number of global workouts
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return workouts.count
@@ -61,7 +65,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
 
-
     // MARK: - Reciving Information
 
         // Gets the data from the Popup screen
@@ -72,7 +75,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             workouts += sourceViewController.workoutsArray
         }
     }
+
+    // MARK: - Sending data
     
+    // Sending data to the next screen
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Check that a workout was tapped
+        guard tableView.indexPathForSelectedRow != nil else {
+            return
+        }
+        
+        // Get the video that was tapped
+        let selectedWorkout = workouts[tableView.indexPathForSelectedRow!.row]
+        
+        // Set a variable as an object of the viewcontroller we want to pass data to
+        let sb = segue.destination as! WorkoutStartedViewController
+        
+        // Setting data to pass over
+        sb.name = selectedWorkout.name
+        
+    }
+    
+    // MARK: - Pulling from database
     
     func getData() {
         
