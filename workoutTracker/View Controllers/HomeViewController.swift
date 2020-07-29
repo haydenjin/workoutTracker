@@ -26,7 +26,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getData(completion: nil)
+        getData()
         
         // Assigning the FirstViewController as the datasource of the tableview
         tableView.dataSource = self
@@ -74,7 +74,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    func getData(completion: @escaping (Error?) -> Void) {
+    func getData() {
         
         // Get a reference to the database
         let db = Firestore.firestore()
@@ -97,9 +97,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let workout = Workouts()
                         workout.name = document.documentID
                         self.workouts.append(workout)
+                        
+                        // Reloading the data so it can be displayed
+                        self.tableView.reloadData()
                 }
             }
         }
-        completion(nil)
     }
 }
