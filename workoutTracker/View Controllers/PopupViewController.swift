@@ -58,7 +58,9 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
             let userId = Auth.auth().currentUser!.uid
             
             // Add a new document to the users file
-            db.collection("users").document("\(userId)").collection("exercises").document("\(name)").setData(["Name": name, "Notes": exerciseNotes!, "Sets": sets!, "Reps": reps!, "Weight": weightNumber!,], merge: true)
+            
+            // Path (users/uid/exercises/nameOfWorkout/nameOfExercise/nameOfExercise/data
+            db.collection("users").document("\(userId)").collection("Exercises").document("\(name)").setData(["Name": name, "Notes": exerciseNotes!, "Sets": sets!, "Reps": reps!, "Weight": weightNumber!,], merge: true)
             
             // Transitioning the screen back to add exercise screen
             performSegue(withIdentifier: "unwindSegueToAddExercise", sender: self)

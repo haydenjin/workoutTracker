@@ -50,10 +50,13 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
             let name = workoutName.text!
             
             // Adds the array of exercises to the database
-            let workout = db.collection("users").document("\(userId)").collection("\(name)")
+            let workout = db.collection("users").document("\(userId)").collection("Workouts").document(name)
             
             for num in 0...(exerciseArrayCopy.count - 1) {
-                workout.document("\(exerciseArrayCopy[num].name)").setData(["Name": exerciseArrayCopy[num].name, "Notes": exerciseArrayCopy[num].notes, "Reps": exerciseArrayCopy[num].reps, "Sets": exerciseArrayCopy[num].sets, "Weight": exerciseArrayCopy[num].weights], merge: false)
+                workout.setData(["Message": "Default"])
+                
+                // Path (users/uid/workouts/nameOfWorkout/nameOfExercise/nameOfExercise/data
+                workout.collection("\(exerciseArrayCopy[num].name)").document("\(exerciseArrayCopy[num].name)").setData(["Name": exerciseArrayCopy[num].name, "Notes": exerciseArrayCopy[num].notes, "Reps": exerciseArrayCopy[num].reps, "Sets": exerciseArrayCopy[num].sets, "Weight": exerciseArrayCopy[num].weights], merge: false)
             }
             
             // Transitioning the screen back to add exercise screen

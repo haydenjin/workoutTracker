@@ -10,6 +10,8 @@
 // Uncomment out functions when ready
 
 import UIKit
+import Firebase
+
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -24,9 +26,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getData(completion: nil)
+        
         // Assigning the FirstViewController as the datasource of the tableview
         tableView.dataSource = self
-        
         // Assigning the FirstViewController as the delegate of the tableview
         tableView.delegate = self
         
@@ -36,7 +39,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewWillAppear(animated)
         
         // Reloading the data so it can be displayed
-        print(workouts.count)
         tableView.reloadData()
     }
     
@@ -69,5 +71,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             // Copying the data from the other viewcontroller and combining (Merging) the arrays
             workouts += sourceViewController.workoutsArray
         }
+    }
+    
+    
+    func getData(completion: @escaping (Error?) -> Void) {
+        
+        // Get a reference to the database
+        let db = Firestore.firestore()
+            
+        // Get current user ID
+        let userId = Auth.auth().currentUser!.uid
+        
+        // Getting the data to show workouts
+        // Path (users/uid/workouts/nameOfWorkout/nameOfExercise/nameOfExercise/data
+        db.collection("users").document("\(userId)").collection("Workouts").getDocuments { (snapshot, error) in
+            
+            if let error = error {
+                print(error)
+                }
+                else {
+                
+                    for document in snapshot!.documents {
+                        
+                        print("Data: \(document.documentID)")
+                        let workout = Workouts()
+                        workout.name = document.documentID
+                        self.workouts.append(workout)
+                }
+            }
+        }
+        completion(nil)
     }
 }
