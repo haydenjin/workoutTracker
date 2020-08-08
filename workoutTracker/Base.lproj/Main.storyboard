@@ -166,26 +166,36 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="34.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5WB-E5-gZw">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="174" height="34.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="34.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpe-Nf-k0I">
+                                                                    <rect key="frame" x="154" y="0.0" width="50" height="34.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="50" id="YoZ-cL-azV"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Delete"/>
+                                                                    <connections>
+                                                                        <action selector="deleteTapped:" destination="1L2-HF-ifL" eventType="touchUpInside" id="6Wm-tl-NWb"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sets" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ksN-3E-U32">
-                                                                    <rect key="frame" x="184" y="0.0" width="70" height="34.5"/>
+                                                                    <rect key="frame" x="214" y="0.0" width="60" height="34.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reps" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="64q-lr-z0b">
-                                                                    <rect key="frame" x="264" y="0.0" width="70" height="34.5"/>
+                                                                    <rect key="frame" x="284" y="0.0" width="60" height="34.5"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="70" id="9Ui-9n-Mft"/>
+                                                                        <constraint firstAttribute="width" constant="60" id="9Ui-9n-Mft"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tn7-Rt-fiu">
-                                                                    <rect key="frame" x="344" y="0.0" width="70" height="34.5"/>
+                                                                    <rect key="frame" x="354" y="0.0" width="60" height="34.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>

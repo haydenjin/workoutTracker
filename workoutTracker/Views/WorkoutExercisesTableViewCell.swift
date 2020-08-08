@@ -8,6 +8,13 @@
 
 import UIKit
 
+// Protocol so we know which row was tapped for the button
+protocol WorkoutCellDelegate {
+    
+    func didTapDelete(name: String)
+    
+}
+
 class WorkoutExercisesTableViewCell: UITableViewCell {
 
     
@@ -18,6 +25,9 @@ class WorkoutExercisesTableViewCell: UITableViewCell {
     
     // Variable for this cell to display
     var exercise:Exercises?
+    
+    // variable for the delegate
+    var delegate: WorkoutCellDelegate?
 
     
     override func awakeFromNib() {
@@ -49,5 +59,11 @@ class WorkoutExercisesTableViewCell: UITableViewCell {
         self.sets.text = String(exercise!.sets)
         
     }
+    
+    // Connection to the button, sends the name of the exercise in this case
+    @IBAction func deleteTapped(_ sender: Any) {
+        delegate?.didTapDelete(name: exercise!.name)
+    }
+    
 
 }

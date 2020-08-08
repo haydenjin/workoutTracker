@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Protocol so we know which row was tapped for the button
 protocol HomeCellDelegate {
     
     func didTapEdit(name: String)
@@ -23,6 +24,7 @@ class HomeTableViewCell: UITableViewCell {
     // Empty variable for the workout
     var workout:Workouts?
     
+    // variable for the delegate
     var delegate: HomeCellDelegate?
     
     override func awakeFromNib() {
@@ -52,6 +54,7 @@ class HomeTableViewCell: UITableViewCell {
         
     }
     
+    // Connection to the button, sends the name of the workout in this case
     @IBAction func editTapped(_ sender: Any) {
         delegate?.didTapEdit(name: workout!.name)
     }

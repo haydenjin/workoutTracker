@@ -17,7 +17,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     // Array of Workouts to send back (empty at first)
     var workoutsArray = [Workouts]()
     
-    var name = ""
+    var workoutNameCopy = ""
 
     
     @IBOutlet weak var errorLabel: UILabel!
@@ -71,8 +71,8 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        name = StructVariables.globalVariables.nameOfWorkout
-        workoutName.text = name
+        workoutNameCopy = StructVariables.globalVariables.nameOfWorkout
+        workoutName.text = workoutNameCopy
         
         getData()
     
@@ -123,6 +123,9 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     let exercise = self.exerciseArrayCopy[indexPath.row]
     
     cell.setCell(exercise)
+        
+    // States that the delegate of the cell is the view controller (Self)
+    cell.delegate = self
     
     // Return the cell
     return cell
@@ -194,7 +197,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // Getting the data to show exercises
         // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-        db.collection("users").document("\(userId)").collection("Workouts").document(name).collection("WorkoutExercises").getDocuments { (snapshot, error) in
+        db.collection("users").document("\(userId)").collection("Workouts").document(workoutNameCopy).collection("WorkoutExercises").getDocuments { (snapshot, error) in
             
             if error != nil {
                 }
@@ -218,5 +221,31 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         }
+    }
+}
+
+// MARK: - Conforming to delegates
+
+// Says the viewcontroller conforms to the WorkoutCell protocol, we can get the name this way
+extension AddWorkoutViewController: WorkoutCellDelegate {
+    func didTapDelete(name: String) {
+        
+        // Get a reference to the database
+        let db = Firestore.firestore()
+            
+        // Get current user ID
+        let userId = Auth.auth().currentUser!.uid
+        
+        // Deleting the exercise
+        // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
+        db.collection("users").document("\(userId)").collection("Workouts").document(workoutNameCopy).collection("WorkoutExercises").document(name).delete()
+        
+        for count in 0...(exerciseArrayCopy.count - 1) {
+            if exerciseArrayCopy[count].name == name {
+                exerciseArrayCopy.remove(at: count)
+            }
+        }
+        
+        tableView.reloadData()
     }
 }

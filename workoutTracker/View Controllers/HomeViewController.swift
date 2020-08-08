@@ -19,8 +19,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var AddNewWorkout: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    
-    
     // An array of Workouts which is empty at first
     var workouts = [Workouts]()
     
@@ -63,6 +61,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.setCell(workout)
         
+        // States that the delegate of the cell is the view controller (Self)
         cell.delegate = self
         
         // Return the cell
@@ -77,6 +76,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             // Copying the data from the other viewcontroller and combining (Merging) the arrays
             workouts += sourceViewController.workoutsArray
+            
         }
     }
 
@@ -134,6 +134,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 }
 
+// Says the viewcontroller conforms to the HomeCellDelegate protocol, we can get the name this way
 extension HomeViewController: HomeCellDelegate {
     func didTapEdit(name: String) {
         
