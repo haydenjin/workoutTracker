@@ -18,3 +18,9 @@ struct Constants {
         static let rootViewController = "RootVC"
     }
 }
+
+class StructVariables {
+    struct globalVariables {
+        static var nameOfWorkout = String()
+    }
+}

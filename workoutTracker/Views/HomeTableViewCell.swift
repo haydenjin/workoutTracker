@@ -8,6 +8,13 @@
 
 import UIKit
 
+protocol HomeCellDelegate {
+    
+    func didTapEdit(name: String)
+    
+}
+
+
 class HomeTableViewCell: UITableViewCell {
 
     
@@ -15,6 +22,8 @@ class HomeTableViewCell: UITableViewCell {
     
     // Empty variable for the workout
     var workout:Workouts?
+    
+    var delegate: HomeCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,5 +50,9 @@ class HomeTableViewCell: UITableViewCell {
         // Start setting the fields
         self.workoutName.text = workout?.name
         
+    }
+    
+    @IBAction func editTapped(_ sender: Any) {
+        delegate?.didTapEdit(name: workout!.name)
     }
 }

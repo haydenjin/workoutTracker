@@ -48,5 +48,4 @@ class ActiveWorkoutTableViewCell: UITableViewCell {
         self.sets.text = String(exercise!.sets)
         
     }
-
 }

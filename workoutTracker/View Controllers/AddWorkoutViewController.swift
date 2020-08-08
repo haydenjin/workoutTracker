@@ -17,6 +17,9 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     // Array of Workouts to send back (empty at first)
     var workoutsArray = [Workouts]()
     
+    var name = ""
+
+    
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var workoutName: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -55,8 +58,8 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
             for num in 0...(exerciseArrayCopy.count - 1) {
                 workout.setData(["Message": "Default"])
                 
-                // Path (users/uid/workouts/nameOfWorkout/nameOfExercise/nameOfExercise/data
-                workout.collection("\(exerciseArrayCopy[num].name)").document("\(exerciseArrayCopy[num].name)").setData(["Name": exerciseArrayCopy[num].name, "Notes": exerciseArrayCopy[num].notes, "Reps": exerciseArrayCopy[num].reps, "Sets": exerciseArrayCopy[num].sets, "Weight": exerciseArrayCopy[num].weights], merge: false)
+                // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
+                workout.collection("WorkoutExercises").document("\(exerciseArrayCopy[num].name)").setData(["Name": exerciseArrayCopy[num].name, "Notes": exerciseArrayCopy[num].notes, "Reps": exerciseArrayCopy[num].reps, "Sets": exerciseArrayCopy[num].sets, "Weight": exerciseArrayCopy[num].weights], merge: false)
             }
             
             // Transitioning the screen back to add exercise screen
@@ -68,12 +71,18 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        name = StructVariables.globalVariables.nameOfWorkout
+        workoutName.text = name
+        
+        getData()
+    
         // Formating the text fields
         formatTextField(workoutName)
         
         tableView.delegate = self
         tableView.dataSource = self
-    }
+        
+        }
     
 
     override func viewWillAppear(_ animated: Bool) {
@@ -172,6 +181,42 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
             
             // Copying the data from the other viewcontroller and combining (Merging) the arrays
             exerciseArrayCopy += sourceViewController.exerciseArray
+        }
+    }
+    
+    func getData() {
+        
+        // Get a reference to the database
+        let db = Firestore.firestore()
+            
+        // Get current user ID
+        let userId = Auth.auth().currentUser!.uid
+        
+        // Getting the data to show exercises
+        // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
+        db.collection("users").document("\(userId)").collection("Workouts").document(name).collection("WorkoutExercises").getDocuments { (snapshot, error) in
+            
+            if error != nil {
+                }
+                else {
+                    // For every document (exercise) in the database, copy the values and add them to the array
+                    for document in snapshot!.documents {
+                        
+                        // Setting all the fields for each exercise
+                        let exercise = Exercises()
+                        exercise.name = document.documentID
+                        let data:[String:Any] = document.data()
+                        exercise.notes = data["Notes"] as! String
+                        exercise.reps = data["Reps"] as! Int
+                        exercise.weights = data["Weight"] as! Int
+                        exercise.sets = data["Sets"] as! Int
+                        
+                        self.exerciseArrayCopy.append(exercise)
+                        
+                        // Reloading the data so it can be displayed
+                        self.tableView.reloadData()
+                }
+            }
         }
     }
 }

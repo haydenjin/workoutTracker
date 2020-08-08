@@ -19,6 +19,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var AddNewWorkout: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    
+    
     // An array of Workouts which is empty at first
     var workouts = [Workouts]()
     
@@ -61,6 +63,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.setCell(workout)
         
+        cell.delegate = self
+        
         // Return the cell
         return cell
     }
@@ -78,7 +82,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     // MARK: - Sending data
     
-    // Sending data to the next screen
+    // Sending data to Workout started view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // Check that a workout was tapped
@@ -86,7 +90,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             return
         }
         
-        // Get the video that was tapped
+        // Get the workout that was tapped
         let selectedWorkout = workouts[tableView.indexPathForSelectedRow!.row]
         
         // Set a variable as an object of the viewcontroller we want to pass data to
@@ -94,9 +98,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Setting data to pass over
         sb.name = selectedWorkout.name
-        
     }
     
+
     // MARK: - Pulling from database
     
     func getData() {
@@ -108,7 +112,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let userId = Auth.auth().currentUser!.uid
         
         // Getting the data to show workouts
-        // Path (users/uid/workouts/nameOfWorkout/nameOfExercise/nameOfExercise/data
+        // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
         db.collection("users").document("\(userId)").collection("Workouts").getDocuments { (snapshot, error) in
             
             if let error = error {
@@ -118,7 +122,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                     for document in snapshot!.documents {
                         
-                        print("Data: \(document.documentID)")
                         let workout = Workouts()
                         workout.name = document.documentID
                         self.workouts.append(workout)
@@ -128,5 +131,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         }
+    }
+}
+
+extension HomeViewController: HomeCellDelegate {
+    func didTapEdit(name: String) {
+        
+        StructVariables.globalVariables.nameOfWorkout = name
+        
     }
 }

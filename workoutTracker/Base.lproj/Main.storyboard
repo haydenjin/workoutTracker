@@ -60,6 +60,10 @@
                                                                         <constraint firstAttribute="width" constant="50" id="0k5-6s-wmY"/>
                                                                     </constraints>
                                                                     <state key="normal" title="Edit"/>
+                                                                    <connections>
+                                                                        <action selector="editTapped:" destination="Z2A-fY-IEy" eventType="touchUpInside" id="CFk-lc-bJ7"/>
+                                                                        <segue destination="IeV-ou-Xe9" kind="presentation" identifier="EditWorkout" modalPresentationStyle="fullScreen" id="E4u-2r-8xW"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -729,42 +733,43 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActiveWorkoutCell" id="lHa-qX-dyf" customClass="ActiveWorkoutTableViewCell" customModule="workoutTracker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="34.5"/>
+                                                <rect key="frame" x="0.0" y="28" width="414" height="60.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lHa-qX-dyf" id="kJo-AE-46x">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="34.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pMb-bq-JHP">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="34.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whf-9e-enL">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="174" height="34.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whf-9e-enL">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="174" height="60.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sets" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zuv-9E-7v5">
-                                                                    <rect key="frame" x="184" y="0.0" width="70" height="34.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <rect key="frame" x="184" y="0.0" width="70" height="60.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reps" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Ck-H4-UCd">
-                                                                    <rect key="frame" x="264" y="0.0" width="70" height="34.5"/>
+                                                                    <rect key="frame" x="264" y="0.0" width="70" height="60.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="70" id="XHQ-rf-g7X"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zMd-Ty-4D0">
-                                                                    <rect key="frame" x="344" y="0.0" width="70" height="34.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <rect key="frame" x="344" y="0.0" width="70" height="60.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="zMd-Ty-4D0" firstAttribute="width" secondItem="5Ck-H4-UCd" secondAttribute="width" id="Qks-OL-FMU"/>
+                                                                <constraint firstAttribute="height" constant="60" id="Tuu-q8-Weo"/>
                                                                 <constraint firstItem="Zuv-9E-7v5" firstAttribute="width" secondItem="5Ck-H4-UCd" secondAttribute="width" id="VWU-yt-w3O"/>
                                                             </constraints>
                                                         </stackView>
@@ -793,6 +798,7 @@
                                         <state key="normal" title="Complete Workout"/>
                                         <connections>
                                             <action selector="completeWorkoutTapped:" destination="GFu-VJ-q6a" eventType="touchUpInside" id="G8U-1x-upe"/>
+                                            <segue destination="9pv-A4-QxB" kind="presentation" modalPresentationStyle="fullScreen" id="gzF-Or-DIc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -821,8 +827,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ped-C1-irC"/>
-        <segue reference="tU3-zq-gKJ"/>
+        <segue reference="E4u-2r-8xW"/>
+        <segue reference="NUi-rc-e5j"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="WorkoutTracker Background" width="375" height="812"/>
