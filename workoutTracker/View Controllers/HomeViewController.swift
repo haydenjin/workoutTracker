@@ -19,6 +19,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var AddNewWorkout: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    var addWorkOutTapped = false
+    
     // An array of Workouts which is empty at first
     var workouts = [Workouts]()
     
@@ -56,6 +58,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Picking what cell displays this data
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeTableViewCell
         
+        Utilities.styleTableViewCells(cell)
+        
         // Configure cell with data with the object in each array slot
         let workout = self.workouts[indexPath.row]
         
@@ -74,9 +78,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         @IBAction func unwindToHome(_ unwindSegue: UIStoryboardSegue) {
         if let sourceViewController = unwindSegue.source as? AddWorkoutViewController {
             
-            // Copying the data from the other viewcontroller and combining (Merging) the arrays
-            workouts += sourceViewController.workoutsArray
-            
+            for workout in workouts {
+                for workout2 in sourceViewController.workoutsArray {
+                    
+                    if workout.name == workout2.name {
+                        return
+                    }
+                    else {
+                        
+                        // Copying the data from the other viewcontroller and combining (Merging) the arrays
+                        workouts += sourceViewController.workoutsArray
+                        
+                    }
+                }
+            }
         }
     }
 
@@ -85,19 +100,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Sending data to Workout started view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        // Check that a workout was tapped
-        guard tableView.indexPathForSelectedRow != nil else {
-            return
+        if addWorkOutTapped == true {
+            
+            // Check that a workout was tapped
+            guard tableView.indexPathForSelectedRow != nil else {
+                return
+            }
+            
+            // Set a variable as an object of the viewcontroller we want to pass data to
+            let sb = segue.destination as! WorkoutStartedViewController
+            
+            // Setting data to pass over
+            sb.name = ""
         }
-        
-        // Get the workout that was tapped
-        let selectedWorkout = workouts[tableView.indexPathForSelectedRow!.row]
-        
-        // Set a variable as an object of the viewcontroller we want to pass data to
-        let sb = segue.destination as! WorkoutStartedViewController
-        
-        // Setting data to pass over
-        sb.name = selectedWorkout.name
+        else {
+            
+            // Check that a workout was tapped
+            guard tableView.indexPathForSelectedRow != nil else {
+                return
+            }
+            
+            // Get the workout that was tapped
+            let selectedWorkout = workouts[tableView.indexPathForSelectedRow!.row]
+            
+            // Set a variable as an object of the viewcontroller we want to pass data to
+            let sb = segue.destination as! WorkoutStartedViewController
+            
+            // Setting data to pass over
+            sb.name = selectedWorkout.name
+        }
     }
     
 
@@ -132,6 +163,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
+    // MARK: - Logic help
+    
+    @IBAction func AddWorkoutTapped(_ sender: Any) {
+        
+        // Sets variable for the workout to be true
+        addWorkOutTapped = true
+    }
+    
+    
 }
 
 // Says the viewcontroller conforms to the HomeCellDelegate protocol, we can get the name this way

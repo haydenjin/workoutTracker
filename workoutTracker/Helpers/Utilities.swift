@@ -21,6 +21,13 @@ class Utilities {
         
     }
     
+    static func styleTableViewCells(_ cell:UITableViewCell) {
+        
+        cell.backgroundColor = UIColor.init(red: 90/255, green: 50/255, blue: 200/255, alpha: 1)
+        cell.layer.cornerRadius = 25.0
+        cell.tintColor = UIColor.white
+    }
+    
     static func styleFilledButton(_ button:UIButton) {
         
         // Filled rounded corner style
@@ -45,6 +52,5 @@ class Utilities {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}$")
         return passwordTest.evaluate(with: password)
     }
-    
-    
+
 }

@@ -97,6 +97,8 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Utilities.styleTextField(nameOfExercise)
     }
 
     // MARK: - Validation

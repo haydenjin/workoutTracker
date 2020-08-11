@@ -195,6 +195,10 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         // Get current user ID
         let userId = Auth.auth().currentUser!.uid
         
+        if workoutNameCopy == "" {
+            return
+        }
+        
         // Getting the data to show exercises
         // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
         db.collection("users").document("\(userId)").collection("Workouts").document(workoutNameCopy).collection("WorkoutExercises").getDocuments { (snapshot, error) in
