@@ -68,7 +68,14 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
     
     // Sends data of finished workout back to database
     @IBAction func completeWorkoutTapped(_ sender: Any) {
-       
+        
+        for workout in exercisesArray {
+            print(workout.name)
+            print(workout.sets)
+            print(workout.reps)
+            print(workout.weights)
+        }
+        
         // Get a reference to the database
         let db = Firestore.firestore()
 
@@ -122,6 +129,7 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         textField.resignFirstResponder()
         return true
     }
+    
     
     // MARK: - Pulling from database
     
