@@ -14,9 +14,6 @@ class ActiveWorkoutTableViewCell: UITableViewCell {
     var exercise:Exercises?
     
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var sets: UITextField!
-    @IBOutlet weak var reps: UITextField!
-    @IBOutlet weak var weight: UITextField!
     
     
     override func awakeFromNib() {
@@ -42,10 +39,7 @@ class ActiveWorkoutTableViewCell: UITableViewCell {
         }
         
         // Start setting the fields
-        self.name.text = exercise?.name
-        self.weight.text = String(exercise!.weights)
-        self.reps.text = String(exercise!.reps)
-        self.sets.text = String(exercise!.sets)
+        self.name.text = exercise!.name
         
     }
 }

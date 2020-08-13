@@ -23,7 +23,7 @@ class Utilities {
     
     static func styleTableViewCells(_ cell:UITableViewCell) {
         
-        cell.backgroundColor = UIColor.init(red: 90/255, green: 50/255, blue: 200/255, alpha: 1)
+        //cell.backgroundColor = UIColor.init(red: 90/255, green: 50/255, blue: 200/255, alpha: 1)
         cell.layer.cornerRadius = 25.0
         cell.tintColor = UIColor.white
     }

@@ -21,6 +21,7 @@ class HomeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var workoutName: UILabel!
     
+    
     // Empty variable for the workout
     var workout:Workouts?
     
@@ -50,7 +51,7 @@ class HomeTableViewCell: UITableViewCell {
         }
         
         // Start setting the fields
-        self.workoutName.text = workout?.name
+        workoutName.text = workout!.name
         
     }
     
