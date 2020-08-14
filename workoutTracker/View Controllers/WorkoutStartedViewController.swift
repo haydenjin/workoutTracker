@@ -20,7 +20,7 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
     // Variable for spacing between rows (Sections)
     let cellSpacingHeight: CGFloat = 10
     
-    var name = ""
+    var workoutName = ""
     
     // Array holding all exercises for a workout
     var exercisesArray = [Exercises]()
@@ -29,6 +29,9 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Name is passed in by HomeViewController
+        nameOfWorkout.text = workoutName
         
         getData()
         
@@ -39,9 +42,6 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        // Name is passed in by HomeViewController
-        nameOfWorkout.text = name
     
     }
     
@@ -152,6 +152,28 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         return true
     }
     
+    // MARK: - Sending data to ExerciseVC
+    
+    // Sending data to Workout started view
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Check that a workout was tapped
+        guard tableView.indexPathForSelectedRow != nil else {
+            return
+        }
+        
+        // Get the workout that was tapped
+        let selectedExercise = exercisesArray[tableView.indexPathForSelectedRow!.section]
+        
+        // Set a variable as an object of the viewcontroller we want to pass data to
+        let sb = segue.destination as! ExerciseViewController
+        
+        sb.workoutName = workoutName
+        
+        // Setting data to pass over
+        sb.exerciseName = selectedExercise.name
+    }
+    
     
     // MARK: - Pulling from database
     
@@ -165,7 +187,7 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         
         // Getting the data to show workouts
         // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-        db.collection("users").document("\(userId)").collection("Workouts").document(name).collection("WorkoutExercises").getDocuments { (snapshot, error) in
+        db.collection("users").document("\(userId)").collection("Workouts").document(workoutName).collection("WorkoutExercises").getDocuments { (snapshot, error) in
             
             if error != nil {
                 }

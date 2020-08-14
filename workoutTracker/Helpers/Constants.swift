@@ -20,7 +20,5 @@ struct Constants {
 }
 
 class StructVariables {
-    struct globalVariables {
-        static var nameOfWorkout = String()
-    }
+    static var nameOfWorkout = String()
 }

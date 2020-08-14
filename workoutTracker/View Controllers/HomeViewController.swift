@@ -128,35 +128,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Sending data to Workout started view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if addWorkOutTapped == true {
-            
-            // Check that a workout was tapped
-            guard tableView.indexPathForSelectedRow != nil else {
-                return
-            }
+        
+        // Check that a workout was tapped
+        if tableView.indexPathForSelectedRow == nil {
             
             // Set a variable as an object of the viewcontroller we want to pass data to
-            let sb = segue.destination as! WorkoutStartedViewController
+            let sb2 = segue.destination as! AddWorkoutViewController
             
-            // Setting data to pass over
-            sb.name = ""
-        }
-        else {
-            
-            // Check that a workout was tapped
-            guard tableView.indexPathForSelectedRow != nil else {
-                return
+            if addWorkOutTapped == true {
+                // Setting data to pass over
+                sb2.clear = true
             }
-            
-            // Get the workout that was tapped
-            let selectedWorkout = workouts[tableView.indexPathForSelectedRow!.row]
-            
-            // Set a variable as an object of the viewcontroller we want to pass data to
-            let sb = segue.destination as! WorkoutStartedViewController
-            
-            // Setting data to pass over
-            sb.name = selectedWorkout.name
+            else {
+                sb2.clear = false
+            }
         }
+        
+        guard tableView.indexPathForSelectedRow != nil else {
+            return
+        }
+        
+        // Get the workout that was tapped
+        let selectedWorkout = workouts[tableView.indexPathForSelectedRow!.section]
+        
+        // Set a variable as an object of the viewcontroller we want to pass data to
+        let sb = segue.destination as! WorkoutStartedViewController
+        
+        // Setting data to pass over
+        sb.workoutName = selectedWorkout.name
+
     }
     
 
@@ -206,7 +206,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 extension HomeViewController: HomeCellDelegate {
     func didTapEdit(name: String) {
         
-        StructVariables.globalVariables.nameOfWorkout = name
-        
+        StructVariables.nameOfWorkout = name
     }
 }

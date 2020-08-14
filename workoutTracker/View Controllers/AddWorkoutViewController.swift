@@ -11,6 +11,12 @@ import Firebase
 
 class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
+    // Varable for the cell identifier
+    let cellReuseIdentifier = "WorkoutExercisesCell"
+    
+    // Variable for spacing between rows (Sections)
+    let cellSpacingHeight: CGFloat = 10
+    
     // Array holding all exercises for a workout
     var exerciseArrayCopy = [Exercises]()
     
@@ -18,8 +24,9 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     var workoutsArray = [Workouts]()
     
     var workoutNameCopy = ""
-
     
+    var clear = false
+
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var workoutName: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -71,7 +78,11 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        workoutNameCopy = StructVariables.globalVariables.nameOfWorkout
+        if clear == true {
+            StructVariables.nameOfWorkout = ""
+        }
+        
+        workoutNameCopy = StructVariables.nameOfWorkout
         workoutName.text = workoutNameCopy
         
         getData()
@@ -109,26 +120,45 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - TableView Functions
     
+    // Returns the number of sections (# of workouts)
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.exerciseArrayCopy.count
+    }
+    
+    // Returns 1 as we only want one row per section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Returns the number of exercises we have
-        return exerciseArrayCopy.count
+        return 1
+    }
+    
+    // Sets the cell spacing height
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return cellSpacingHeight
+    }
+    
+    // Makes the background color show through
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            
+        // Picking what cell displays this data
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutExercisesCell", for: indexPath) as! WorkoutExercisesTableViewCell
         
-    // Picking what cell displays this data
-    let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutExercisesCell", for: indexPath) as! WorkoutExercisesTableViewCell
-    
-    // Configure cell with data with the object in each array slot
-    let exercise = self.exerciseArrayCopy[indexPath.row]
-    
-    cell.setCell(exercise)
+        // Configure cell with data with the object in each array slot
+        let exercise = self.exerciseArrayCopy[indexPath.section]
         
-    // States that the delegate of the cell is the view controller (Self)
-    cell.delegate = self
-    
-    // Return the cell
-    return cell
+        cell.setCell(exercise)
+            
+        Utilities.styleTableViewCells(cell)
+            
+        // States that the delegate of the cell is the view controller (Self)
+        cell.delegate = self
+        
+        // Return the cell
+        return cell
     }
     
     // MARK: - Field Formating functions
@@ -247,6 +277,7 @@ extension AddWorkoutViewController: WorkoutCellDelegate {
         for count in 0...(exerciseArrayCopy.count - 1) {
             if exerciseArrayCopy[count].name == name {
                 exerciseArrayCopy.remove(at: count)
+                break
             }
         }
         

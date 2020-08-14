@@ -97,7 +97,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Workouts" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Workouts" image="sportscourt.fill" catalog="system" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="AddNewWorkout" destination="OcQ-T7-gHn" id="AhW-PE-1Al"/>
                         <outlet property="tableView" destination="Zum-bX-4G5" id="uuC-9S-75Y"/>
@@ -105,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-693" y="-1664"/>
+            <point key="canvasLocation" x="-694" y="-2510"/>
         </scene>
         <!--Add Workout View Controller-->
         <scene sceneID="z5R-gY-MSc">
@@ -131,9 +131,11 @@
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Workout Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eya-7C-OOL">
                                         <rect key="frame" x="0.0" y="40" width="414" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="cH3-5g-D5D"/>
                                         </constraints>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -172,6 +174,7 @@
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpe-Nf-k0I">
                                                                     <rect key="frame" x="154" y="0.0" width="50" height="50.5"/>
+                                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="50" id="YoZ-cL-azV"/>
                                                                     </constraints>
@@ -211,6 +214,7 @@
                                                             </constraints>
                                                         </stackView>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="LQt-wy-eHL" secondAttribute="trailing" id="HW4-Fx-Djf"/>
                                                         <constraint firstAttribute="bottom" secondItem="LQt-wy-eHL" secondAttribute="bottom" id="IPJ-Tg-2WR"/>
@@ -269,7 +273,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKE-4T-eRK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="MZq-H9-XA8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="162" y="-2072"/>
+            <point key="canvasLocation" x="161" y="-2918"/>
         </scene>
         <!--Popup View Controller-->
         <scene sceneID="Ryk-cH-GUx">
@@ -304,11 +308,11 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of Exercise" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UuH-J9-Rqo">
                                         <rect key="frame" x="0.0" y="150" width="414" height="40"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="DNy-MF-cfb"/>
                                         </constraints>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -326,8 +330,8 @@
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="3" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7qM-83-OeD">
                                                 <rect key="frame" x="200" y="0.0" width="214" height="40"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -350,8 +354,8 @@
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="8" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wkz-ju-ixt">
                                                 <rect key="frame" x="200" y="0.0" width="214" height="40"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -374,8 +378,8 @@
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="100" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q8z-pc-0nf">
                                                 <rect key="frame" x="200" y="0.0" width="214" height="40"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -386,8 +390,8 @@
                                     </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="247" verticalCompressionResistancePriority="747" contentHorizontalAlignment="leading" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Additional Notes" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gRO-fr-6ip">
                                         <rect key="frame" x="0.0" y="350" width="414" height="377.5"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -434,7 +438,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kao-YP-Py3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="0vQ-yP-Bix" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="975" y="-2071"/>
+            <point key="canvasLocation" x="974" y="-2917"/>
         </scene>
         <!--Settings-->
         <scene sceneID="wg7-f3-ORb">
@@ -468,11 +472,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-693" y="-985"/>
+            <point key="canvasLocation" x="-694" y="-594"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="v72-Pe-xG1">
@@ -527,7 +531,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Umj-eT-iEQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="4Bw-6A-BU9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1443" y="-13"/>
+            <point key="canvasLocation" x="-1443" y="360"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="cI2-rp-cz8">
@@ -591,7 +595,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YlD-iC-VEH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-696" y="360"/>
+            <point key="canvasLocation" x="-694" y="725"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="Dyh-MN-uDy">
@@ -669,7 +673,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I4s-n3-heH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-701" y="-295"/>
+            <point key="canvasLocation" x="-694" y="54"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -682,12 +686,29 @@
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="a8D-Qv-nQo" kind="relationship" relationship="viewControllers" id="XW5-rD-CL9"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1443" y="-1344"/>
+        </scene>
+        <!--Data-->
+        <scene sceneID="oz2-kp-Sb5">
+            <objects>
+                <viewController id="a8D-Qv-nQo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y3t-6A-yDT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Hd0-yg-OUH"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Data" image="chart.pie.fill" catalog="system" id="BG9-fe-FbK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D7m-7c-Y62" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-694" y="-1345"/>
         </scene>
         <!--App Container View Controller-->
         <scene sceneID="MxW-Ju-FU0">
@@ -720,7 +741,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eAH-N9-hfO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2354" y="-13"/>
+            <point key="canvasLocation" x="-2368" y="360"/>
         </scene>
         <!--Workout Started View Controller-->
         <scene sceneID="a1O-s1-3rV">
@@ -827,7 +848,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tTJ-Rq-NM8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="7ip-3m-FuF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="161" y="-1377"/>
+            <point key="canvasLocation" x="161" y="-2223"/>
         </scene>
         <!--Exercise View Controller-->
         <scene sceneID="lkn-mM-YmJ">
@@ -942,7 +963,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="uiU-yE-HFV"/>
                                         </constraints>
-                                        <state key="normal" title="Complete Workout"/>
+                                        <state key="normal" title="Done"/>
                                         <connections>
                                             <action selector="completeWorkoutTapped:" destination="GFu-VJ-q6a" eventType="touchUpInside" id="8cb-GG-fG1"/>
                                         </connections>
@@ -963,20 +984,24 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="566-Q3-kLF"/>
                     </view>
+                    <connections>
+                        <outlet property="nameOfExercise" destination="0Is-9r-BgQ" id="ZzG-Do-9OT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4c9-sv-VZe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="974" y="-1377"/>
+            <point key="canvasLocation" x="974" y="-2223"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="S6X-8L-Omq"/>
-        <segue reference="oH0-lI-IMo"/>
-        <segue reference="E4u-2r-8xW"/>
+        <segue reference="ped-C1-irC"/>
+        <segue reference="4Yb-N5-Drb"/>
+        <segue reference="Z37-o9-csr"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="WorkoutTracker Background" width="375" height="812"/>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="chart.pie.fill" catalog="system" width="128" height="124"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="sportscourt.fill" catalog="system" width="128" height="83"/>
     </resources>
 </document>
