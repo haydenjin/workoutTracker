@@ -59,8 +59,11 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
             
             // Add a new document to the users file
             
-            // Path (users/uid/exercises/nameOfWorkout/nameOfExercise/nameOfExercise/data
-            db.collection("users").document("\(userId)").collection("Exercises").document("\(name)").setData(["Name": name, "Notes": exerciseNotes!, "Sets": sets!, "Reps": reps!, "Weight": weightNumber!,], merge: true)
+            for number in 1...sets! {
+                // Path (users/uid/exercises/nameOfWorkout/nameOfExercise/nameOfExercise/data
+                db.collection("users").document("\(userId)").collection("Exercises").document("\(name)").setData(["Name": name, "Notes": exerciseNotes!, "Sets\(number)": sets!, "Reps\(number)": reps!, "Weight\(number)": weightNumber!, "TotalSets": sets!], merge: true)
+            }
+
             
             // Transitioning the screen back to add exercise screen
             performSegue(withIdentifier: "unwindSegueToAddExercise", sender: self)

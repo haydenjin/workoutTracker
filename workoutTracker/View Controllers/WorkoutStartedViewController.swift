@@ -198,11 +198,11 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
                         // Setting all the fields for each exercise
                         let exercise = Exercises()
                         exercise.name = document.documentID
-                        let data:[String:Any] = document.data()
-                        exercise.notes = data["Notes"] as! String
-                        exercise.reps = data["Reps"] as! Int
-                        exercise.weights = data["Weight"] as! Int
-                        exercise.sets = data["Sets"] as! Int
+                        //let data:[String:Any] = document.data()
+                        //exercise.notes = data["Notes"] as! String
+                        //exercise.reps = data["Reps"] as! Int
+                        //exercise.weights = data["Weight"] as! Int
+                        //exercise.sets = data["Sets"] as! Int
                         
                         self.exercisesArray.append(exercise)
                         

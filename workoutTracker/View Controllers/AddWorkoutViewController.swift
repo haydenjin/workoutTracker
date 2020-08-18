@@ -65,14 +65,17 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
             for num in 0...(exerciseArrayCopy.count - 1) {
                 workout.setData(["Message": "Default"])
                 
+                for number in 1...exerciseArrayCopy[num].sets {
                 // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-                workout.collection("WorkoutExercises").document("\(exerciseArrayCopy[num].name)").setData(["Name": exerciseArrayCopy[num].name, "Notes": exerciseArrayCopy[num].notes, "Reps": exerciseArrayCopy[num].reps, "Sets": exerciseArrayCopy[num].sets, "Weight": exerciseArrayCopy[num].weights], merge: false)
+                    workout.collection("WorkoutExercises").document("\(exerciseArrayCopy[num].name)").setData(["Name": exerciseArrayCopy[num].name, "Notes": exerciseArrayCopy[num].notes, "Reps\(number)": exerciseArrayCopy[num].reps, "Sets\(number)": exerciseArrayCopy[num].sets, "Weight\(number)": exerciseArrayCopy[num].weights, "TotalSets": exerciseArrayCopy[num].sets], merge: true)
+                }
             }
             
             // Transitioning the screen back to add exercise screen
             performSegue(withIdentifier: "unwindSegueToHome", sender: self)
         }
     }
+    
     
     
     override func viewDidLoad() {
@@ -244,9 +247,9 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
                         exercise.name = document.documentID
                         let data:[String:Any] = document.data()
                         exercise.notes = data["Notes"] as! String
-                        exercise.reps = data["Reps"] as! Int
-                        exercise.weights = data["Weight"] as! Int
-                        exercise.sets = data["Sets"] as! Int
+                        exercise.reps = data["Reps1"] as! Int
+                        exercise.weights = data["Weight1"] as! Int
+                        exercise.sets = data["Sets1"] as! Int
                         
                         self.exerciseArrayCopy.append(exercise)
                         

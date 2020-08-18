@@ -20,5 +20,16 @@ struct Constants {
 }
 
 class StructVariables {
+    
+    // Master Exercises Array
+    static var masterExercises = Exercises()
+    
+    // Variable for passing along name of workout
     static var nameOfWorkout = String()
+    
+    // Used to keep track of looping number of sets for Exercises VC
+    static var count = 0
+    
+    // Used to keep track of looping number of sets in order to update data
+    static var count2 = 0
 }

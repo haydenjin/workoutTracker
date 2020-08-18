@@ -26,4 +26,15 @@ class Exercises {
         self.reps = reps
         self.sets = sets
     }
+
+class VariableExercises {
+    
+    var name = ""
+    var notes = ""
+    var totalSets = 0
+    var weights = [Int]()
+    var reps = [Int]()
+    var sets = [Int]()
+    
+    }
 }
