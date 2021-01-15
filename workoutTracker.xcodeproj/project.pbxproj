@@ -33,6 +33,7 @@
 		BCD4D71824C9385800F4498B /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D71724C9385800F4498B /* PopupViewController.swift */; };
 		BCD9A22A24C68506001F502B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9A22924C68506001F502B /* SignupViewController.swift */; };
 		BCD9A22C24C68514001F502B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9A22B24C68514001F502B /* LoginViewController.swift */; };
+		BCDEC66B25AB56A900CC86CE /* Sets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDEC66A25AB56A900CC86CE /* Sets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		BCD4D71724C9385800F4498B /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		BCD9A22924C68506001F502B /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		BCD9A22B24C68514001F502B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BCDEC66A25AB56A900CC86CE /* Sets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				BC74A8E724C15F500064BA9C /* Workouts.swift */,
 				BC65EC9424C0BB3200AB3B30 /* Exercises.swift */,
+				BCDEC66A25AB56A900CC86CE /* Sets.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				BC91EEE624C6911C0074193A /* Utilities.swift in Sources */,
 				BC15C30324CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift in Sources */,
 				BC74A8E824C15F500064BA9C /* Workouts.swift in Sources */,
+				BCDEC66B25AB56A900CC86CE /* Sets.swift in Sources */,
 				BC65EC7F24C0B2E600AB3B30 /* SceneDelegate.swift in Sources */,
 				BC29812B24C7E1930058D756 /* Constants.swift in Sources */,
 				BC147EA424D1B9BD00C4D4CF /* WorkoutStartedViewController.swift in Sources */,

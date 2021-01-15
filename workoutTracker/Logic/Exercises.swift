@@ -15,16 +15,19 @@ class Exercises {
     
     var name = ""
     var notes = ""
-    var weights = 0
-    var reps = 0
-    var sets = 0
+    var sets = [Sets]()
     
     func addNewExercise(name:String, notes:String, weight:Int, reps:Int, sets:Int) {
         self.name = name
         self.notes = notes
-        self.weights = weight
-        self.reps = reps
-        self.sets = sets
+        
+        for _ in 0..<sets {
+            let newSet = Sets()
+            newSet.reps = reps
+            newSet.weights = weight
+            
+            self.sets.append(newSet)
+        }
     }
 
 class VariableExercises {
@@ -35,8 +38,5 @@ class VariableExercises {
     var weights = [Int]()
     var reps = [Int]()
     var sets = [Int]()
-    
     }
 }
-
-//Changed

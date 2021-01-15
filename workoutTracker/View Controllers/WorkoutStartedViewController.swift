@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-
+    
     @IBOutlet weak var nameOfWorkout: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
@@ -30,10 +30,10 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getData()
+        
         // Name is passed in by HomeViewController
         nameOfWorkout.text = workoutName
-        
-        getData()
         
         tableView.delegate = self
         
@@ -42,7 +42,8 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     override func viewWillAppear(_ animated: Bool) {
-    
+        
+        
     }
     
     // MARK: - Tableview Functions
@@ -94,16 +95,19 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         for workout in exercisesArray {
             print(workout.name)
             print(workout.sets)
-            print(workout.reps)
-            print(workout.weights)
+            for num in 0...workout.sets.count{
+                print(workout.sets[num].reps)
+                print(workout.sets[num].weights)
+            }
+            
         }
         
         // Get a reference to the database
         let db = Firestore.firestore()
-
+        
         // Get current user ID
         let userId = Auth.auth().currentUser!.uid
-
+        
         // Setting the name of the workout
         let name = nameOfWorkout.text
         
@@ -117,79 +121,66 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
             
             for _ in 0...(exercisesArray.count - 1) {
                 workoutData.setData(["Date": FieldValue.serverTimestamp()])
-            
-            // Path (users/uid/workouts/Exercises/NameofExercise/data)
-            workoutData.collection("WorkoutExercises").document("\(exercisesArray[count].name)").setData(["Name": exercisesArray[count].name, "Notes": exercisesArray[count].notes, "Reps": exercisesArray[count].reps, "Sets": exercisesArray[count].sets, "Weight": exercisesArray[count].weights], merge: true)
+                
+                //Creates todays date
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                
+                // Path (users/uid/workouts/Exercises/NameofExercise/data)
+                workoutData.collection("\(exercisesArray[count].name)").document(formatter.string(from: Date()))
+                
+                for num in 0...exercisesArray[count - 1].sets.count {
+                    
+                    workoutData.collection("Set" + String(num)).document("reps").setData(["Reps": exercisesArray[count].sets[num].reps], merge: true)
+                    
+                    workoutData.collection("Set" + String(num)).document("weights").setData(["Weight": exercisesArray[count].sets[num].weights], merge: true)
+                }
             }
         }
-    }
-    
-    // MARK: - Field Formating functions
-
-    // Function to formate the text fields
-    func formatTextField(_ textField:UITextField) {
         
-        // Create a variable
-        let textfield = textField
+        // MARK: - Field Formating functions
         
-        // Make itself the delegate
-        textfield.delegate = self
-        
-        // Set the return as (done)
-        textfield.returnKeyType = .done
-        
-        // Auto caps the first letter of each sentence
-        textfield.autocapitalizationType = .sentences
-        
-        // Center the screen on the text field when clicked
-        textfield.center = self.view.center
-
-    }
-    
-    // Function to drop down text field after its done being used
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    // MARK: - Sending data to ExerciseVC
-    
-    // Sending data to Workout started view
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        // Check that a workout was tapped
-        guard tableView.indexPathForSelectedRow != nil else {
-            return
+        // Function to formate the text fields
+        func formatTextField(_ textField:UITextField) {
+            
+            // Create a variable
+            let textfield = textField
+            
+            // Make itself the delegate
+            textfield.delegate = self
+            
+            // Set the return as (done)
+            textfield.returnKeyType = .done
+            
+            // Auto caps the first letter of each sentence
+            textfield.autocapitalizationType = .sentences
+            
+            // Center the screen on the text field when clicked
+            textfield.center = self.view.center
+            
         }
         
-        // Get the workout that was tapped
-        let selectedExercise = exercisesArray[tableView.indexPathForSelectedRow!.section]
+        // Function to drop down text field after its done being used
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            return true
+        }
         
-        // Set a variable as an object of the viewcontroller we want to pass data to
-        let sb = segue.destination as! ExerciseViewController
+        // MARK: - Pulling from database
         
-        sb.workoutName = workoutName
-        
-        // Setting data to pass over
-        sb.exerciseName = selectedExercise.name
-    }
-    
-    
-    // MARK: - Pulling from database
-    
-    func getData() {
-        
-        // Get a reference to the database
-        let db = Firestore.firestore()
+        func getData() {
             
-        // Get current user ID
-        let userId = Auth.auth().currentUser!.uid
-        
-        // Getting the data to show workouts
-        // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-        db.collection("users").document("\(userId)").collection("Workouts").document(workoutName).collection("WorkoutExercises").getDocuments { (snapshot, error) in
+            // Get a reference to the database
+            let db = Firestore.firestore()
             
-            if error != nil {
+            // Get current user ID
+            let userId = Auth.auth().currentUser!.uid
+            
+            // Getting the data to show workouts
+            // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
+            db.collection("users").document("\(userId)").collection("Workouts").document(workoutName).collection("WorkoutExercises").getDocuments { (snapshot, error) in
+                
+                if error != nil {
                 }
                 else {
                     // For every document (exercise) in the database, copy the values and add them to the array
@@ -198,17 +189,50 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
                         // Setting all the fields for each exercise
                         let exercise = Exercises()
                         exercise.name = document.documentID
-                        //let data:[String:Any] = document.data()
-                        //exercise.notes = data["Notes"] as! String
-                        //exercise.reps = data["Reps"] as! Int
-                        //exercise.weights = data["Weight"] as! Int
-                        //exercise.sets = data["Sets"] as! Int
+                        let data:[String:Any] = document.data()
                         
+                        var note = ""
+                        
+                        if (data["Notes"] != nil) {
+                            note = data["Notes"] as! String
+                        }
+                        
+                        exercise.notes = note
+                        
+                        let numberOfSets = data["Number of sets"] as! Int
+                        // Loop for reps
+                        for set in 1...numberOfSets {
+                            exercise.sets[set].reps = data["reps \(set)"] as! Int
+                            exercise.sets[set].weights = data["weights \(set)"] as! Int
+                        }
                         self.exercisesArray.append(exercise)
                         
                         // Reloading the data so it can be displayed
                         self.tableView.reloadData()
+                    }
                 }
+            }
+            
+            // MARK: - Sending data to ExerciseVC
+            
+            // Sending data to Workout started view
+            func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                
+                // Check that a workout was tapped
+                guard tableView.indexPathForSelectedRow != nil else {
+                    return
+                }
+                
+                // Get the workout that was tapped
+                let selectedExercise = exercisesArray[tableView.indexPathForSelectedRow!.section]
+                
+                // Set a variable as an object of the viewcontroller we want to pass data to
+                let sb = segue.destination as! ExerciseViewController
+                
+                sb.workoutName = workoutName
+                
+                // Setting data to pass over
+                sb.exerciseName = selectedExercise.name
             }
         }
     }

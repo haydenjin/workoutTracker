@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-
+    
     // Varable for the cell identifier
     let cellReuseIdentifier = "WorkoutExercisesCell"
     
@@ -26,14 +26,14 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     var workoutNameCopy = ""
     
     var clear = false
-
+    
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var workoutName: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
     // Variable to keep track of when the workout is done being made, this stops the prepare for segue from firing constantly when we dont want to add objects to our array
     var buttonTapped = false
-
+    
     
     @IBAction func completeWorkoutTapped(_ sender: Any) {
         
@@ -52,7 +52,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         else {
             // Get a reference to the database
             let db = Firestore.firestore()
-                
+            
             // Get current user ID
             let userId = Auth.auth().currentUser!.uid
             
@@ -62,12 +62,29 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
             // Adds the array of exercises to the database
             let workout = db.collection("users").document("\(userId)").collection("Workouts").document(name)
             
+            // Add a random message so Workouts will appear in queries (Not a virtual document)
+            workout.setData(["Set": "Not virtual"])
+            
+            let WorkoutExercises = workout.collection("WorkoutExercises")
+            
+            // Loop for each exercise
             for num in 0...(exerciseArrayCopy.count - 1) {
-                workout.setData(["Message": "Default"])
+                //workout.setData(["Message": "Default"])
                 
-                for number in 1...exerciseArrayCopy[num].sets {
-                // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-                    workout.collection("WorkoutExercises").document("\(exerciseArrayCopy[num].name)").setData(["Name": exerciseArrayCopy[num].name, "Notes": exerciseArrayCopy[num].notes, "Reps\(number)": exerciseArrayCopy[num].reps, "Sets\(number)": exerciseArrayCopy[num].sets, "Weight\(number)": exerciseArrayCopy[num].weights, "TotalSets": exerciseArrayCopy[num].sets], merge: true)
+                // Name of individual exercise
+                let workout = WorkoutExercises.document("\(exerciseArrayCopy[num].name)")
+                
+                // Adding the note
+                workout.setData(["Notes": String(exerciseArrayCopy[num].notes)])
+                
+                // Add the count for number of reps
+                workout.setData(["Number of sets": String(exerciseArrayCopy[num].sets.count)])
+                
+                // Loop for sets for each exercise
+                for set in 1...exerciseArrayCopy[num].sets.count {
+                    workout.collection("Set" + String(set)).document("reps").setData(["Reps\(set)": exerciseArrayCopy[num].sets[set - 1].reps], merge: true)
+                    
+                    workout.collection("Set" + String(set)).document("weights").setData(["Weight\(set)": exerciseArrayCopy[num].sets[set - 1].weights], merge: true)
                 }
             }
             
@@ -89,16 +106,16 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         workoutName.text = workoutNameCopy
         
         getData()
-    
+        
         // Formating the text fields
         formatTextField(workoutName)
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        }
+    }
     
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -110,15 +127,15 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // Checks if all required fields are filled out
     func validateFields() -> String? {
-    
+        
         // Check that all required fields are filled while removing white spaces and new lines
         if workoutName.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             
             // Fields not filled, Display error message
             return "Please fill in the workout name and add an exercise"
-            }
-            // Fields are filled, keep going
-            return nil
+        }
+        // Fields are filled, keep going
+        return nil
     }
     
     // MARK: - TableView Functions
@@ -146,7 +163,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            
+        
         // Picking what cell displays this data
         let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutExercisesCell", for: indexPath) as! WorkoutExercisesTableViewCell
         
@@ -154,9 +171,9 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         let exercise = self.exerciseArrayCopy[indexPath.section]
         
         cell.setCell(exercise)
-            
+        
         Utilities.styleTableViewCells(cell)
-            
+        
         // States that the delegate of the cell is the view controller (Self)
         cell.delegate = self
         
@@ -165,7 +182,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: - Field Formating functions
-
+    
     // Function to formate the text fields
     func formatTextField(_ textField:UITextField) {
         
@@ -183,7 +200,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // Center the screen on the text field when clicked
         textfield.center = self.view.center
-
+        
     }
     
     // Function to drop down text field after its done being used
@@ -191,10 +208,10 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         textField.resignFirstResponder()
         return true
     }
-
-
+    
+    
     // MARK: - Sending back information
-
+    
     // Function needed to pass data back to a previous viewcontroller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -208,11 +225,11 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
             workoutsArray.append(workout)
         }
     }
-
+    
     // MARK: - Reciving Information
-
-        // Gets the data from the Popup screen
-        @IBAction func unwindToAddExercise(_ unwindSegue: UIStoryboardSegue) {
+    
+    // Gets the data from the Popup screen
+    @IBAction func unwindToAddExercise(_ unwindSegue: UIStoryboardSegue) {
         if let sourceViewController = unwindSegue.source as? PopupViewController {
             
             // Copying the data from the other viewcontroller and combining (Merging) the arrays
@@ -224,7 +241,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // Get a reference to the database
         let db = Firestore.firestore()
-            
+        
         // Get current user ID
         let userId = Auth.auth().currentUser!.uid
         
@@ -237,24 +254,25 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         db.collection("users").document("\(userId)").collection("Workouts").document(workoutNameCopy).collection("WorkoutExercises").getDocuments { (snapshot, error) in
             
             if error != nil {
-                }
-                else {
-                    // For every document (exercise) in the database, copy the values and add them to the array
-                    for document in snapshot!.documents {
-                        
-                        // Setting all the fields for each exercise
-                        let exercise = Exercises()
-                        exercise.name = document.documentID
-                        let data:[String:Any] = document.data()
-                        exercise.notes = data["Notes"] as! String
-                        exercise.reps = data["Reps1"] as! Int
-                        exercise.weights = data["Weight1"] as! Int
-                        exercise.sets = data["Sets1"] as! Int
-                        
-                        self.exerciseArrayCopy.append(exercise)
-                        
-                        // Reloading the data so it can be displayed
-                        self.tableView.reloadData()
+            }
+            else {
+                // For every document (exercise) in the database, copy the values and add them to the array
+                for document in snapshot!.documents {
+                    
+                    // Setting all the fields for each exercise
+                    let exercise = Exercises()
+                    exercise.name = document.documentID
+                    let data:[String:Any] = document.data()
+                    exercise.notes = data["Notes"] as! String
+                    for num in 0...exercise.sets.count {
+                        exercise.sets[num].reps = data["Reps1"] as! Int
+                        exercise.sets[num].weights = data["Weight1"] as! Int
+                    }
+                    
+                    self.exerciseArrayCopy.append(exercise)
+                    
+                    // Reloading the data so it can be displayed
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -269,7 +287,7 @@ extension AddWorkoutViewController: WorkoutCellDelegate {
         
         // Get a reference to the database
         let db = Firestore.firestore()
-            
+        
         // Get current user ID
         let userId = Auth.auth().currentUser!.uid
         

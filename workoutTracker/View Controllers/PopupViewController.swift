@@ -23,7 +23,7 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
     
     // Empty array of user added exercises, this array will only ever have max one exercise
     var exerciseArray = [Exercises]()
-   
+    
     // MARK: - Button is tapped
     
     @IBAction func backButtonTapped(_ sender: Any) {
@@ -59,11 +59,23 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
             
             // Add a new document to the users file
             
+            // Path (users/uid/exercises/nameOfWorkout/nameOfExercise/nameOfExercise/data
+            let db = db.collection("users").document("\(userId)").collection("Exercises").document("\(name)")
+            
+            // Adding the note
+            db.setData(["Notes": String(exerciseNotes!)])
+            
+            db.setData(["Number of sets": Int(sets!)])
+            
+            // Loop for sets
             for number in 1...sets! {
-                // Path (users/uid/exercises/nameOfWorkout/nameOfExercise/nameOfExercise/data
-                db.collection("users").document("\(userId)").collection("Exercises").document("\(name)").setData(["Name": name, "Notes": exerciseNotes!, "Sets\(number)": sets!, "Reps\(number)": reps!, "Weight\(number)": weightNumber!, "TotalSets": sets!], merge: true)
+                
+                db.collection("Set" + String(number)).document("reps").setData(["Reps\(number)": reps!], merge: true)
+                
+                db.collection("Set" + String(number)).document("weights").setData(["Weight\(number)": weightNumber!], merge: true)
+                
             }
-
+            
             
             // Transitioning the screen back to add exercise screen
             performSegue(withIdentifier: "unwindSegueToAddExercise", sender: self)
@@ -103,12 +115,12 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
         
         Utilities.styleTextField(nameOfExercise)
     }
-
+    
     // MARK: - Validation
     
     // Checks if all required fields are filled out
     func validateFields() -> String? {
-    
+        
         // Check that all required fields are filled while removing white spaces and new lines
         if nameOfExercise.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             numberOfSets.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
@@ -117,11 +129,11 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
             
             // Fields not filled, Display error message
             return "Please fill in all fields"
-            }
-            // Fields are filled, keep going
-            return nil
+        }
+        // Fields are filled, keep going
+        return nil
     }
-
+    
     
     // MARK: - Field Formating functions
     
@@ -153,7 +165,7 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
         
         // Center the screen on the text field when clicked
         textfield.center = self.view.center
-
+        
     }
     
     // Function to formate the text fields
@@ -173,7 +185,7 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
         
         // Center the screen on the text field when clicked
         textfield.center = self.view.center
-
+        
     }
     
     // Function to drop down text field after its done being used
