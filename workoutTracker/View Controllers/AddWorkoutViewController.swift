@@ -75,10 +75,10 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
                 let workout = WorkoutExercises.document("\(exerciseArrayCopy[num].name)")
                 
                 // Adding the note
-                workout.setData(["Notes": String(exerciseArrayCopy[num].notes)])
+                workout.setData(["Notes": String(exerciseArrayCopy[num].notes)], merge: true)
                 
                 // Add the count for number of reps
-                workout.setData(["Number of sets": String(exerciseArrayCopy[num].sets.count)])
+                workout.setData(["numberofsets": String(exerciseArrayCopy[num].sets.count)], merge: true)
                 
                 // Loop for sets for each exercise
                 for set in 1...exerciseArrayCopy[num].sets.count {

@@ -87,6 +87,49 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         return cell
     }
     
+    // MARK: - Pulling from database
+    
+    func getData() {
+        
+        // Get a reference to the database
+        let db = Firestore.firestore()
+        
+        // Get current user ID
+        let userId = Auth.auth().currentUser!.uid
+        
+        // Getting the data to show workouts
+        // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
+        db.collection("users").document("\(userId)").collection("Workouts").document(workoutName).collection("WorkoutExercises").getDocuments { (snapshot, error) in
+            
+            if error != nil {
+            }
+            else {
+                // For every document (exercise) in the database, copy the values and add them to the array
+                for document in snapshot!.documents {
+                    
+                    // Setting all the fields for each exercise
+                    let exercise = Exercises()
+                    exercise.name = document.documentID
+                    let data:[String:Any] = document.data()
+                    
+                    var note = ""
+                    
+                    if (data["Notes"] != nil) {
+                        note = data["Notes"] as! String
+                    }
+                    
+                    exercise.notes = note
+                    
+                    
+                    self.exercisesArray.append(exercise)
+                    
+                    // Reloading the data so it can be displayed
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
     // MARK: - Completing workout
     
     // Sends data of finished workout back to database
@@ -166,74 +209,27 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
             return true
         }
         
-        // MARK: - Pulling from database
+    }
+    
+    // MARK: - Sending data to ExerciseVC
+    
+    // Sending data to Workout started view
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        func getData() {
-            
-            // Get a reference to the database
-            let db = Firestore.firestore()
-            
-            // Get current user ID
-            let userId = Auth.auth().currentUser!.uid
-            
-            // Getting the data to show workouts
-            // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-            db.collection("users").document("\(userId)").collection("Workouts").document(workoutName).collection("WorkoutExercises").getDocuments { (snapshot, error) in
-                
-                if error != nil {
-                }
-                else {
-                    // For every document (exercise) in the database, copy the values and add them to the array
-                    for document in snapshot!.documents {
-                        
-                        // Setting all the fields for each exercise
-                        let exercise = Exercises()
-                        exercise.name = document.documentID
-                        let data:[String:Any] = document.data()
-                        
-                        var note = ""
-                        
-                        if (data["Notes"] != nil) {
-                            note = data["Notes"] as! String
-                        }
-                        
-                        exercise.notes = note
-                        
-                        let numberOfSets = data["Number of sets"] as! Int
-                        // Loop for reps
-                        for set in 1...numberOfSets {
-                            exercise.sets[set].reps = data["reps \(set)"] as! Int
-                            exercise.sets[set].weights = data["weights \(set)"] as! Int
-                        }
-                        self.exercisesArray.append(exercise)
-                        
-                        // Reloading the data so it can be displayed
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-            
-            // MARK: - Sending data to ExerciseVC
-            
-            // Sending data to Workout started view
-            func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                
-                // Check that a workout was tapped
-                guard tableView.indexPathForSelectedRow != nil else {
-                    return
-                }
-                
-                // Get the workout that was tapped
-                let selectedExercise = exercisesArray[tableView.indexPathForSelectedRow!.section]
-                
-                // Set a variable as an object of the viewcontroller we want to pass data to
-                let sb = segue.destination as! ExerciseViewController
-                
-                sb.workoutName = workoutName
-                
-                // Setting data to pass over
-                sb.exerciseName = selectedExercise.name
-            }
+        // Check that a workout was tapped
+        guard tableView.indexPathForSelectedRow != nil else {
+            return
         }
+        
+        // Get the workout that was tapped
+        let selectedExercise = exercisesArray[tableView.indexPathForSelectedRow!.section]
+        
+        // Set a variable as an object of the viewcontroller we want to pass data to
+        let sb = segue.destination as! ExerciseViewController
+        
+        sb.workoutName = workoutName
+        
+        // Setting data to pass over
+        sb.exerciseName = selectedExercise.name
     }
 }

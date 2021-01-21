@@ -132,7 +132,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
                 workout.collection("WorkoutExercises").document(exerciseName).setData(["Message": "Default"])
                     
                 for count in 0...exercise.totalSets-1 {
-                    workout.collection("WorkoutExercises").document(exerciseName).collection(date).document(exerciseName).setData(["Reps\(count+1)": exercise.reps[count], "Weight\(count+1)": exercise.weights[count]], merge: true)
+                   // workout.collection("WorkoutExercises").document(exerciseName).collection(date).document(exerciseName).setData(["Reps\(count+1)": exercise.reps[count], "Weight\(count+1)": exercise.weights[count]], merge: true)
                 }
             }
         }
@@ -178,13 +178,29 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
                 let data:[String:Any] = document.data()!
                 
                 exercise.notes = data["Notes"] as! String
-                exercise.totalSets = data["TotalSets"] as! Int
+                // Need to do this since it is listed as a String in the database so using as! Int crashes the program
+                exercise.totalSets = Int(data["numberofsets"] as! String)!
                 
-                for number in 1...exercise.totalSets {
+                for number in 0...(exercise.totalSets - 1) {
                     
-                    exercise.sets.append(data["Sets\(number)"] as! Int)
-                    exercise.reps.append(data["Reps\(number)"] as! Int)
-                    exercise.weights.append(data["Weight\(number)"] as! Int)
+                    //Need a different query here
+                    exercise.sets.append(Sets())
+                    
+                    db.collection("users").document("\(userId)").collection("Workouts").document(self.workoutName).collection("WorkoutExercises").document(self.exerciseName).collection("Set + \(number + 1)").getDocuments { (snapshot, error) in
+                        if error != nil {
+                        }
+                        else {
+                            // For every document (exercise) in the database, copy the values and add them to the array
+                            for document in snapshot!.documents {
+                                
+                                
+                                
+                            }
+                        }
+                    }
+                    
+                    exercise.sets[number].reps = data["Reps\(number + 1)"] as! Int
+                    exercise.sets[number].weights = data["Weight\(number + 1)"] as! Int
                 }
                 
                 self.exercise = exercise
@@ -192,8 +208,6 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
                 // Reloading the data so it can be displayed
                 self.tableView.reloadData()
                 
-            } else {
-                return
             }
         }
     }

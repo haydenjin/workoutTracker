@@ -63,9 +63,9 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
             let db = db.collection("users").document("\(userId)").collection("Exercises").document("\(name)")
             
             // Adding the note
-            db.setData(["Notes": String(exerciseNotes!)])
+            db.setData(["Notes": String(exerciseNotes!)], merge: true)
             
-            db.setData(["Number of sets": Int(sets!)])
+            db.setData(["numberofsets": Int(sets!)], merge: true)
             
             // Loop for sets
             for number in 1...sets! {

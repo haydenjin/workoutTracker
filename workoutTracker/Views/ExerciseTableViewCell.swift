@@ -43,9 +43,11 @@ class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         
         // Start setting the fields
-        self.setNum.text = "Set \(StructVariables.count + 1)"
-        self.reps.text = "\(exercise!.reps[StructVariables.count])"
-        self.weight.text = "\(exercise!.weights[StructVariables.count])"
+        
+        let counter = StructVariables.count + 1
+        self.setNum.text = "Set \(counter)"
+        self.reps.text = "\(exercise!.sets[counter].reps)"
+        self.weight.text = "\(exercise!.sets[counter].weights)"
         
         formatTextField(reps)
         formatTextField(weight)
@@ -64,9 +66,11 @@ class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
             return
         }
         
+        let counter2 = StructVariables.count2
+        
         // Force unwraps value and sets it as a Int
-        exercise!.reps[StructVariables.count2] = Int(self.reps.text!) ?? 0
-        exercise!.weights[StructVariables.count2] = Int(self.weight.text!) ?? 0
+        exercise!.sets[counter2].reps = Int(self.reps.text!) ?? 0
+        exercise!.sets[counter2].weights = Int(self.weight.text!) ?? 0
         
         StructVariables.count2 += 1
     }
