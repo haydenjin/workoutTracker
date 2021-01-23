@@ -33,13 +33,14 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     var exercise = Exercises.VariableExercises()
     
     var doneTapped = false
-
+    
     // MARK: - View Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +48,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.delegate = self
         
         tableView.dataSource = self
-
+        
         nameOfExercise.text = exerciseName
     }
     
@@ -69,7 +70,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         // Reset the count
         StructVariables.count2 = 0
     }
-
+    
     // MARK: - Tableview Functions
     
     // Returns the number of sections (# of sets)
@@ -105,7 +106,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         // Setting the style of the cell
         Utilities.styleTableViewCells(cell)
         
-
+        
         // If button was tapped, send data stamped info back to database
         if doneTapped == true {
             
@@ -117,7 +118,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 // Get a reference to the database
                 let db = Firestore.firestore()
-                    
+                
                 // Get current user ID
                 let userId = Auth.auth().currentUser!.uid
                 
@@ -130,9 +131,9 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
                 let date = df.string(from: Date())
                 
                 workout.collection("WorkoutExercises").document(exerciseName).setData(["Message": "Default"])
-                    
+                
                 for count in 0...exercise.totalSets-1 {
-                   // workout.collection("WorkoutExercises").document(exerciseName).collection(date).document(exerciseName).setData(["Reps\(count+1)": exercise.reps[count], "Weight\(count+1)": exercise.weights[count]], merge: true)
+                    //workout.collection("WorkoutExercises").document(exerciseName).collection(date).document(exerciseName).setData(["Reps\(count+1)": exercise.reps[count], "Weight\(count+1)": exercise.weights[count]], merge: true)
                 }
             }
         }
@@ -163,7 +164,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Get a reference to the database
         let db = Firestore.firestore()
-            
+        
         // Get current user ID
         let userId = Auth.auth().currentUser!.uid
         
@@ -183,32 +184,33 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 for number in 0...(exercise.totalSets - 1) {
                     
-                    //Need a different query here
                     exercise.sets.append(Sets())
                     
-                    db.collection("users").document("\(userId)").collection("Workouts").document(self.workoutName).collection("WorkoutExercises").document(self.exerciseName).collection("Set + \(number + 1)").getDocuments { (snapshot, error) in
-                        if error != nil {
+                    // Jumping over this line somehow, try to rap tableview.reloaddata in a function and force get data to run first
+                    
+                    // Retrives the reps
+                    let repsDbCall = Firestore.firestore().collection("users").document("\(userId)").collection("Workouts").document(self.workoutName).collection("WorkoutExercises").document(self.exerciseName).collection("Set\(number + 1)").document("reps")
+                    
+                    repsDbCall.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            // For every document (Set) in the database, copy the values and add them to the array
+                            
+                            let data:[String:Any] = document.data()!
+                            
+                            exercise.sets[number].reps = data["Reps\(number + 1)"] as! Int
+                            //exercise.sets[number].weights = 155//Int(data["weights"] as! String)!
                         }
                         else {
-                            // For every document (exercise) in the database, copy the values and add them to the array
-                            for document in snapshot!.documents {
-                                
-                                
-                                
-                            }
+                            // There was an error, display it somehow
                         }
                     }
                     
-                    exercise.sets[number].reps = data["Reps\(number + 1)"] as! Int
-                    exercise.sets[number].weights = data["Weight\(number + 1)"] as! Int
+                    //Retrives the weights
                 }
-                
                 self.exercise = exercise
-                
-                // Reloading the data so it can be displayed
-                self.tableView.reloadData()
-                
             }
+            // Reloading the data so it can be displayed
+            self.tableView.reloadData()
         }
     }
 }

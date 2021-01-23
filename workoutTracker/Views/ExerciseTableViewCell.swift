@@ -46,8 +46,8 @@ class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
         
         let counter = StructVariables.count + 1
         self.setNum.text = "Set \(counter)"
-        self.reps.text = "\(exercise!.sets[counter].reps)"
-        self.weight.text = "\(exercise!.sets[counter].weights)"
+        self.reps.text = "\(exercise!.sets[counter - 1].reps)"
+        self.weight.text = "\(exercise!.sets[counter - 1].weights)"
         
         formatTextField(reps)
         formatTextField(weight)
