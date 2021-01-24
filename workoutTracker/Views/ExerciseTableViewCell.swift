@@ -44,15 +44,14 @@ class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
         
         // Start setting the fields
         
-        let counter = StructVariables.count + 1
-        self.setNum.text = "Set \(counter)"
-        self.reps.text = "\(exercise!.sets[counter - 1].reps)"
-        self.weight.text = "\(exercise!.sets[counter - 1].weights)"
+        self.setNum.text = "Set \(StructVariables.counter + 1)"
+        self.reps.text = "\(exercise!.sets[StructVariables.counter].reps)"
+        self.weight.text = "\(exercise!.sets[StructVariables.counter].weights)"
         
         formatTextField(reps)
         formatTextField(weight)
         
-        StructVariables.count += 1
+        StructVariables.counter += 1
     }
     
     // Setting the cell up

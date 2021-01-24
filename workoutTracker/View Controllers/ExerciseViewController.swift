@@ -16,6 +16,11 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
+    // Get a reference to the database
+    let db = Firestore.firestore()
+    
+    // Get current user ID
+    let userId = Auth.auth().currentUser!.uid
     
     // Varable for the cell identifier
     let cellReuseIdentifier = "ExerciseCell"
@@ -32,7 +37,11 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     // Variable exercise for passed in exercise
     var exercise = Exercises.VariableExercises()
     
+    // Tracks if the user hit the done button
     var doneTapped = false
+    
+    // Holds the most recent workout logged (DATE)
+    var mostRecent = ""
     
     // MARK: - View Functions
     
@@ -50,12 +59,12 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
         
         nameOfExercise.text = exerciseName
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        // Reset the count
-        StructVariables.count = 0
+        
     }
     
     
@@ -75,6 +84,9 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Returns the number of sections (# of sets)
     func numberOfSections(in tableView: UITableView) -> Int {
+        
+        StructVariables.counter = 0
+        
         return self.exercise.totalSets
     }
     
@@ -100,12 +112,11 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         // Picking what cell displays this data
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ExerciseTableViewCell
         
-        // Configure cell with data with the object in each array slot
-        //let exercise = self.exercise
         
         // Setting the style of the cell
         Utilities.styleTableViewCells(cell)
         
+        // MARK: - Saving data to Database
         
         // If button was tapped, send data stamped info back to database
         if doneTapped == true {
@@ -116,24 +127,28 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
             // If statement so loop only runs once (Limits reads and writes to database)
             if StructVariables.count2 == exercise.totalSets {
                 
-                // Get a reference to the database
-                let db = Firestore.firestore()
-                
-                // Get current user ID
-                let userId = Auth.auth().currentUser!.uid
-                
                 // Adds the array of exercises to the database
                 let workout = db.collection("users").document("\(userId)").collection("WorkoutData").document(workoutName)
+                
+                workout.setData(["Set": "Not virtual"])
                 
                 // Getting the current date
                 let df = DateFormatter()
                 df.dateFormat = "yyyy-MM-dd"
                 let date = df.string(from: Date())
                 
-                workout.collection("WorkoutExercises").document(exerciseName).setData(["Message": "Default"])
+                workout.collection(exerciseName).document(date).setData(["Set": "Not virtual"], merge: true)
+                
+                workout.collection(exerciseName).document(date).setData(["Date": date], merge: true)
+                
                 
                 for count in 0...exercise.totalSets-1 {
-                    //workout.collection("WorkoutExercises").document(exerciseName).collection(date).document(exerciseName).setData(["Reps\(count+1)": exercise.reps[count], "Weight\(count+1)": exercise.weights[count]], merge: true)
+                    
+                    // Saves reps
+                    workout.collection(exerciseName).document(date).collection("Set\(count + 1)").document("reps").setData(["Reps\(count+1)": exercise.sets[count].reps], merge: true)
+                    
+                    // Saves weights
+                    workout.collection(exerciseName).document(date).collection("Set\(count + 1)").document("weights").setData(["Weight\(count+1)": exercise.sets[count].weights], merge: true)
                 }
             }
         }
@@ -158,59 +173,160 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    // MARK: - Pulling from database
+    // MARK: - Check if theres a record
     
+    func checkForRecord() {
+        
+        // If there is historical data, it will be used to replace it
+        db.collection("users").document("\(userId)").collection("WorkoutData").document(self.workoutName).collection(self.exerciseName).order(by: "Date", descending: true).limit(to: 1).getDocuments() { (querySnapshot, err) in
+            if err != nil {
+                // Error
+            } else {
+                // Query did return something
+                
+                if querySnapshot!.documents.count > 0 {
+                    self.mostRecentFunc()
+                } else {
+                    self.repsAndWeights1()
+                }
+            }
+        }
+    }
+
+    // MARK: - Get most recent
+    
+    func mostRecentFunc() {
+        
+        // This function checks whether or not there are records in Workout Data, if there is, mostRecentDataExists is set to false and the following function will be ran instead
+        // If mostRecentDataExists is true, then the following function to load the fields with default data is skipped
+        
+        // If there is historical data, it will be used to replace it
+        db.collection("users").document("\(userId)").collection("WorkoutData").document(self.workoutName).collection(self.exerciseName).order(by: "Date", descending: true).limit(to: 1).getDocuments() { (querySnapshot, err) in
+            if err != nil {
+                // Error
+            } else {
+                // Query did return something
+                
+                for document in querySnapshot!.documents {
+
+                    // Sets the date (mostRecent) as the document ID
+                    self.mostRecent = document.documentID
+                    
+                    // There are records, pull the most recent one
+                    self.repsAndWeightsUpdate()
+                }
+            }
+        }
+    }
+    
+    // MARK: - Default reps and weights
+    
+    func repsAndWeights1() {
+        
+        for number in 0...(self.exercise.totalSets - 1) {
+            
+            self.exercise.sets.append(Sets())
+            
+            // There is no history, pull straight from Workouts
+            let repsDbCall = db.collection("users").document("\(userId)").collection("Workouts").document(self.workoutName).collection("WorkoutExercises").document(self.exerciseName).collection("Set\(number + 1)").document("reps")
+            
+            repsDbCall.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    // For every document (Set) in the database, copy the values and add them to the array
+                    
+                    let data:[String:Any] = document.data()!
+                    
+                    self.exercise.sets[number].reps = data["Reps\(number + 1)"] as! Int
+                }
+                else {
+                    // There was an error, display it somehow
+                }
+            }
+
+            // There is no history, pull straight from Workouts
+            //Retrives the weights
+            let weightsDbCall = db.collection("users").document("\(userId)").collection("Workouts").document(self.workoutName).collection("WorkoutExercises").document(self.exerciseName).collection("Set\(number + 1)").document("weights")
+            
+            weightsDbCall.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    // For every document (Set) in the database, copy the values and add them to the array
+                    
+                    let data:[String:Any] = document.data()!
+                    
+                    self.exercise.sets[number].weights = data["Weight\(number + 1)"] as! Int
+                    
+                    self.tableView.reloadData()
+                }
+                else {
+                    // There was an error, display it somehow
+                }
+            }
+        }
+    }
+    
+    // MARK: - Updated reps and weights
+    
+    func repsAndWeightsUpdate() {
+        
+        for number in 0...(self.exercise.totalSets - 1) {
+            
+            self.exercise.sets.append(Sets())
+            
+            // Retrives the reps
+            let repsDbCallHistory = db.collection("users").document("\(userId)").collection("WorkoutData").document(self.workoutName).collection(self.exerciseName).document(mostRecent).collection("Set\(number + 1)").document("reps")
+            
+            repsDbCallHistory.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    // For every document (Set) in the database, copy the values and add them to the array
+                    
+                    let data:[String:Any] = document.data()!
+                    
+                    self.exercise.sets[number].reps = data["Reps\(number + 1)"] as! Int
+                }
+                else {
+                    // error
+                }
+            }
+            
+            //Retrives the weights
+            let weightsDbCallHistory = db.collection("users").document("\(userId)").collection("WorkoutData").document(self.workoutName).collection(self.exerciseName).document(mostRecent).collection("Set\(number + 1)").document("weights")
+            
+            weightsDbCallHistory.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    // For every document (Set) in the database, copy the values and add them to the array
+                    
+                    let data:[String:Any] = document.data()!
+                    
+                    self.exercise.sets[number].weights = data["Weight\(number + 1)"] as! Int
+                    
+                    self.tableView.reloadData()
+                }
+                else {
+                    // error
+                }
+            }
+        }
+    }
+    
+    // MARK: - Pulling name, notes & set #
     func getData() {
-        
-        // Get a reference to the database
-        let db = Firestore.firestore()
-        
-        // Get current user ID
-        let userId = Auth.auth().currentUser!.uid
         
         // Getting the data to show workouts
         // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-        db.collection("users").document("\(userId)").collection("Workouts").document(workoutName).collection("WorkoutExercises").document(exerciseName).getDocument { (document, error) in
+        db.collection("users").document("\(userId)").collection("Workouts").document(self.workoutName).collection("WorkoutExercises").document(self.exerciseName).getDocument { (document, error) in
             if let document = document, document.exists {
                 
-                let exercise = Exercises.VariableExercises()
-                exercise.name = self.exerciseName
+                self.exercise = Exercises.VariableExercises()
+                self.exercise.name = self.exerciseName
                 
                 let data:[String:Any] = document.data()!
                 
-                exercise.notes = data["Notes"] as! String
+                self.exercise.notes = data["Notes"] as! String
                 // Need to do this since it is listed as a String in the database so using as! Int crashes the program
-                exercise.totalSets = Int(data["numberofsets"] as! String)!
+                self.exercise.totalSets = Int(data["numberofsets"] as! String)!
                 
-                for number in 0...(exercise.totalSets - 1) {
-                    
-                    exercise.sets.append(Sets())
-                    
-                    // Jumping over this line somehow, try to rap tableview.reloaddata in a function and force get data to run first
-                    
-                    // Retrives the reps
-                    let repsDbCall = Firestore.firestore().collection("users").document("\(userId)").collection("Workouts").document(self.workoutName).collection("WorkoutExercises").document(self.exerciseName).collection("Set\(number + 1)").document("reps")
-                    
-                    repsDbCall.getDocument { (document, error) in
-                        if let document = document, document.exists {
-                            // For every document (Set) in the database, copy the values and add them to the array
-                            
-                            let data:[String:Any] = document.data()!
-                            
-                            exercise.sets[number].reps = data["Reps\(number + 1)"] as! Int
-                            //exercise.sets[number].weights = 155//Int(data["weights"] as! String)!
-                        }
-                        else {
-                            // There was an error, display it somehow
-                        }
-                    }
-                    
-                    //Retrives the weights
-                }
-                self.exercise = exercise
+                self.checkForRecord()
             }
-            // Reloading the data so it can be displayed
-            self.tableView.reloadData()
         }
     }
 }

@@ -34,6 +34,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     // Variable to keep track of when the workout is done being made, this stops the prepare for segue from firing constantly when we dont want to add objects to our array
     var buttonTapped = false
     
+    // MARK: - Save completed workout in database
     
     @IBAction func completeWorkoutTapped(_ sender: Any) {
         
