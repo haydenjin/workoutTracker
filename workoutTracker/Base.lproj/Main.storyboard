@@ -166,7 +166,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5WB-E5-gZw">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="50.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="344" height="50.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="50" id="Sas-gh-PeN"/>
                                                                     </constraints>
@@ -175,45 +175,17 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpe-Nf-k0I">
-                                                                    <rect key="frame" x="154" y="0.0" width="50" height="50.5"/>
+                                                                    <rect key="frame" x="354" y="0.0" width="60" height="50.5"/>
                                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="YoZ-cL-azV"/>
+                                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="YoZ-cL-azV"/>
                                                                     </constraints>
                                                                     <state key="normal" title="Delete"/>
                                                                     <connections>
                                                                         <action selector="deleteTapped:" destination="1L2-HF-ifL" eventType="touchUpInside" id="6Wm-tl-NWb"/>
                                                                     </connections>
                                                                 </button>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sets" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ksN-3E-U32">
-                                                                    <rect key="frame" x="214" y="0.0" width="60" height="50.5"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits"/>
-                                                                </textField>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reps" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="64q-lr-z0b">
-                                                                    <rect key="frame" x="284" y="0.0" width="60" height="50.5"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="9Ui-9n-Mft"/>
-                                                                    </constraints>
-                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits"/>
-                                                                </textField>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tn7-Rt-fiu">
-                                                                    <rect key="frame" x="354" y="0.0" width="60" height="50.5"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits"/>
-                                                                </textField>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="ksN-3E-U32" firstAttribute="width" secondItem="64q-lr-z0b" secondAttribute="width" id="LgA-WX-sKR"/>
-                                                                <constraint firstItem="tn7-Rt-fiu" firstAttribute="width" secondItem="64q-lr-z0b" secondAttribute="width" id="Vuh-1x-jts"/>
-                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -226,9 +198,6 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="nameLabel" destination="5WB-E5-gZw" id="QnA-pM-MRD"/>
-                                                    <outlet property="reps" destination="64q-lr-z0b" id="4JY-dT-qfI"/>
-                                                    <outlet property="sets" destination="ksN-3E-U32" id="8Na-VM-Bdt"/>
-                                                    <outlet property="weight" destination="tn7-Rt-fiu" id="2t6-5f-vRP"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -1010,7 +979,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="S6X-8L-Omq"/>
-        <segue reference="4Yb-N5-Drb"/>
+        <segue reference="oH0-lI-IMo"/>
         <segue reference="E4u-2r-8xW"/>
     </inferredMetricsTieBreakers>
     <resources>

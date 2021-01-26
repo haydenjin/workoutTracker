@@ -135,6 +135,7 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
     // Sends data of finished workout back to database
     @IBAction func completeWorkoutTapped(_ sender: Any) {
         
+        /*
         for workout in exercisesArray {
             print(workout.name)
             print(workout.sets)
@@ -180,6 +181,7 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
         }
+        */
         
         // MARK: - Field Formating functions
         

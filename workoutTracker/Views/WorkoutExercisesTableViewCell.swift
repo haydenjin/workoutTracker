@@ -19,10 +19,11 @@ class WorkoutExercisesTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var nameLabel: UILabel!
+    /*
     @IBOutlet weak var sets: UITextField!
     @IBOutlet weak var reps: UITextField!
     @IBOutlet weak var weight: UITextField!
-    
+    */
     // Variable for this cell to display
     var exercise:Exercises?
     
@@ -40,7 +41,7 @@ class WorkoutExercisesTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     // Setting the cell up
     func setCell(_ e:Exercises) {
         
@@ -54,12 +55,14 @@ class WorkoutExercisesTableViewCell: UITableViewCell {
         
         // Start setting the fields
         self.nameLabel.text = exercise?.name
+        
+        /*
         self.weight.text = String(0) //String(exercise!.sets.weights)
         self.reps.text = String(0) //String(exercise!.reps)
         self.sets.text = String(0) //String(exercise!.sets)
-        
+        */
     }
-    
+
     // Connection to the button, sends the name of the exercise in this case
     @IBAction func deleteTapped(_ sender: Any) {
         delegate?.didTapDelete(name: exercise!.name)

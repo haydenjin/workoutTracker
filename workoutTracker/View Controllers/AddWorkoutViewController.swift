@@ -265,11 +265,13 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
                     exercise.name = document.documentID
                     let data:[String:Any] = document.data()
                     exercise.notes = data["Notes"] as! String
+                    
+                    /*
                     for num in 0...exercise.sets.count {
                         exercise.sets[num].reps = data["Reps1"] as! Int
                         exercise.sets[num].weights = data["Weight1"] as! Int
                     }
-                    
+                    */
                     self.exerciseArrayCopy.append(exercise)
                     
                     // Reloading the data so it can be displayed
