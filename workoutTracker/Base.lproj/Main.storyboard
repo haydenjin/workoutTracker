@@ -668,14 +668,29 @@
         <!--Data-->
         <scene sceneID="oz2-kp-Sb5">
             <objects>
-                <viewController id="a8D-Qv-nQo" sceneMemberID="viewController">
+                <viewController id="a8D-Qv-nQo" customClass="DataViewController" customModule="workoutTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y3t-6A-yDT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wGs-Zc-1Hz" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Hd0-yg-OUH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wGs-Zc-1Hz" firstAttribute="top" secondItem="Hd0-yg-OUH" secondAttribute="top" id="b2J-iK-gZ2"/>
+                            <constraint firstItem="Hd0-yg-OUH" firstAttribute="trailing" secondItem="wGs-Zc-1Hz" secondAttribute="trailing" id="ihy-j8-HxB"/>
+                            <constraint firstItem="wGs-Zc-1Hz" firstAttribute="leading" secondItem="Hd0-yg-OUH" secondAttribute="leading" id="pA8-s7-dUY"/>
+                            <constraint firstItem="Hd0-yg-OUH" firstAttribute="bottom" secondItem="wGs-Zc-1Hz" secondAttribute="bottom" id="qXd-Hg-bqi"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Data" image="chart.pie.fill" catalog="system" id="BG9-fe-FbK"/>
+                    <connections>
+                        <outlet property="lineChart" destination="wGs-Zc-1Hz" id="1LC-GM-8dr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D7m-7c-Y62" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -995,6 +1010,9 @@
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
