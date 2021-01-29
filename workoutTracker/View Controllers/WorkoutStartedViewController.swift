@@ -39,6 +39,9 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         
         tableView.dataSource = self
         
+        // Makes lines that separate tableView cells invisible
+        self.tableView.separatorColor = UIColor .clear
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

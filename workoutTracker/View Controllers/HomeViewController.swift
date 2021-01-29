@@ -45,6 +45,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Assigning the FirstViewController as the delegate of the tableview
         tableView.delegate = self
         
+        // Makes lines that separate tableView cells invisible
+        self.tableView.separatorColor = UIColor .clear
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -171,7 +174,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Getting the data to show workouts
         // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-        db.collection("users").document("\(userId)").collection("Workouts").getDocuments { (snapshot, error) in
+        db.collection("users").document("\(userId)").collection("Workouts").order(by: "Set", descending: false).getDocuments { (snapshot, error) in
             
             if let error = error {
                 print(error)

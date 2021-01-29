@@ -60,6 +60,9 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         
         nameOfExercise.text = exerciseName
         
+        // Makes lines that separate tableView cells invisible
+        self.tableView.separatorColor = UIColor .clear
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

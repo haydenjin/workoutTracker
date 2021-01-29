@@ -95,7 +95,6 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -113,6 +112,9 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // Makes lines that separate tableView cells invisible
+        self.tableView.separatorColor = UIColor .clear
         
     }
     
