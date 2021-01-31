@@ -31,29 +31,15 @@ class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
         // Configure the view for the selected state
     }
     
-    // Setting the cell up
-    func setCell(_ e:Exercises.VariableExercises) {
-        
-        // Set itself to the exercise
-        self.exercise = e
-        
-        // Make sure we have an exercise
-        guard self.exercise != nil else {
-            return
-        }
-        
-        // Start setting the fields
-        
-        self.setNum.text = "Set \(StructVariables.counter + 1)"
-        self.reps.text = "\(exercise!.sets[StructVariables.counter].reps)"
-        self.weight.text = "\(exercise!.sets[StructVariables.counter].weights)"
+  
+    // Formats the cell
+    func formatCell(_ e:Exercises.VariableExercises) {
         
         formatTextField(reps)
         formatTextField(weight)
         
-        StructVariables.counter += 1
     }
-    
+
     // Setting the cell up
     func getNewInfo(_ e:Exercises.VariableExercises) {
         

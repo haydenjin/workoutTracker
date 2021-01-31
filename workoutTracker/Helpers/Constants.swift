@@ -29,7 +29,4 @@ class StructVariables {
     
     // Used to keep track of looping number of sets in order to update data
     static var count2 = 0
-    
-    // Used to keep track of looping number of sets for Exercises VC
-    static var counter = 0
 }

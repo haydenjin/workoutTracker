@@ -94,6 +94,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    // MARK: - View Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()

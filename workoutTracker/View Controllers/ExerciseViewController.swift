@@ -25,9 +25,6 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     // Varable for the cell identifier
     let cellReuseIdentifier = "ExerciseCell"
     
-    // Variable for spacing between rows (Sections)
-    let cellSpacingHeight: CGFloat = 10
-    
     // Variable to hold name for Workout (Dont need it for this VC)
     var workoutName = ""
     
@@ -85,22 +82,9 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - Tableview Functions
     
-    // Returns the number of sections (# of sets)
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        StructVariables.counter = 0
-        
-        return self.exercise.totalSets
-    }
-    
-    // Returns 1 as we only want one row per section
+    // Returns the number of cells that we want
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    // Sets the cell spacing height
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return cellSpacingHeight
+        return exercise.totalSets
     }
     
     // Makes the background color show through
@@ -113,7 +97,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Picking what cell displays this data
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ExerciseTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! ExerciseTableViewCell
         
         
         // Setting the style of the cell
@@ -157,7 +141,13 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         }
         // Button wasn't tapped, set up tableview cells like usual
         else {
-            cell.setCell(exercise)
+            
+            // Start setting the fields
+            cell.setNum.text = "Set \(indexPath.row + 1)"
+            cell.reps.text = "\(exercise.sets[indexPath.row].reps)"
+            cell.weight.text = "\(exercise.sets[indexPath.row].weights)"
+            
+            cell.formatCell(exercise)
         }
         
         // Return the cell
