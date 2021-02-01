@@ -18,6 +18,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var AddNewWorkout: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    
     // Varable for the cell identifier
     let cellReuseIdentifier = "HomeCell"
     
@@ -101,7 +102,48 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Return the cell
         return cell
     }
-
+    
+    // MARK: - Cell ordering
+    
+    // Checks if the user is trying to move the table view cells around
+    @IBAction func didTapSort(_ sender: Any) {
+        if tableView.isEditing {
+            
+            // Get a reference to the database
+            let db = Firestore.firestore()
+                
+            // Get current user ID
+            let userId = Auth.auth().currentUser!.uid
+            
+            for i in 0...(workouts.count - 1) {
+                // Save changes in the database
+                db.collection("users").document("\(userId)").collection("Workouts").document("\(workouts[i].name)").setData(["Order": "\(i)"], merge: true)
+            }
+            
+            tableView.isEditing = false
+        }
+        else {
+            tableView.isEditing = true
+        }
+        
+    }
+    
+    // Lets tableview cells be moved
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // Swaps the tableview cells
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        workouts.swapAt(sourceIndexPath.section, destinationIndexPath.section)
+        
+        // Have to reload the tableview so 1 cell per section is enforced
+        self.tableView.reloadData()
+        
+    }
+    
+    
     // MARK: - Reciving Information
 
         // Gets the data from the Popup screen
@@ -174,7 +216,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Getting the data to show workouts
         // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-        db.collection("users").document("\(userId)").collection("Workouts").order(by: "Set", descending: false).getDocuments { (snapshot, error) in
+        db.collection("users").document("\(userId)").collection("Workouts").order(by: "Order", descending: false).getDocuments { (snapshot, error) in
             
             if let error = error {
                 print(error)

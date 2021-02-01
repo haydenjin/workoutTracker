@@ -64,7 +64,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
             let workout = db.collection("users").document("\(userId)").collection("Workouts").document(name)
             
             // Add a random message so Workouts will appear in queries (Not a virtual document)
-            workout.setData(["Set": "Not virtual"])
+            workout.setData(["Set": "Not virtual"], merge: true)
             
             let WorkoutExercises = workout.collection("WorkoutExercises")
             
@@ -80,6 +80,9 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 // Add the count for number of reps
                 workout.setData(["numberofsets": String(exerciseArrayCopy[num].sets.count)], merge: true)
+                
+                // Add a random order for now
+                workout.setData(["Order": 0], merge: true)
                 
                 // Loop for sets for each exercise
                 for set in 1...exerciseArrayCopy[num].sets.count {
