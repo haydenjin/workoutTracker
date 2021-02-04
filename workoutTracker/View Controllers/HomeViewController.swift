@@ -176,14 +176,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Check that a workout was tapped
         if tableView.indexPathForSelectedRow == nil {
             
-            // Set a variable as an object of the viewcontroller we want to pass data to
-            let sb2 = segue.destination as! AddWorkoutViewController
-            
+            // Wipe the data to be sent over
             if addWorkOutTapped == true {
                 // Setting data to pass over
+                // Set a variable as an object of the viewcontroller we want to pass data to
+                let sb2 = segue.destination as! AddWorkoutViewController
                 sb2.clear = true
             }
             else {
+                // Set a variable as an object of the viewcontroller we want to pass data to
+                let sb2 = segue.destination as! EditWorkoutViewController
                 sb2.clear = false
             }
         }

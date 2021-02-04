@@ -1066,6 +1066,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <state key="normal" title="Back"/>
+                                        <connections>
+                                            <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" id="ohM-Gn-1Pr"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Workout Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZOP-hp-dFw">
                                         <rect key="frame" x="0.0" y="40" width="414" height="50"/>
@@ -1082,7 +1085,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="CLu-R0-euZ"/>
                                         </constraints>
-                                        <state key="normal" title="Add Exercise"/>
+                                        <state key="normal" title="Add Exercise (EDIT)"/>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="djH-oR-jT3">
                                         <rect key="frame" x="0.0" y="140" width="414" height="593"/>
@@ -1152,7 +1155,6 @@
                                         <state key="normal" title="Complete Workout"/>
                                         <connections>
                                             <action selector="completeWorkoutTapped:" destination="HQc-TH-SCI" eventType="touchUpInside" id="u1g-hp-3KV"/>
-                                            <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" id="X2V-GY-Tx4"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1182,8 +1184,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="GzQ-Dt-Avu"/>
         <segue reference="ped-C1-irC"/>
-        <segue reference="oH0-lI-IMo"/>
+        <segue reference="ohM-Gn-1Pr"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="WorkoutTracker Background" width="375" height="812"/>

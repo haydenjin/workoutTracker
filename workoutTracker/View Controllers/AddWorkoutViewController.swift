@@ -66,6 +66,9 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
             // Add a random message so Workouts will appear in queries (Not a virtual document)
             workout.setData(["Set": "Not virtual"], merge: true)
             
+            // Set order to be 0, so it will start off as the start of the list
+            workout.setData(["Order": -1], merge: true)
+            
             let WorkoutExercises = workout.collection("WorkoutExercises")
             
             // Loop for each exercise
@@ -109,7 +112,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         workoutNameCopy = StructVariables.nameOfWorkout
         workoutName.text = workoutNameCopy
         
-        getData()
+        //getData()
         
         // Formating the text fields
         formatTextField(workoutName)
@@ -293,16 +296,6 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
 // Says the viewcontroller conforms to the WorkoutCell protocol, we can get the name this way
 extension AddWorkoutViewController: WorkoutCellDelegate {
     func didTapDelete(name: String) {
-        
-        // Get a reference to the database
-        let db = Firestore.firestore()
-        
-        // Get current user ID
-        let userId = Auth.auth().currentUser!.uid
-        
-        // Deleting the exercise
-        // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-        db.collection("users").document("\(userId)").collection("Workouts").document(workoutNameCopy).collection("WorkoutExercises").document(name).delete()
         
         for count in 0...(exerciseArrayCopy.count - 1) {
             if exerciseArrayCopy[count].name == name {
