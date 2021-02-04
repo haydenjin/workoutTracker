@@ -221,7 +221,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // Function needed to pass data back to a previous viewcontroller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+
         // Checks if the button was tapped
         if buttonTapped == true {
             

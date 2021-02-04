@@ -35,16 +35,16 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jfr-bT-WCj">
-                                        <rect key="frame" x="0.0" y="40" width="414" height="29"/>
+                                        <rect key="frame" x="0.0" y="40" width="414" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    My Workouts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sI-TV-pbZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="334" height="29"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="334" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFD-tn-kfS">
-                                                <rect key="frame" x="334" y="0.0" width="80" height="29"/>
+                                                <rect key="frame" x="334" y="0.0" width="80" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="DAA-8x-bYZ"/>
                                                 </constraints>
@@ -59,7 +59,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zum-bX-4G5">
-                                        <rect key="frame" x="0.0" y="69" width="414" height="773"/>
+                                        <rect key="frame" x="0.0" y="76" width="414" height="766"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeCell" id="Z2A-fY-IEy" customClass="HomeTableViewCell" customModule="workoutTracker" customModuleProvider="target">
@@ -87,7 +87,7 @@
                                                                     <state key="normal" title="Edit"/>
                                                                     <connections>
                                                                         <action selector="editTapped:" destination="Z2A-fY-IEy" eventType="touchUpInside" id="CFk-lc-bJ7"/>
-                                                                        <segue destination="IeV-ou-Xe9" kind="presentation" identifier="" modalPresentationStyle="fullScreen" id="E4u-2r-8xW"/>
+                                                                        <segue destination="HQc-TH-SCI" kind="presentation" modalPresentationStyle="fullScreen" id="GzQ-Dt-Avu"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -268,7 +268,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKE-4T-eRK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="MZq-H9-XA8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="161" y="-2918"/>
+            <point key="canvasLocation" x="186" y="-2965"/>
         </scene>
         <!--Popup View Controller-->
         <scene sceneID="Ryk-cH-GUx">
@@ -433,7 +433,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kao-YP-Py3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="0vQ-yP-Bix" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="974" y="-2917"/>
+            <point key="canvasLocation" x="999" y="-2964"/>
         </scene>
         <!--Settings-->
         <scene sceneID="wg7-f3-ORb">
@@ -1048,11 +1048,142 @@
             </objects>
             <point key="canvasLocation" x="974" y="-2223"/>
         </scene>
+        <!--Edit Workout View Controller-->
+        <scene sceneID="gil-LF-VfY">
+            <objects>
+                <viewController storyboardIdentifier="EditWorkout" id="HQc-TH-SCI" customClass="EditWorkoutViewController" customModule="workoutTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GCv-TO-okW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="67V-Pb-HuY">
+                                <rect key="frame" x="0.0" y="54" width="414" height="808"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnD-Ul-RKu">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="XWU-kf-qRg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <state key="normal" title="Back"/>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Workout Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZOP-hp-dFw">
+                                        <rect key="frame" x="0.0" y="40" width="414" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="mls-N2-jrD"/>
+                                        </constraints>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="th0-bm-bDG">
+                                        <rect key="frame" x="0.0" y="100" width="414" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="CLu-R0-euZ"/>
+                                        </constraints>
+                                        <state key="normal" title="Add Exercise"/>
+                                    </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="djH-oR-jT3">
+                                        <rect key="frame" x="0.0" y="140" width="414" height="593"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutExercisesCell" id="8Ov-uj-U28" customClass="WorkoutExercisesTableViewCell" customModule="workoutTracker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="50.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Ov-uj-U28" id="7rs-BS-H0n">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="B7L-Lp-m7Y">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhG-5K-AaJ">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="344" height="50.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="Lra-nq-y5B"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVV-Fu-UqH">
+                                                                    <rect key="frame" x="354" y="0.0" width="60" height="50.5"/>
+                                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="Eih-kb-rPA"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Delete"/>
+                                                                    <connections>
+                                                                        <action selector="deleteTapped:" destination="8Ov-uj-U28" eventType="touchUpInside" id="EpF-Jb-hZl"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="B7L-Lp-m7Y" secondAttribute="bottom" id="2SL-Xl-XYw"/>
+                                                        <constraint firstItem="B7L-Lp-m7Y" firstAttribute="top" secondItem="7rs-BS-H0n" secondAttribute="top" id="4FH-kB-Gmg"/>
+                                                        <constraint firstItem="B7L-Lp-m7Y" firstAttribute="leading" secondItem="7rs-BS-H0n" secondAttribute="leading" id="DVV-EQ-j0q"/>
+                                                        <constraint firstAttribute="trailing" secondItem="B7L-Lp-m7Y" secondAttribute="trailing" id="wxM-Uk-liY"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="nameLabel" destination="xhG-5K-AaJ" id="ucs-RW-eYJ"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLh-tj-tKJ">
+                                        <rect key="frame" x="0.0" y="743" width="414" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="Cmd-rf-otb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemRedColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdJ-wJ-nL7">
+                                        <rect key="frame" x="0.0" y="778" width="414" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="OU8-If-33E"/>
+                                        </constraints>
+                                        <state key="normal" title="Complete Workout"/>
+                                        <connections>
+                                            <action selector="completeWorkoutTapped:" destination="HQc-TH-SCI" eventType="touchUpInside" id="u1g-hp-3KV"/>
+                                            <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" id="X2V-GY-Tx4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="oOW-6W-q3G"/>
+                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <constraints>
+                            <constraint firstItem="67V-Pb-HuY" firstAttribute="bottom" secondItem="oOW-6W-q3G" secondAttribute="bottom" id="Olp-pG-oEL"/>
+                            <constraint firstItem="67V-Pb-HuY" firstAttribute="top" secondItem="oOW-6W-q3G" secondAttribute="top" constant="10" id="Xmi-S5-jo8"/>
+                            <constraint firstItem="67V-Pb-HuY" firstAttribute="leading" secondItem="oOW-6W-q3G" secondAttribute="leading" id="f4y-wO-z7x"/>
+                            <constraint firstItem="67V-Pb-HuY" firstAttribute="trailing" secondItem="oOW-6W-q3G" secondAttribute="trailing" id="fko-lw-cN7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qyQ-KA-2sd"/>
+                    <connections>
+                        <outlet property="errorLabel" destination="FLh-tj-tKJ" id="Hir-HD-Gq8"/>
+                        <outlet property="tableView" destination="djH-oR-jT3" id="ohn-5L-SyY"/>
+                        <outlet property="workoutName" destination="ZOP-hp-dFw" id="POE-NF-hm1"/>
+                        <segue destination="PDs-CC-JPQ" kind="unwind" identifier="unwindSegueToHome" unwindAction="unwindToHome:" id="uyn-6I-qTI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ENs-C0-904" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="PDs-CC-JPQ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-694" y="-3224"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ped-C1-irC"/>
-        <segue reference="arf-S5-J31"/>
-        <segue reference="E4u-2r-8xW"/>
+        <segue reference="oH0-lI-IMo"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="WorkoutTracker Background" width="375" height="812"/>
