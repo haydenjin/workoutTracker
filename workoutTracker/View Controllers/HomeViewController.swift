@@ -6,9 +6,6 @@
 //  Copyright © 2020 Hayden jin. All rights reserved.
 //
 
-
-// Uncomment out functions when ready
-
 import UIKit
 import Firebase
 
@@ -18,6 +15,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var AddNewWorkout: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    // Get a reference to the database
+    let db = Firestore.firestore()
+        
+    // Get current user ID
+    let userId = Auth.auth().currentUser!.uid
     
     // Varable for the cell identifier
     let cellReuseIdentifier = "HomeCell"
@@ -28,13 +30,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var addWorkOutTapped = false
     
     // An array of Workouts which is empty at first
-    var workouts = [Workouts]()
+    var workouts = Master.workouts
+    
+    // An array of Exercises which is empty at first
+    var exercises = Master.exercises
     
     
     // MARK: - View Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         getData()
         
@@ -49,13 +55,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Makes lines that separate tableView cells invisible
         self.tableView.separatorColor = UIColor .clear
         
+        tableView.reloadData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Reloading the data so it can be displayed
-        tableView.reloadData()
+        //tableView.reloadData()
+        
     }
     
     // MARK: - Tableview Functions
@@ -210,11 +219,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func getData() {
         
-        // Get a reference to the database
-        let db = Firestore.firestore()
-            
-        // Get current user ID
-        let userId = Auth.auth().currentUser!.uid
+        // Get all the workout names from the database
+        getAllWorkoutNames()
+    }
+    
+    func getAllWorkoutNames() {
         
         // Getting the data to show workouts
         // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
@@ -231,12 +240,63 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         workout.name = document.documentID
                         self.workouts.append(workout)
                         
+                        self.getAllExercises(workoutName: workout.name)
+                        
                         // Reloading the data so it can be displayed
-                        self.tableView.reloadData()
+                        //self.tableView.reloadData()
                 }
             }
         }
     }
+    
+    func getAllExercises(workoutName: String) {
+        
+        // Getting the data to show workouts
+        // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
+        db.collection("users").document("\(userId)").collection("Workouts").document(workoutName).collection("WorkoutExercises").order(by: "Order", descending: false).getDocuments { (snapshot, error) in
+            
+            if error != nil {
+            }
+            else {
+                // For every document (exercise) in the database, copy the values and add them to the array
+                for document in snapshot!.documents {
+                    
+                    // Setting all the fields for each exercise
+                    let exercise = Exercises()
+                    exercise.name = document.documentID
+                    let data:[String:Any] = document.data()
+                    
+                    var note = ""
+                    
+                    if (data["Notes"] != nil) {
+                        note = data["Notes"] as! String
+                    }
+                    
+                    exercise.notes = note
+                    
+                    
+                    var index = 0
+                    // Checking where the workout is within the array
+                    for i in 0...(self.workouts.count - 1) {
+                        if self.workouts[i].name == workoutName {
+                            index = i
+                        }
+                    }
+                    
+                    //Adds all the exercises of a particular workout to that workout
+                    self.workouts[index].exercises.append(exercise)
+                    
+                    // Adds the exercises to a master array
+                    self.exercises.append(exercise)
+                    
+                    // Reloading the data so it can be displayed
+                    self.tableView.reloadData()
+                    
+                }
+            }
+        }
+    }
+    
     // MARK: - Logic help
     
     @IBAction func AddWorkoutTapped(_ sender: Any) {

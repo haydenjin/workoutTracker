@@ -19,10 +19,16 @@ struct Constants {
     }
 }
 
-class StructVariables {
+class Master {
+    
+    // Master array of workouts, filled in with a query at run time and passed around to different screens
+    static var workouts = [Workouts]()
     
     // Master Exercises Array
-    static var masterExercises = Exercises()
+    static var exercises = [Exercises]()
+}
+
+class StructVariables {
     
     // Variable for passing along name of workout
     static var nameOfWorkout = String()
