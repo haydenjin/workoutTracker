@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 
-
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var AddNewWorkout: UIButton!
@@ -29,11 +28,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var addWorkOutTapped = false
     
-    // An array of Workouts which is empty at first
-    var workouts = Master.workouts
+    // Holds the most recent workout logged (DATE)
+    var mostRecent = ""
     
-    // An array of Exercises which is empty at first
-    var exercises = Master.exercises
+    let delegate = UIApplication.shared.delegate as! AppDelegate
     
     
     // MARK: - View Functions
@@ -41,9 +39,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        getData()
-        
+        if delegate.firstLoad == true {
+            getData()
+            delegate.firstLoad = false
+        } else {
+            tableView.reloadData()
+        }
+ 
         // Code that I commented out because it was causing a crash, On stack overflow it said you need it but i guess not?
         //self.tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
@@ -59,19 +61,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Reloading the data so it can be displayed
-        //tableView.reloadData()
-        
-    }
-    
     // MARK: - Tableview Functions
     
     // Returns the number of sections (# of workouts)
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.workouts.count
+        return Master.workouts.count
     }
     
     // Returns 1 as we only want one row per section
@@ -97,7 +91,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell:HomeTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! HomeTableViewCell
         
         // Configure cell with data with the object in each array slot, (uses the section, not the row)
-        let workout = self.workouts[indexPath.section]
+        let workout = Master.workouts[indexPath.section]
         
         // Setting the style of the cell
         Utilities.styleTableViewCells(cell)
@@ -124,9 +118,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             // Get current user ID
             let userId = Auth.auth().currentUser!.uid
             
-            for i in 0...(workouts.count - 1) {
+            for i in 0...(Master.workouts.count - 1) {
                 // Save changes in the database
-                db.collection("users").document("\(userId)").collection("Workouts").document("\(workouts[i].name)").setData(["Order": "\(i)"], merge: true)
+                db.collection("users").document("\(userId)").collection("Workouts").document("\(Master.workouts[i].name)").setData(["Order": "\(i)"], merge: true)
             }
             
             tableView.isEditing = false
@@ -145,7 +139,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Swaps the tableview cells
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
-        workouts.swapAt(sourceIndexPath.section, destinationIndexPath.section)
+        Master.workouts.swapAt(sourceIndexPath.section, destinationIndexPath.section)
         
         // Have to reload the tableview so 1 cell per section is enforced
         self.tableView.reloadData()
@@ -159,7 +153,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         @IBAction func unwindToHome(_ unwindSegue: UIStoryboardSegue) {
         if let sourceViewController = unwindSegue.source as? AddWorkoutViewController {
             
-            for workout in workouts {
+            for workout in Master.workouts {
                 for workout2 in sourceViewController.workoutsArray {
                     
                     if workout.name == workout2.name {
@@ -168,7 +162,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     else {
                         
                         // Copying the data from the other viewcontroller and combining (Merging) the arrays
-                        workouts += sourceViewController.workoutsArray
+                        Master.workouts += sourceViewController.workoutsArray
                         
                     }
                 }
@@ -204,7 +198,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         // Get the workout that was tapped
-        let selectedWorkout = workouts[tableView.indexPathForSelectedRow!.section]
+        let selectedWorkout = Master.workouts[tableView.indexPathForSelectedRow!.section]
         
         // Set a variable as an object of the viewcontroller we want to pass data to
         let sb = segue.destination as! WorkoutStartedViewController
@@ -223,6 +217,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         getAllWorkoutNames()
     }
     
+    // MARK: - Get all workouts
     func getAllWorkoutNames() {
         
         // Getting the data to show workouts
@@ -238,17 +233,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         
                         let workout = Workouts()
                         workout.name = document.documentID
-                        self.workouts.append(workout)
+                        Master.workouts.append(workout)
                         
+                        // Get all exercises for a workout
                         self.getAllExercises(workoutName: workout.name)
-                        
-                        // Reloading the data so it can be displayed
-                        //self.tableView.reloadData()
                 }
             }
         }
     }
     
+    // MARK: - Get all exercises
     func getAllExercises(workoutName: String) {
         
         // Getting the data to show workouts
@@ -277,21 +271,159 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                     var index = 0
                     // Checking where the workout is within the array
-                    for i in 0...(self.workouts.count - 1) {
-                        if self.workouts[i].name == workoutName {
+                    for i in 0...(Master.workouts.count - 1) {
+                        if Master.workouts[i].name == workoutName {
                             index = i
                         }
                     }
                     
                     //Adds all the exercises of a particular workout to that workout
-                    self.workouts[index].exercises.append(exercise)
+                    Master.workouts[index].exercises.append(exercise)
                     
                     // Adds the exercises to a master array
-                    self.exercises.append(exercise)
+                    Master.exercises.append(exercise)
+                    
+                    // Get all the weights, reps, and sets for each exercise
+                    self.checkForRecord(workoutName: workoutName, workoutArrayIndex: index, exerciseName: exercise.name, exercise: exercise)
+                    
                     
                     // Reloading the data so it can be displayed
                     self.tableView.reloadData()
                     
+                }
+            }
+        }
+    }
+    
+    
+    // MARK: - Check if theres a record
+    func checkForRecord(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exercise: Exercises) {
+        
+        // If there is historical data, it will be used to replace it
+        db.collection("users").document("\(userId)").collection("WorkoutData").document(workoutName).collection(exerciseName).order(by: "Date", descending: true).limit(to: 1).getDocuments() { (querySnapshot, err) in
+            if err != nil {
+                // Error
+            } else {
+                // Query did return something
+                
+                if querySnapshot!.documents.count > 0 {
+                    self.mostRecentFunc(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exercise: exercise)
+                } else {
+                    self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exercise: exercise)
+                }
+            }
+        }
+    }
+    
+    // MARK: - Get most recent
+    func mostRecentFunc(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exercise: Exercises) {
+        
+        // This function checks whether or not there are records in Workout Data, if there is, mostRecentDataExists is set to false and the following function will be ran instead
+        // If mostRecentDataExists is true, then the following function to load the fields with default data is skipped
+        
+        // If there is historical data, it will be used to replace it
+        db.collection("users").document("\(userId)").collection("WorkoutData").document(workoutName).collection(exerciseName).order(by: "Date", descending: true).limit(to: 1).getDocuments() { (querySnapshot, err) in
+            if err != nil {
+                // Error
+            } else {
+                // Query did return something
+                
+                for document in querySnapshot!.documents {
+
+                    // Sets the date (mostRecent) as the document ID
+                    self.mostRecent = document.documentID
+                    
+                    // There are records, pull the most recent one
+                    self.repsAndWeightsUpdate(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exercise: exercise)
+                }
+            }
+        }
+    }
+    
+    // MARK: - Default reps and weights
+    
+    func repsAndWeights1(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exercise: Exercises) {
+        
+        for number in 0...(Master.workouts[workoutArrayIndex].exercises.count - 1) {
+            
+            exercise.sets.append(Sets())
+            
+            // There is no history, pull straight from Workouts
+            let repsDbCall = db.collection("users").document("\(userId)").collection("Workouts").document(workoutName).collection("WorkoutExercises").document(exerciseName).collection("Set\(number + 1)").document("reps")
+            
+            repsDbCall.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    // For every document (Set) in the database, copy the values and add them to the array
+                    
+                    let data:[String:Any] = document.data()!
+                    
+                    exercise.sets[number].reps = data["Reps\(number + 1)"] as! Int
+                }
+                else {
+                    // There was an error, display it somehow
+                }
+            }
+
+            // There is no history, pull straight from Workouts
+            //Retrives the weights
+            let weightsDbCall = db.collection("users").document("\(userId)").collection("Workouts").document(workoutName).collection("WorkoutExercises").document(exerciseName).collection("Set\(number + 1)").document("weights")
+            
+            weightsDbCall.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    // For every document (Set) in the database, copy the values and add them to the array
+                    
+                    let data:[String:Any] = document.data()!
+                    
+                    exercise.sets[number].weights = data["Weight\(number + 1)"] as! Int
+                    
+                    self.tableView.reloadData()
+                }
+                else {
+                    // There was an error, display it somehow
+                }
+            }
+        }
+    }
+    
+    // MARK: - Updated reps and weights
+    
+    func repsAndWeightsUpdate(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exercise: Exercises) {
+        
+        for number in 0...(Master.workouts[workoutArrayIndex].exercises.count - 1) {
+            
+            exercise.sets.append(Sets())
+            
+            // Retrives the reps
+            let repsDbCallHistory = db.collection("users").document("\(userId)").collection("WorkoutData").document(workoutName).collection(exerciseName).document(mostRecent).collection("Set\(number + 1)").document("reps")
+            
+            repsDbCallHistory.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    // For every document (Set) in the database, copy the values and add them to the array
+                    
+                    let data:[String:Any] = document.data()!
+                    
+                    exercise.sets[number].reps = data["Reps\(number + 1)"] as! Int
+                }
+                else {
+                    // error
+                }
+            }
+            
+            //Retrives the weights
+            let weightsDbCallHistory = db.collection("users").document("\(userId)").collection("WorkoutData").document(workoutName).collection(exerciseName).document(mostRecent).collection("Set\(number + 1)").document("weights")
+            
+            weightsDbCallHistory.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    // For every document (Set) in the database, copy the values and add them to the array
+                    
+                    let data:[String:Any] = document.data()!
+                    
+                    exercise.sets[number].weights = data["Weight\(number + 1)"] as! Int
+                    
+                    self.tableView.reloadData()
+                }
+                else {
+                    // error
                 }
             }
         }
