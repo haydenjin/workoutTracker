@@ -22,15 +22,18 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
     
     var workoutName = ""
     
+    // Index of the workout
+    var index = 0
+    
     // Array holding all exercises for a workout
-    var exercisesArray = [Exercises]()
+    //var exercisesArray = [Exercises]()
     
     // MARK: - View Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getData()
+        getData(workoutName: workoutName)
         
         // Name is passed in by HomeViewController
         nameOfWorkout.text = workoutName
@@ -44,16 +47,11 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        
-    }
-    
     // MARK: - Tableview Functions
     
     // Returns the number of sections (# of workouts)
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.exercisesArray.count
+        return Master.workouts[index].exercises.count
     }
     
     // Returns 1 as we only want one row per section
@@ -73,13 +71,22 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         return headerView
     }
     
+    // Removes the red delete button when editing tableview
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    // Removes the red delete button when editing tableview
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Picking what cell displays this data
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ActiveWorkoutTableViewCell
         
         // Configure cell with data with the object in each array slot
-        let exercise = self.exercisesArray[indexPath.section]
+        let exercise = Master.workouts[index].exercises[indexPath.section]
         
         // Setting the style of the cell
         Utilities.styleTableViewCells(cell)
@@ -103,9 +110,9 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
             // Get current user ID
             let userId = Auth.auth().currentUser!.uid
             
-            for i in 0...(exercisesArray.count - 1) {
+            for i in 0...(Master.workouts[index].exercises.count - 1) {
                 // Save changes in the database
-                db.collection("users").document("\(userId)").collection("Workouts").document("\(workoutName)").collection("WorkoutExercises").document("\(exercisesArray[i].name)").setData(["Order": "\(i)"], merge: true)
+                db.collection("users").document("\(userId)").collection("Workouts").document("\(workoutName)").collection("WorkoutExercises").document("\(Master.workouts[index].exercises[i].name)").setData(["Order": "\(i)"], merge: true)
             }
             
             tableView.isEditing = false
@@ -123,52 +130,40 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
     // Swaps the tableview cells
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
-        exercisesArray.swapAt(sourceIndexPath.section, destinationIndexPath.section)
+        var start = sourceIndexPath.section
+        
+        let end = destinationIndexPath.section
+        
+        if start < end {
+            while (start != end) {
+                
+                Master.workouts[index].exercises.swapAt(start, start + 1)
+                
+                // Increment start
+                start += 1
+            }
+        } else if end < start {
+            while (start != end) {
+                
+                Master.workouts[index].exercises.swapAt(start, start - 1)
+                
+                // Increment start
+                start -= 1
+            }
+        }
         
         // Have to reload the tableview so 1 cell per section is enforced
         self.tableView.reloadData()
         
     }
     
-    // MARK: - Pulling from database
+    // MARK: - Load exercises from master array
     
-    func getData() {
+    func getData(workoutName: String) {
         
-        // Get a reference to the database
-        let db = Firestore.firestore()
-        
-        // Get current user ID
-        let userId = Auth.auth().currentUser!.uid
-        
-        // Getting the data to show workouts
-        // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-        db.collection("users").document("\(userId)").collection("Workouts").document(workoutName).collection("WorkoutExercises").order(by: "Order", descending: false).getDocuments { (snapshot, error) in
-            
-            if error != nil {
-            }
-            else {
-                // For every document (exercise) in the database, copy the values and add them to the array
-                for document in snapshot!.documents {
-                    
-                    // Setting all the fields for each exercise
-                    let exercise = Exercises()
-                    exercise.name = document.documentID
-                    let data:[String:Any] = document.data()
-                    
-                    var note = ""
-                    
-                    if (data["Notes"] != nil) {
-                        note = data["Notes"] as! String
-                    }
-                    
-                    exercise.notes = note
-                    
-                    
-                    self.exercisesArray.append(exercise)
-                    
-                    // Reloading the data so it can be displayed
-                    self.tableView.reloadData()
-                }
+        for i in 0...Master.workouts.count - 1 {
+            if Master.workouts[i].name == workoutName {
+                self.index = i
             }
         }
     }
@@ -267,7 +262,7 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         // Get the workout that was tapped
-        let selectedExercise = exercisesArray[tableView.indexPathForSelectedRow!.section]
+        let selectedExercise = Master.workouts[index].exercises[tableView.indexPathForSelectedRow!.section]
         
         // Set a variable as an object of the viewcontroller we want to pass data to
         let sb = segue.destination as! ExerciseViewController

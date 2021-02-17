@@ -17,15 +17,18 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
     // Variable for spacing between rows (Sections)
     let cellSpacingHeight: CGFloat = 10
     
-    // Array holding all exercises for a workout
-    var exerciseArrayCopy = [Exercises]()
-    
-    // Array of Workouts to send back (empty at first)
-    var workoutsArray = [Workouts]()
-    
     var workoutNameCopy = ""
     
+    // Index of the workout
+    var index = 0
+    
     var clear = false
+    
+    // Get a reference to the database
+    let db = Firestore.firestore()
+    
+    // Get current user ID
+    let userId = Auth.auth().currentUser!.uid
     
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var workoutName: UITextField!
@@ -44,18 +47,22 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
         // Validate the fields
         let error = validateFields()
         
-        if error != nil || exerciseArrayCopy.count == 0 {
+        if error != nil || Master.workouts[index].exercises.count == 0 {
             // There was an error
             // Change the error label and make it visible
             errorLabel.text = error
             errorLabel.alpha = 1
         }
         else {
-            // Get a reference to the database
-            let db = Firestore.firestore()
             
-            // Get current user ID
-            let userId = Auth.auth().currentUser!.uid
+            // Want to check if name of workout was changed
+            if (workoutNameCopy != workoutName.text) {
+                // Name was changed
+                
+                // Delete old document in database
+                db.collection("users").document("\(userId)").collection("Workouts").document(workoutNameCopy).delete()
+                // Refresh the Home page
+            }
             
             // Setting the name of the workout
             let name = workoutName.text!
@@ -66,29 +73,32 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
             // Add a random message so Workouts will appear in queries (Not a virtual document)
             workout.setData(["Set": "Not virtual"], merge: true)
             
+            // Add a random order for now
+            workout.setData(["Order": 0], merge: true)
+            
             let WorkoutExercises = workout.collection("WorkoutExercises")
             
             // Loop for each exercise
-            for num in 0...(exerciseArrayCopy.count - 1) {
+            for num in 0...(Master.workouts[index].exercises.count - 1) {
                 //workout.setData(["Message": "Default"])
                 
                 // Name of individual exercise
-                let workout = WorkoutExercises.document("\(exerciseArrayCopy[num].name)")
+                let workout = WorkoutExercises.document("\(Master.workouts[index].exercises[num].name)")
                 
                 // Adding the note
-                workout.setData(["Notes": String(exerciseArrayCopy[num].notes)], merge: true)
+                workout.setData(["Notes": String(Master.workouts[index].exercises[num].notes)], merge: true)
                 
                 // Add the count for number of reps
-                workout.setData(["numberofsets": String(exerciseArrayCopy[num].sets.count)], merge: true)
+                workout.setData(["numberofsets": String(Master.workouts[index].exercises[num].sets.count)], merge: true)
                 
                 // Add a random order for now
                 workout.setData(["Order": 0], merge: true)
                 
                 // Loop for sets for each exercise
-                for set in 1...exerciseArrayCopy[num].sets.count {
-                    workout.collection("Set" + String(set)).document("reps").setData(["Reps\(set)": exerciseArrayCopy[num].sets[set - 1].reps], merge: true)
+                for set in 1...Master.workouts[index].exercises[num].sets.count {
+                    workout.collection("Set" + String(set)).document("reps").setData(["Reps\(set)": Master.workouts[index].exercises[num].sets[set - 1].reps], merge: true)
                     
-                    workout.collection("Set" + String(set)).document("weights").setData(["Weight\(set)": exerciseArrayCopy[num].sets[set - 1].weights], merge: true)
+                    workout.collection("Set" + String(set)).document("weights").setData(["Weight\(set)": Master.workouts[index].exercises[num].sets[set - 1].weights], merge: true)
                 }
             }
             
@@ -149,7 +159,7 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
     
     // Returns the number of sections (# of workouts)
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.exerciseArrayCopy.count
+        return Master.workouts[index].exercises.count
     }
     
     // Returns 1 as we only want one row per section
@@ -175,7 +185,7 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutExercisesCell", for: indexPath) as! WorkoutExercisesTableViewCell
         
         // Configure cell with data with the object in each array slot
-        let exercise = self.exerciseArrayCopy[indexPath.section]
+        let exercise = Master.workouts[index].exercises[indexPath.section]
         
         cell.setCell(exercise)
         
@@ -218,21 +228,21 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     // MARK: - Sending back information
-    
-    // Function needed to pass data back to a previous viewcontroller
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        // Checks if the button was tapped
-        if buttonTapped == true {
-            
-            // Creating the workout to be sent back
-            let workout = Workouts()
-            workout.name = workoutName.text!
-            workout.exercises = exerciseArrayCopy
-            workoutsArray.append(workout)
-        }
-    }
-    
+    /*
+     // Function needed to pass data back to a previous viewcontroller
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     
+     // Checks if the button was tapped
+     if buttonTapped == true {
+     
+     // Creating the workout to be sent back
+     let workout = Workouts()
+     workout.name = workoutName.text!
+     workout.exercises = exerciseArrayCopy
+     workoutsArray.append(workout)
+     }
+     }
+     */
     // MARK: - Reciving Information
     
     // Gets the data from the Popup screen
@@ -240,51 +250,44 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
         if let sourceViewController = unwindSegue.source as? PopupViewController {
             
             // Copying the data from the other viewcontroller and combining (Merging) the arrays
-            exerciseArrayCopy += sourceViewController.exerciseArray
+            Master.workouts[index].exercises += sourceViewController.exerciseArray
         }
     }
     
     func getData() {
         
-        // Get a reference to the database
-        let db = Firestore.firestore()
-        
-        // Get current user ID
-        let userId = Auth.auth().currentUser!.uid
-        
-        if workoutNameCopy == "" {
-            return
+        for i in 0...Master.workouts.count - 1 {
+            if Master.workouts[i].name == workoutNameCopy {
+                self.index = i
+            }
         }
+    }
+    
+    
+    // MARK: - Delete workout
+    
+    @IBAction func deleteWorkout(_ sender: Any) {
         
-        // Getting the data to show exercises
-        // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-        db.collection("users").document("\(userId)").collection("Workouts").document(workoutNameCopy).collection("WorkoutExercises").getDocuments { (snapshot, error) in
+        // Create a message
+        let confirmMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+        
+        // Delete option
+        let delete = UIAlertAction(title: "Delete", style: .default, handler: { (action) -> Void in
             
-            if error != nil {
-            }
-            else {
-                // For every document (exercise) in the database, copy the values and add them to the array
-                for document in snapshot!.documents {
-                    
-                    // Setting all the fields for each exercise
-                    let exercise = Exercises()
-                    exercise.name = document.documentID
-                    let data:[String:Any] = document.data()
-                    exercise.notes = data["Notes"] as! String
-                    
-                    /*
-                    for num in 0...exercise.sets.count {
-                        exercise.sets[num].reps = data["Reps1"] as! Int
-                        exercise.sets[num].weights = data["Weight1"] as! Int
-                    }
-                    */
-                    self.exerciseArrayCopy.append(exercise)
-                    
-                    // Reloading the data so it can be displayed
-                    self.tableView.reloadData()
-                }
-            }
-        }
+            // Delete the workout from the database
+            self.db.collection("users").document("\(self.userId)").collection("Workouts").document(self.workoutNameCopy).delete()
+            // Send the screen back to home
+            self.performSegue(withIdentifier: "unwindSegueToHome", sender: self)
+        })
+        
+        // Cancel option
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action) -> Void in })
+
+        // Add the options to the message
+        confirmMessage.addAction(delete)
+        confirmMessage.addAction(cancel)
+        
+        self.present(confirmMessage, animated: true, completion: nil)
     }
 }
 
@@ -294,19 +297,13 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
 extension EditWorkoutViewController: WorkoutCellDelegate {
     func didTapDelete(name: String) {
         
-        // Get a reference to the database
-        let db = Firestore.firestore()
-        
-        // Get current user ID
-        let userId = Auth.auth().currentUser!.uid
-        
         // Deleting the exercise
         // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
         db.collection("users").document("\(userId)").collection("Workouts").document(workoutNameCopy).collection("WorkoutExercises").document(name).delete()
         
-        for count in 0...(exerciseArrayCopy.count - 1) {
-            if exerciseArrayCopy[count].name == name {
-                exerciseArrayCopy.remove(at: count)
+        for count in 0...(Master.workouts[index].exercises.count - 1) {
+            if Master.workouts[index].exercises[count].name == name {
+                Master.workouts[index].exercises.remove(at: count)
                 break
             }
         }

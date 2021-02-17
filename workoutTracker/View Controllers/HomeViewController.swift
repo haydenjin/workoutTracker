@@ -10,13 +10,13 @@ import UIKit
 import Firebase
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var AddNewWorkout: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     // Get a reference to the database
     let db = Firestore.firestore()
-        
+    
     // Get current user ID
     let userId = Auth.auth().currentUser!.uid
     
@@ -45,7 +45,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             tableView.reloadData()
         }
- 
+        
         // Code that I commented out because it was causing a crash, On stack overflow it said you need it but i guess not?
         //self.tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
@@ -56,6 +56,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Makes lines that separate tableView cells invisible
         self.tableView.separatorColor = UIColor .clear
+        
+        addWorkOutTapped = false
         
         tableView.reloadData()
         
@@ -83,6 +85,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
         return headerView
+    }
+    
+    // Removes the red delete button when editing tableview
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    // Removes the red delete button when editing tableview
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -114,7 +125,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             // Get a reference to the database
             let db = Firestore.firestore()
-                
+            
             // Get current user ID
             let userId = Auth.auth().currentUser!.uid
             
@@ -139,7 +150,27 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Swaps the tableview cells
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
-        Master.workouts.swapAt(sourceIndexPath.section, destinationIndexPath.section)
+        var start = sourceIndexPath.section
+        
+        let end = destinationIndexPath.section
+        
+        if start < end {
+            while (start != end) {
+                
+                Master.workouts.swapAt(start, start + 1)
+                
+                // Increment start
+                start += 1
+            }
+        } else if end < start {
+            while (start != end) {
+                
+                Master.workouts.swapAt(start, start - 1)
+                
+                // Increment start
+                start -= 1
+            }
+        }
         
         // Have to reload the tableview so 1 cell per section is enforced
         self.tableView.reloadData()
@@ -148,33 +179,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     // MARK: - Reciving Information
-
-        // Gets the data from the Popup screen
-        @IBAction func unwindToHome(_ unwindSegue: UIStoryboardSegue) {
-        if let sourceViewController = unwindSegue.source as? AddWorkoutViewController {
+    
+    // Gets the data from the Popup screen
+    @IBAction func unwindToHome(_ unwindSegue: UIStoryboardSegue) {
+        if (unwindSegue.source is EditWorkoutViewController || unwindSegue.source is AddWorkoutViewController) {
             
-            for workout in Master.workouts {
-                for workout2 in sourceViewController.workoutsArray {
-                    
-                    if workout.name == workout2.name {
-                        return
-                    }
-                    else {
-                        
-                        // Copying the data from the other viewcontroller and combining (Merging) the arrays
-                        Master.workouts += sourceViewController.workoutsArray
-                        
-                    }
-                }
-            }
+            // If you are coming back from EditWorkoutViewController, refresh the page
+            Master.workouts.removeAll()
+            getData()
+            tableView.reloadData()
         }
     }
-
+    
     // MARK: - Sending data
     
     // Sending data to Workout started view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         
         // Check that a workout was tapped
         if tableView.indexPathForSelectedRow == nil {
@@ -205,10 +225,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Setting data to pass over
         sb.workoutName = selectedWorkout.name
-
+        
     }
     
-
+    
     // MARK: - Pulling from database
     
     func getData() {
@@ -226,17 +246,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if let error = error {
                 print(error)
-                }
-                else {
+            }
+            else {
                 
-                    for document in snapshot!.documents {
-                        
-                        let workout = Workouts()
-                        workout.name = document.documentID
-                        Master.workouts.append(workout)
-                        
-                        // Get all exercises for a workout
-                        self.getAllExercises(workoutName: workout.name)
+                for document in snapshot!.documents {
+                    
+                    let workout = Workouts()
+                    workout.name = document.documentID
+                    Master.workouts.append(workout)
+                    
+                    // Get all exercises for a workout
+                    self.getAllExercises(workoutName: workout.name)
                 }
             }
         }
@@ -268,6 +288,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                     exercise.notes = note
                     
+                    exercise.totalSets = Int(data["numberofsets"] as! String)!
                     
                     var index = 0
                     // Checking where the workout is within the array
@@ -306,17 +327,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             } else {
                 // Query did return something
                 
+                var exerciseArrayIndex = 0
+                
+                // Gets the proper exercise
+                for i in 0...Master.workouts[workoutArrayIndex].exercises.count - 1 {
+                    if Master.workouts[workoutArrayIndex].exercises[i].name == exerciseName {
+                        exerciseArrayIndex = i
+                    }
+                }
+                
                 if querySnapshot!.documents.count > 0 {
-                    self.mostRecentFunc(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exercise: exercise)
+                    self.mostRecentFunc(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
                 } else {
-                    self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exercise: exercise)
+                    self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
                 }
             }
         }
     }
     
     // MARK: - Get most recent
-    func mostRecentFunc(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exercise: Exercises) {
+    func mostRecentFunc(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {
         
         // This function checks whether or not there are records in Workout Data, if there is, mostRecentDataExists is set to false and the following function will be ran instead
         // If mostRecentDataExists is true, then the following function to load the fields with default data is skipped
@@ -329,12 +359,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 // Query did return something
                 
                 for document in querySnapshot!.documents {
-
+                    
                     // Sets the date (mostRecent) as the document ID
                     self.mostRecent = document.documentID
                     
                     // There are records, pull the most recent one
-                    self.repsAndWeightsUpdate(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exercise: exercise)
+                    self.repsAndWeightsUpdate(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
                 }
             }
         }
@@ -342,9 +372,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: - Default reps and weights
     
-    func repsAndWeights1(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exercise: Exercises) {
+    func repsAndWeights1(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {
         
-        for number in 0...(Master.workouts[workoutArrayIndex].exercises.count - 1) {
+        for number in 0...(Master.workouts[workoutArrayIndex].exercises[exerciseArrayIndex].totalSets - 1) {
             
             exercise.sets.append(Sets())
             
@@ -363,7 +393,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     // There was an error, display it somehow
                 }
             }
-
+            
             // There is no history, pull straight from Workouts
             //Retrives the weights
             let weightsDbCall = db.collection("users").document("\(userId)").collection("Workouts").document(workoutName).collection("WorkoutExercises").document(exerciseName).collection("Set\(number + 1)").document("weights")
@@ -387,9 +417,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: - Updated reps and weights
     
-    func repsAndWeightsUpdate(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exercise: Exercises) {
+    func repsAndWeightsUpdate(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {
         
-        for number in 0...(Master.workouts[workoutArrayIndex].exercises.count - 1) {
+        for number in 0...(Master.workouts[workoutArrayIndex].exercises[exerciseArrayIndex].totalSets - 1) {
             
             exercise.sets.append(Sets())
             

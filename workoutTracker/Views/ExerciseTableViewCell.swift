@@ -11,7 +11,7 @@ import UIKit
 class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     // Empty variable for exercise
-    var exercise:Exercises.VariableExercises?
+    var exercise:Exercises?
     
     @IBOutlet weak var setNum: UILabel!
     
@@ -33,7 +33,7 @@ class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
     
   
     // Formats the cell
-    func formatCell(_ e:Exercises.VariableExercises) {
+    func formatCell() {
         
         formatTextField(reps)
         formatTextField(weight)
@@ -41,7 +41,7 @@ class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
 
     // Setting the cell up
-    func getNewInfo(_ e:Exercises.VariableExercises) {
+    func getNewInfo(_ e:Exercises) {
         
         // Set itself to the exercise
         self.exercise = e

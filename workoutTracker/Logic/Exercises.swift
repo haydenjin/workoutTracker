@@ -15,6 +15,7 @@ class Exercises {
     
     var name = ""
     var notes = ""
+    var totalSets = 0
     var sets = [Sets]()
     
     func addNewExercise(name:String, notes:String, weight:Int, reps:Int, sets:Int) {
@@ -28,13 +29,5 @@ class Exercises {
             
             self.sets.append(newSet)
         }
-    }
-
-class VariableExercises {
-    
-    var name = ""
-    var notes = ""
-    var totalSets = 0
-    var sets = [Sets]()
     }
 }

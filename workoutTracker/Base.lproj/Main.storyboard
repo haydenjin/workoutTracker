@@ -72,14 +72,8 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ary-3P-pX3">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xr-jU-pjh">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="364" height="60.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRK-tS-4Xd">
-                                                                    <rect key="frame" x="364" y="0.0" width="50" height="60.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="60.5"/>
                                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="0k5-6s-wmY"/>
@@ -90,6 +84,12 @@
                                                                         <segue destination="HQc-TH-SCI" kind="presentation" modalPresentationStyle="fullScreen" id="GzQ-Dt-Avu"/>
                                                                     </connections>
                                                                 </button>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Name         " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xr-jU-pjh">
+                                                                    <rect key="frame" x="50" y="0.0" width="364" height="60.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="60" id="kXA-Pr-2Zp"/>
@@ -152,7 +152,7 @@
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <state key="normal" title="Back"/>
                                         <connections>
-                                            <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" id="oH0-lI-IMo"/>
+                                            <segue destination="49e-Tb-3d3" kind="presentation" identifier="backToHome" modalPresentationStyle="fullScreen" id="oH0-lI-IMo"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Workout Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eya-7C-OOL">
@@ -189,17 +189,8 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LQt-wy-eHL">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5WB-E5-gZw">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="344" height="50.5"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="Sas-gh-PeN"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpe-Nf-k0I">
-                                                                    <rect key="frame" x="354" y="0.0" width="60" height="50.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="50.5"/>
                                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="YoZ-cL-azV"/>
@@ -209,6 +200,15 @@
                                                                         <action selector="deleteTapped:" destination="1L2-HF-ifL" eventType="touchUpInside" id="6Wm-tl-NWb"/>
                                                                     </connections>
                                                                 </button>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5WB-E5-gZw">
+                                                                    <rect key="frame" x="70" y="0.0" width="344" height="50.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="Sas-gh-PeN"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
@@ -1067,11 +1067,23 @@
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <state key="normal" title="Back"/>
                                         <connections>
-                                            <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" id="ohM-Gn-1Pr"/>
+                                            <segue destination="49e-Tb-3d3" kind="presentation" identifier="" modalPresentationStyle="fullScreen" id="ohM-Gn-1Pr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfX-eZ-F8o">
+                                        <rect key="frame" x="0.0" y="40" width="414" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="UyM-FM-clL"/>
+                                        </constraints>
+                                        <state key="normal" title="Delete Workout ">
+                                            <color key="titleColor" systemColor="systemRedColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteWorkout:" destination="HQc-TH-SCI" eventType="touchUpInside" id="Hn6-P9-CHt"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Workout Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZOP-hp-dFw">
-                                        <rect key="frame" x="0.0" y="40" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="80" width="414" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="mls-N2-jrD"/>
@@ -1081,17 +1093,17 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="th0-bm-bDG">
-                                        <rect key="frame" x="0.0" y="100" width="414" height="30"/>
+                                        <rect key="frame" x="0.0" y="140" width="414" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="CLu-R0-euZ"/>
                                         </constraints>
-                                        <state key="normal" title="Add Exercise (EDIT)"/>
+                                        <state key="normal" title="Add Exercise "/>
                                         <connections>
                                             <segue destination="soM-C8-g1g" kind="presentation" modalPresentationStyle="fullScreen" id="LgX-iS-KrD"/>
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="djH-oR-jT3">
-                                        <rect key="frame" x="0.0" y="140" width="414" height="593"/>
+                                        <rect key="frame" x="0.0" y="180" width="414" height="553"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutExercisesCell" id="8Ov-uj-U28" customClass="WorkoutExercisesTableViewCell" customModule="workoutTracker" customModuleProvider="target">
@@ -1104,17 +1116,8 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="B7L-Lp-m7Y">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhG-5K-AaJ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="344" height="50.5"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="Lra-nq-y5B"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVV-Fu-UqH">
-                                                                    <rect key="frame" x="354" y="0.0" width="60" height="50.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="50.5"/>
                                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="Eih-kb-rPA"/>
@@ -1124,6 +1127,15 @@
                                                                         <action selector="deleteTapped:" destination="8Ov-uj-U28" eventType="touchUpInside" id="EpF-Jb-hZl"/>
                                                                     </connections>
                                                                 </button>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhG-5K-AaJ">
+                                                                    <rect key="frame" x="70" y="0.0" width="344" height="50.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="Lra-nq-y5B"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
@@ -1353,7 +1365,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ped-C1-irC"/>
-        <segue reference="ohM-Gn-1Pr"/>
+        <segue reference="oH0-lI-IMo"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="WorkoutTracker Background" width="375" height="812"/>
