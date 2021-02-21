@@ -19,6 +19,8 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
     
     var workoutNameCopy = ""
     
+    var exerciseNameCopy = ""
+    
     // Index of the workout
     var index = 0
     
@@ -263,6 +265,20 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    // MARK: - Sending data to EditExerciseVC
+    
+    // Sending data to Edit Workout
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "editExercise" {
+            
+            let sb = segue.destination as! EditExerciseViewController
+            sb.workoutName = workoutNameCopy
+            
+            sb.exerciseName = exerciseNameCopy
+        }
+    }
+    
     
     // MARK: - Delete workout
     
@@ -297,17 +313,40 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
 extension EditWorkoutViewController: WorkoutCellDelegate {
     func didTapDelete(name: String) {
         
-        // Deleting the exercise
-        // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
-        db.collection("users").document("\(userId)").collection("Workouts").document(workoutNameCopy).collection("WorkoutExercises").document(name).delete()
+        // Create a message
+        let confirmMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
         
-        for count in 0...(Master.workouts[index].exercises.count - 1) {
-            if Master.workouts[index].exercises[count].name == name {
-                Master.workouts[index].exercises.remove(at: count)
-                break
+        // Delete option
+        let delete = UIAlertAction(title: "Delete", style: .default, handler: { (action) -> Void in
+            
+            // Deleting the exercise
+            // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
+            self.db.collection("users").document("\(self.userId)").collection("Workouts").document(self.workoutNameCopy).collection("WorkoutExercises").document(name).delete()
+            
+            for count in 0...(Master.workouts[self.index].exercises.count - 1) {
+                if Master.workouts[self.index].exercises[count].name == name {
+                    Master.workouts[self.index].exercises.remove(at: count)
+                    break
+                }
             }
-        }
+            
+            self.tableView.reloadData()
+        })
         
-        tableView.reloadData()
+        // Cancel option
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action) -> Void in })
+
+        // Add the options to the message
+        confirmMessage.addAction(delete)
+        confirmMessage.addAction(cancel)
+        
+        self.present(confirmMessage, animated: true, completion: nil)
+    }
+
+    
+// Button to edit workout
+    func didTapEdit(name: String) {
+        
+        exerciseNameCopy = name
     }
 }

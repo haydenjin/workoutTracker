@@ -17,6 +17,7 @@
 		BC20590324C6933E0013383C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20590224C6933E0013383C /* RootViewController.swift */; };
 		BC20590524C69A630013383C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC20590424C69A630013383C /* GoogleService-Info.plist */; };
 		BC29812B24C7E1930058D756 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29812A24C7E1930058D756 /* Constants.swift */; };
+		BC2C35C225E2C4E7006219C4 /* EditExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2C35C125E2C4E7006219C4 /* EditExerciseViewController.swift */; };
 		BC65EC7D24C0B2E600AB3B30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC7C24C0B2E600AB3B30 /* AppDelegate.swift */; };
 		BC65EC7F24C0B2E600AB3B30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC7E24C0B2E600AB3B30 /* SceneDelegate.swift */; };
 		BC65EC8124C0B2E600AB3B30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC8024C0B2E600AB3B30 /* HomeViewController.swift */; };
@@ -52,6 +53,7 @@
 		BC20590224C6933E0013383C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		BC20590424C69A630013383C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC29812A24C7E1930058D756 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BC2C35C125E2C4E7006219C4 /* EditExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseViewController.swift; sourceTree = "<group>"; };
 		BC65EC7924C0B2E600AB3B30 /* workoutTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = workoutTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC65EC7C24C0B2E600AB3B30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC65EC7E24C0B2E600AB3B30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				BCC17B9D24E32A4900E24ECD /* ExerciseViewController.swift */,
 				BC6D1CFE25C2584F00641216 /* DataViewController.swift */,
 				BC1D142C25CB84FA00EACE7E /* EditWorkoutViewController.swift */,
+				BC2C35C125E2C4E7006219C4 /* EditExerciseViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				BCD9A22A24C68506001F502B /* SignupViewController.swift in Sources */,
 				BC088C1324C89B29005ACD22 /* AddWorkoutViewController.swift in Sources */,
 				BC65EC9524C0BB3200AB3B30 /* Exercises.swift in Sources */,
+				BC2C35C225E2C4E7006219C4 /* EditExerciseViewController.swift in Sources */,
 				BCC17BA024E4DE8500E24ECD /* ExerciseTableViewCell.swift in Sources */,
 				BC6D1CFF25C2584F00641216 /* DataViewController.swift in Sources */,
 				BC65EC8324C0B2E600AB3B30 /* SettingsViewController.swift in Sources */,

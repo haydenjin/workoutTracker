@@ -84,7 +84,6 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
             
             // Loop for each exercise
             for num in 0...(Master.workouts[index].exercises.count - 1) {
-                //workout.setData(["Message": "Default"])
                 
                 // Name of individual exercise
                 let workout = WorkoutExercises.document("\(Master.workouts[index].exercises[num].name)")
@@ -286,5 +285,9 @@ extension AddWorkoutViewController: WorkoutCellDelegate {
         }
         
         tableView.reloadData()
+    }
+    
+    func didTapEdit(name: String) {
+        // Need to have function to conform
     }
 }

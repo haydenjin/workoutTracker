@@ -13,17 +13,15 @@ protocol WorkoutCellDelegate {
     
     func didTapDelete(name: String)
     
+    func didTapEdit(name: String)
+    
 }
 
 class WorkoutExercisesTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var nameLabel: UILabel!
-    /*
-    @IBOutlet weak var sets: UITextField!
-    @IBOutlet weak var reps: UITextField!
-    @IBOutlet weak var weight: UITextField!
-    */
+    
     // Variable for this cell to display
     var exercise:Exercises?
     
@@ -55,12 +53,6 @@ class WorkoutExercisesTableViewCell: UITableViewCell {
         
         // Start setting the fields
         self.nameLabel.text = exercise?.name
-        
-        /*
-        self.weight.text = String(0) //String(exercise!.sets.weights)
-        self.reps.text = String(0) //String(exercise!.reps)
-        self.sets.text = String(0) //String(exercise!.sets)
-        */
     }
 
     // Connection to the button, sends the name of the exercise in this case
@@ -68,5 +60,8 @@ class WorkoutExercisesTableViewCell: UITableViewCell {
         delegate?.didTapDelete(name: exercise!.name)
     }
     
-
+    @IBAction func editTapped(_ sender: Any) {
+        delegate?.didTapEdit(name: exercise!.name)
+    }
+    
 }
