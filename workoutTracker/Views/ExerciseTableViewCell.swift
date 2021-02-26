@@ -8,10 +8,20 @@
 
 import UIKit
 
+// Protocol so we know which row was tapped for the button
+protocol ExerciseCellDelegate {
+    
+    func deleteTapped(set: String)
+    
+}
+
 class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     // Empty variable for exercise
     var exercise:Exercises?
+    
+    // variable for the delegate
+    var delegate: ExerciseCellDelegate?
     
     @IBOutlet weak var setNum: UILabel!
     
@@ -84,4 +94,9 @@ class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    @IBAction func didTapDelete(_ sender: Any) {
+        delegate?.deleteTapped(set: setNum.text!)
+    }
+    
 }

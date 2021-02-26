@@ -1182,6 +1182,7 @@
                                         <state key="normal" title="Complete Workout"/>
                                         <connections>
                                             <action selector="completeWorkoutTapped:" destination="HQc-TH-SCI" eventType="touchUpInside" id="u1g-hp-3KV"/>
+                                            <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" id="w1k-jB-1mk"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1428,11 +1429,13 @@
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yWV-Hc-vLD">
                                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="30.5"/>
+                                                                    <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                                     <state key="normal" title="Remove Set">
                                                                         <color key="titleColor" systemColor="systemRedColor"/>
+                                                                        <color key="titleShadowColor" systemColor="systemGrayColor"/>
                                                                     </state>
                                                                     <connections>
-                                                                        <action selector="deleteSet:" destination="tOz-eK-iMT" eventType="touchUpInside" id="0bs-T7-B4M"/>
+                                                                        <action selector="didTapDelete:" destination="oko-wl-qBa" eventType="touchUpInside" id="shX-zC-GLB"/>
                                                                     </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set #" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sga-ad-wEh">
@@ -1545,9 +1548,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aGT-fH-tbq"/>
+        <segue reference="GzQ-Dt-Avu"/>
         <segue reference="ped-C1-irC"/>
-        <segue reference="ohM-Gn-1Pr"/>
+        <segue reference="w1k-jB-1mk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="WorkoutTracker Background" width="375" height="812"/>
@@ -1556,6 +1559,9 @@
         <image name="sportscourt.fill" catalog="system" width="128" height="84"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

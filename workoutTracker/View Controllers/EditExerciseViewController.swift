@@ -42,6 +42,10 @@ class EditExerciseViewController: UIViewController, UITableViewDelegate, UITable
     
     var exerciseIndex = 0
     
+    var clickedSetString = ""
+    
+    var clickedSetInt = 0
+    
     // MARK: - View Functions
     
     override func viewDidLoad() {
@@ -93,7 +97,6 @@ class EditExerciseViewController: UIViewController, UITableViewDelegate, UITable
         
         // Picking what cell displays this data
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! ExerciseTableViewCell
-        
         
         // Setting the style of the cell
         Utilities.styleTableViewCells(cell)
@@ -151,6 +154,9 @@ class EditExerciseViewController: UIViewController, UITableViewDelegate, UITable
             cell.formatCell()
         }
         
+        // Must have this when using delegates, or else they will not trigger
+        cell.delegate = self
+        
         // Return the cell
         return cell
     }
@@ -189,10 +195,36 @@ class EditExerciseViewController: UIViewController, UITableViewDelegate, UITable
     
     // Add another set
     @IBAction func addSet(_ sender: Any) {
+        
+        let newSet = Sets()
+        
+        Master.workouts[workoutIndex].exercises[exerciseIndex].sets.append(newSet)
+        
+        tableView.reloadData()
     }
-    
-    // delete the selected set
-    @IBAction func deleteSet(_ sender: Any) {
+}
+
+// MARK: - Conforming to delegates
+
+// Says the viewcontroller conforms to the ExerciseCell protocol, we can get the name this way
+extension EditExerciseViewController: ExerciseCellDelegate {
+    func deleteTapped(set: String) {
+        
+        clickedSetString = set
+        
+        let part = clickedSetString.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        
+        clickedSetInt = Int(part)!
+        
+        //Lower it so it starts from 0
+        clickedSetInt += -1
+        
+        // Removing it locally
+        Master.workouts[workoutIndex].exercises[exerciseIndex].sets.remove(at: clickedSetInt)
+        
+        self.db.collection("users").document("\(self.userId)").collection("Workouts").document(self.workoutName).collection("WorkoutExercises").document(self.exerciseName).delete()
+        
+        tableView.reloadData()
+        
     }
-    
 }

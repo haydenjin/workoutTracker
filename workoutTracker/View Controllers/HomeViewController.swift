@@ -183,7 +183,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Gets the data from the Popup screen
     @IBAction func unwindToHome(_ unwindSegue: UIStoryboardSegue) {
         
-        
         if (unwindSegue.source is EditWorkoutViewController || unwindSegue.source is AddWorkoutViewController) {
             // If you are coming back from EditWorkoutViewController, refresh the page
             Master.workouts.removeAll()

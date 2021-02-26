@@ -132,14 +132,8 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
         // Makes lines that separate tableView cells invisible
         self.tableView.separatorColor = UIColor .clear
         
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Reloading the data so it can be displayed
         tableView.reloadData()
+        
     }
     
     // MARK: - Validation
