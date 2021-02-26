@@ -419,6 +419,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func repsAndWeightsUpdate(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {
         
+        // Grayed out for now to test new queries where workout is used as the front facing array of data
+        /*
         for number in 0...(Master.workouts[workoutArrayIndex].exercises[exerciseArrayIndex].totalSets - 1) {
             
             exercise.sets.append(Sets())
@@ -457,6 +459,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         }
+ */
     }
     
     // MARK: - Logic help

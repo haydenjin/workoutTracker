@@ -108,7 +108,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         // Setting the style of the cell
         Utilities.styleTableViewCells(cell)
         
-        // MARK: - Saving data to Database
+        // MARK: - Saving data to WorkoutData
         
         // If button was tapped, send data stamped info back to database
         if doneTapped == true {
@@ -141,6 +141,27 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
                     
                     // Saves weights
                     workout.collection(exerciseName).document(date).collection("Set\(count + 1)").document("weights").setData(["Weight\(count+1)": Master.workouts[workoutIndex].exercises[exerciseIndex].sets[count].weights], merge: true)
+                }
+                
+                // MARK: - Saving data to Workouts
+                
+                // Adds the array of exercises to the database
+                let workoutDB = db.collection("users").document("\(userId)").collection("Workouts").document(workoutName).collection("WorkoutExercises").document(exerciseName)
+                
+                // Adding the note
+                workoutDB.setData(["Notes": String(Master.workouts[workoutIndex].exercises[exerciseIndex].notes)], merge: true)
+                
+                // Add the count for number of reps
+                workoutDB.setData(["numberofsets": String(Master.workouts[workoutIndex].exercises[exerciseIndex].sets.count)], merge: true)
+                
+                // Loop for sets for each exercise
+                for count in 0...Master.workouts[workoutIndex].exercises[exerciseIndex].sets.count-1 {
+                    
+                    // Saves reps
+                    workoutDB.collection("Set\(count + 1)").document("reps").setData(["Reps\(count+1)": Master.workouts[workoutIndex].exercises[exerciseIndex].sets[count].reps], merge: true)
+                    
+                    // Saves weights
+                    workoutDB.collection("Set\(count + 1)").document("weights").setData(["Weight\(count+1)": Master.workouts[workoutIndex].exercises[exerciseIndex].sets[count].weights], merge: true)
                 }
             }
         }

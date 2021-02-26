@@ -66,6 +66,8 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
                 // Refresh the Home page
             }
             
+            // MARK: - Save in workouts
+            
             // Setting the name of the workout
             let name = workoutName.text!
             
@@ -103,6 +105,33 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
                     workout.collection("Set" + String(set)).document("weights").setData(["Weight\(set)": Master.workouts[index].exercises[num].sets[set - 1].weights], merge: true)
                 }
             }
+            
+            // MARK: - Save in workoutData
+            /*
+            // Check if there is a record, if there is, set the
+            db.collection("users").document("\(userId)").collection("WorkoutData").document(workoutNameCopy).collection(exerciseNameCopy).order(by: "Date", descending: true).limit(to: 1).getDocuments() { (querySnapshot, err) in
+                if err != nil {
+                    // Error
+                } else {
+                    // Query did return something
+                    
+                    var exerciseArrayIndex = 0
+                    
+                    // Gets the proper exercise
+                    for i in 0...Master.workouts[workoutArrayIndex].exercises.count - 1 {
+                        if Master.workouts[workoutArrayIndex].exercises[i].name == exerciseName {
+                            exerciseArrayIndex = i
+                        }
+                    }
+                    
+                    if querySnapshot!.documents.count > 0 {
+                        self.mostRecentFunc(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
+                    } else {
+                        self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
+                    }
+                }
+            }
+            */
             
             // Transitioning the screen back to add exercise screen
             performSegue(withIdentifier: "unwindSegueToHome", sender: self)
