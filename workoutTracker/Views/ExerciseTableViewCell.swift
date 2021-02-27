@@ -48,6 +48,9 @@ class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
         formatTextField(reps)
         formatTextField(weight)
         
+        Utilities.addDoneButtonOnKeyboard(reps)
+        Utilities.addDoneButtonOnKeyboard(weight)
+        
     }
 
     // Setting the cell up
@@ -65,7 +68,7 @@ class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
         
         // Force unwraps value and sets it as a Int
         exercise!.sets[counter2].reps = Int(self.reps.text!) ?? 0
-        exercise!.sets[counter2].weights = Int(self.weight.text!) ?? 0
+        exercise!.sets[counter2].weights = Float(self.weight.text!) ?? 0
         
         StructVariables.count2 += 1
     }

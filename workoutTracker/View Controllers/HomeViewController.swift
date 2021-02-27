@@ -414,7 +414,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                     let data:[String:Any] = document.data()!
                     
-                    exercise.sets[number].weights = data["Weight\(number + 1)"] as! Int
+                    exercise.sets[number].weights = data["Weight\(number + 1)"] as! Float
                     
                     self.tableView.reloadData()
                 }

@@ -54,6 +54,7 @@
 		BC20590424C69A630013383C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC29812A24C7E1930058D756 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC2C35C125E2C4E7006219C4 /* EditExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseViewController.swift; sourceTree = "<group>"; };
+		BC57905925EB077A00895164 /* workoutTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = workoutTracker.entitlements; sourceTree = "<group>"; };
 		BC65EC7924C0B2E600AB3B30 /* workoutTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = workoutTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC65EC7C24C0B2E600AB3B30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC65EC7E24C0B2E600AB3B30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +137,7 @@
 		BC65EC7B24C0B2E600AB3B30 /* workoutTracker */ = {
 			isa = PBXGroup;
 			children = (
+				BC57905925EB077A00895164 /* workoutTracker.entitlements */,
 				BC088C1124C897D1005ACD22 /* Logic */,
 				BC91EEE724C691300074193A /* Helpers */,
 				BCB78B4224CA9DD000304CC3 /* Views */,
@@ -479,6 +481,7 @@
 			baseConfigurationReference = 8C61D0A3F3042ADCFF231570 /* Pods-workoutTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = workoutTracker/workoutTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H4S2GXSU83;
 				INFOPLIST_FILE = workoutTracker/Info.plist;
@@ -499,6 +502,7 @@
 			baseConfigurationReference = 8565846AB085BC341015E4E2 /* Pods-workoutTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = workoutTracker/workoutTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H4S2GXSU83;
 				INFOPLIST_FILE = workoutTracker/Info.plist;

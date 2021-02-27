@@ -52,7 +52,7 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
             let exerciseNotes = notes.text
             let sets = Int(numberOfSets.text!)
             let reps = Int(numberOfReps.text!)
-            let weightNumber = Int(weight.text!)
+            let weightNumber = Float(weight.text!)
             
             // Get current user ID
             let userId = Auth.auth().currentUser!.uid
@@ -93,7 +93,7 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
         let exerciseNotes = notes.text
         let sets = Int(numberOfSets.text!)
         let reps = Int(numberOfReps.text!)
-        let weightNumber = Int(weight.text!)
+        let weightNumber = Float(weight.text!)
         
         if name == "" {
             return
@@ -143,9 +143,13 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
         
         formatTextField(nameOfExercise)
         formatTextField(notes)
-        formatNumberField(numberOfReps)
-        formatNumberField(numberOfSets)
-        formatNumberField(weight)
+        //formatNumberField(numberOfReps)
+        //formatNumberField(numberOfSets)
+        //formatNumberField(weight)
+        
+        Utilities.addDoneButtonOnKeyboard(numberOfReps)
+        Utilities.addDoneButtonOnKeyboard(numberOfSets)
+        Utilities.addDoneButtonOnKeyboard(weight)
     }
     
     // Function to formate the text fields
@@ -188,9 +192,11 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    
     // Function to drop down text field after its done being used
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+
 }

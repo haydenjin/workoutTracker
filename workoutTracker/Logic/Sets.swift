@@ -9,6 +9,6 @@
 import Foundation
 
 class Sets {
-    var weights = 0
+    var weights = Float(0.0)
     var reps = 0
 }

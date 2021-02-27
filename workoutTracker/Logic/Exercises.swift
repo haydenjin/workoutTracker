@@ -18,7 +18,7 @@ class Exercises {
     var totalSets = 0
     var sets = [Sets]()
     
-    func addNewExercise(name:String, notes:String, weight:Int, reps:Int, sets:Int) {
+    func addNewExercise(name:String, notes:String, weight:Float, reps:Int, sets:Int) {
         self.name = name
         self.notes = notes
         

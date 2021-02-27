@@ -276,6 +276,8 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
             
             // Copying the data from the other viewcontroller and combining (Merging) the arrays
             Master.workouts[index].exercises += sourceViewController.exerciseArray
+            
+            tableView.reloadData()
         }
     }
     
