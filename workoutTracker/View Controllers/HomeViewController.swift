@@ -57,10 +57,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Makes lines that separate tableView cells invisible
         self.tableView.separatorColor = UIColor .clear
         
-        addWorkOutTapped = false
-        
         tableView.reloadData()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        addWorkOutTapped = false
     }
     
     // MARK: - Tableview Functions
@@ -336,15 +338,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                 }
                 
+                self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
+                
+                /*
                 if querySnapshot!.documents.count > 0 {
-                    self.mostRecentFunc(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
+                    
+                    self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
+                    
+                    //self.mostRecentFunc(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
                 } else {
                     self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
                 }
+                */
             }
         }
     }
     
+    /*
     // MARK: - Get most recent
     func mostRecentFunc(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {
         
@@ -369,7 +379,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-    
+    */
     // MARK: - Default reps and weights
     
     func repsAndWeights1(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {
@@ -416,11 +426,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: - Updated reps and weights
-    
+    /*
     func repsAndWeightsUpdate(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {
         
         // Grayed out for now to test new queries where workout is used as the front facing array of data
-        /*
+        
         for number in 0...(Master.workouts[workoutArrayIndex].exercises[exerciseArrayIndex].totalSets - 1) {
             
             exercise.sets.append(Sets())
@@ -459,9 +469,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         }
- */
+ 
     }
-    
+         */
     // MARK: - Logic help
     
     @IBAction func AddWorkoutTapped(_ sender: Any) {
