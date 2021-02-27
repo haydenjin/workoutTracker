@@ -39,8 +39,9 @@ class AppManager {
     }
     
     func logout() {
+        
         try! Auth.auth().signOut()
         
-        appContainer.presentedViewController?.dismiss(animated: true, completion: nil)
+        //appContainer.presentedViewController?.dismiss(animated: true, completion: nil)
     }
 }

@@ -452,6 +452,7 @@
                                 <state key="normal" title="Sign Out"/>
                                 <connections>
                                     <action selector="signOutTapped:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="hYp-t7-GEQ"/>
+                                    <segue destination="n7x-ib-XPu" kind="presentation" modalPresentationStyle="fullScreen" id="SCM-NU-fIM"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1550,7 +1551,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="GzQ-Dt-Avu"/>
         <segue reference="ped-C1-irC"/>
-        <segue reference="w1k-jB-1mk"/>
+        <segue reference="arf-S5-J31"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="WorkoutTracker Background" width="375" height="812"/>
