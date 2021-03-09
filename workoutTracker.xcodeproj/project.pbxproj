@@ -18,6 +18,8 @@
 		BC20590524C69A630013383C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC20590424C69A630013383C /* GoogleService-Info.plist */; };
 		BC29812B24C7E1930058D756 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29812A24C7E1930058D756 /* Constants.swift */; };
 		BC2C35C225E2C4E7006219C4 /* EditExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2C35C125E2C4E7006219C4 /* EditExerciseViewController.swift */; };
+		BC57905C25EDCE2C00895164 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57905B25EDCE2C00895164 /* ThemesViewController.swift */; };
+		BC57905F25F5746300895164 /* ExerciseDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57905E25F5746300895164 /* ExerciseDataViewController.swift */; };
 		BC65EC7D24C0B2E600AB3B30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC7C24C0B2E600AB3B30 /* AppDelegate.swift */; };
 		BC65EC7F24C0B2E600AB3B30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC7E24C0B2E600AB3B30 /* SceneDelegate.swift */; };
 		BC65EC8124C0B2E600AB3B30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC8024C0B2E600AB3B30 /* HomeViewController.swift */; };
@@ -55,6 +57,8 @@
 		BC29812A24C7E1930058D756 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC2C35C125E2C4E7006219C4 /* EditExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseViewController.swift; sourceTree = "<group>"; };
 		BC57905925EB077A00895164 /* workoutTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = workoutTracker.entitlements; sourceTree = "<group>"; };
+		BC57905B25EDCE2C00895164 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
+		BC57905E25F5746300895164 /* ExerciseDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDataViewController.swift; sourceTree = "<group>"; };
 		BC65EC7924C0B2E600AB3B30 /* workoutTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = workoutTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC65EC7C24C0B2E600AB3B30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC65EC7E24C0B2E600AB3B30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -187,9 +191,11 @@
 				BCD4D71724C9385800F4498B /* PopupViewController.swift */,
 				BC147EA324D1B9BD00C4D4CF /* WorkoutStartedViewController.swift */,
 				BCC17B9D24E32A4900E24ECD /* ExerciseViewController.swift */,
-				BC6D1CFE25C2584F00641216 /* DataViewController.swift */,
 				BC1D142C25CB84FA00EACE7E /* EditWorkoutViewController.swift */,
 				BC2C35C125E2C4E7006219C4 /* EditExerciseViewController.swift */,
+				BC57905B25EDCE2C00895164 /* ThemesViewController.swift */,
+				BC57905E25F5746300895164 /* ExerciseDataViewController.swift */,
+				BC6D1CFE25C2584F00641216 /* DataViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -326,6 +332,7 @@
 				BC91EEE624C6911C0074193A /* Utilities.swift in Sources */,
 				BCE826B825B21FEC00F8F0F3 /* WorkoutStartedViewController.swift in Sources */,
 				BC15C30324CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift in Sources */,
+				BC57905C25EDCE2C00895164 /* ThemesViewController.swift in Sources */,
 				BC74A8E824C15F500064BA9C /* Workouts.swift in Sources */,
 				BCDEC66B25AB56A900CC86CE /* Sets.swift in Sources */,
 				BC65EC7F24C0B2E600AB3B30 /* SceneDelegate.swift in Sources */,
@@ -335,6 +342,7 @@
 				BC147EA624D1CB1100C4D4CF /* ActiveWorkoutTableViewCell.swift in Sources */,
 				BC726E6424D0809600B14BF7 /* HomeTableViewCell.swift in Sources */,
 				BC088C1524C8A80B005ACD22 /* AppContainerViewController.swift in Sources */,
+				BC57905F25F5746300895164 /* ExerciseDataViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
