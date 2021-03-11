@@ -12,6 +12,7 @@ pod 'Firebase/Auth'
 pod 'Firebase/Core'
 pod 'Firebase/Firestore'
 pod 'Charts'
+pod 'Firebase/AdMob'
 
 post_install do |pi|
     pi.pods_project.targets.each do |t|

@@ -8,11 +8,14 @@
 
 import UIKit
 import Firebase
+import GoogleMobileAds
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var AddNewWorkout: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     
     // Get a reference to the database
     let db = Firestore.firestore()
@@ -46,6 +49,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.reloadData()
         }
         
+        // Sets the screen for the ad
+        bannerView.rootViewController = self
+        
+        // Id for the add, currently using a test ad
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        
+        // Requests an ad
+        bannerView.load(GADRequest())
+        
         // Code that I commented out because it was causing a crash, On stack overflow it said you need it but i guess not?
         //self.tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
@@ -64,6 +76,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidAppear(_ animated: Bool) {
         addWorkOutTapped = false
     }
+    
     
     // MARK: - Tableview Functions
     

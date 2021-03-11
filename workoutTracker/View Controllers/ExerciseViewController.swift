@@ -163,6 +163,29 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
                     // Saves weights
                     workoutDB.collection("Set\(count + 1)").document("weights").setData(["Weight\(count+1)": Master.workouts[workoutIndex].exercises[exerciseIndex].sets[count].weights], merge: true)
                 }
+                
+                // MARK: - Saving data to ExerciseData
+                
+                // Adds the array of exercises to the database
+                let exerciseData = db.collection("users").document("\(userId)").collection("ExerciseData").document("AllExercises")
+                
+                exerciseData.setData(["Set": "Not virtual"])
+                
+                let date2 = df.string(from: Date())
+                
+                exerciseData.collection(exerciseName).document(date2).setData(["Set": "Not virtual"], merge: true)
+                
+                exerciseData.collection(exerciseName).document(date2).setData(["Date": date], merge: true)
+                
+                
+                for count in 0...Master.workouts[workoutIndex].exercises[exerciseIndex].sets.count-1 {
+                    
+                    // Saves reps
+                    exerciseData.collection(exerciseName).document(date2).collection("Set\(count + 1)").document("reps").setData(["Reps\(count+1)": Master.workouts[workoutIndex].exercises[exerciseIndex].sets[count].reps], merge: true)
+                    
+                    // Saves weights
+                    exerciseData.collection(exerciseName).document(date2).collection("Set\(count + 1)").document("weights").setData(["Weight\(count+1)": Master.workouts[workoutIndex].exercises[exerciseIndex].sets[count].weights], merge: true)
+                }
             }
         }
         // Button wasn't tapped, set up tableview cells like usual

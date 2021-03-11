@@ -19,18 +19,31 @@
 	<key>STORAGE_BUCKET</key>
 	<string>workouttracker-9445d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:930790944500:ios:c4aa6d60428275c7f8f8a1</string>
 	<key>DATABASE_URL</key>
 	<string>https://workouttracker-9445d.firebaseio.com</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-3755886742417549~6610519468</string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>SKAdNetworkItems</key>
+	<array>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>cstr6suwn9.skadnetwork</string>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string></string>
 </dict>
 </plist>
