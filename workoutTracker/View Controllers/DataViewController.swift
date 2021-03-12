@@ -34,21 +34,37 @@ class DataViewController: UIViewController, ChartViewDelegate {
     
     var dateRange = [String]()
     
-    var testArray2: [ChartDataEntry] = [ChartDataEntry(x: 0.0, y: 275.0),ChartDataEntry(x: 1.0, y: 275.0),ChartDataEntry(x: 2.0, y: 280.0),ChartDataEntry(x: 3.0, y: 285.0),ChartDataEntry(x: 4.0, y: 275.0),ChartDataEntry(x: 5.0, y: 290.0),ChartDataEntry(x: 6.0, y: 295.0)]
+    var returnedExercises = [String]()
+    
+    // Data set structure
+    struct dataSetStruct {
+        
+        var date = ""
+        
+        var repsArray = [Int]()
+        
+        var weightsArray = [Float]()
+    }
+    
+    // Main Data set
+    var dataSet = [dataSetStruct]()
+    
+    var chartPoints: [ChartDataEntry] = [ChartDataEntry(x: 0.0, y: 275.0),ChartDataEntry(x: 1.0, y: 275.0),ChartDataEntry(x: 2.0, y: 280.0),ChartDataEntry(x: 3.0, y: 285.0),ChartDataEntry(x: 4.0, y: 275.0),ChartDataEntry(x: 5.0, y: 290.0),ChartDataEntry(x: 6.0, y: 295.0)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         exerciseLabel.text = exerciseName
-
-        updateGraph()
+        
+        getSelectedDates()
+        
     }
     
     func updateGraph() {
         
         // Setting the back ground color
         lineChart.backgroundColor = .lightGray
-
+        
         // Removing right axis
         lineChart.rightAxis.enabled = false
         
@@ -64,25 +80,12 @@ class DataViewController: UIViewController, ChartViewDelegate {
         lineChart.xAxis.labelFont = .boldSystemFont(ofSize: 12)
         lineChart.xAxis.setLabelCount(6, force: false)
         lineChart.xAxis.axisLineColor = .black
-
+        
         // Animate the movement
         lineChart.animate(xAxisDuration: 0.5)
         
-        /*
-        // Data set for the chart
-        var lineChartset = [ChartDataEntry]()
-        
-        
-        for i in 0...testArray.count - 1 {
-            // Changes each value in the array into a data point
-            let value = ChartDataEntry(x: Double(i), y: testArray[i])
-            
-            // Adds it into the chart
-            lineChartset.append(value)
-        }
-        */
         // Creates line that connects the dots
-        let line1 = LineChartDataSet(entries: testArray2, label: "Number")
+        let line1 = LineChartDataSet(entries: chartPoints, label: "Number")
         
         // Sets the line color to blue
         line1.colors = [NSUIColor.blue]
@@ -99,11 +102,6 @@ class DataViewController: UIViewController, ChartViewDelegate {
         
         data.addDataSet(line1)
         
-        // Setting the x-axis
-        /*
-        lineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateRange)
-        lineChart.xAxis.granularity = 1
-        */
         self.lineChart.data = data
     }
     
@@ -111,10 +109,41 @@ class DataViewController: UIViewController, ChartViewDelegate {
         print(entry)
     }
     
+    // MARK: - Data select
+    
     @IBAction func selectionDidChange(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             chartType.text = "Total Volume"
+            
+            // Update the array of chart points
+            chartPoints.removeAll()
+            
+            // Calculate the max volume
+            var totalVolume:Float = 0
+            
+            // For each data point
+            for i in 0...dataSet.count-1 {
+                
+                // Calculates the data value
+                for sets in 0...dataSet[i].repsArray.count-1 {
+                    
+                    let calc = Float(dataSet[i].repsArray[sets]) * dataSet[i].weightsArray[sets]
+                    
+                    totalVolume = totalVolume + calc
+                    
+                }
+                
+                let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(totalVolume))
+                
+                // Adds it into the chart
+                chartPoints.append(value)
+                
+                // Reset the value
+                totalVolume = 0
+                
+            }
+            
             updateGraph()
         case 1:
             chartType.text = "Average Weight"
@@ -127,30 +156,61 @@ class DataViewController: UIViewController, ChartViewDelegate {
             updateGraph()
         default:
             chartType.text = "Total Volume"
+            
+            // Update the array of chart points
+            chartPoints.removeAll()
+            
+            // Calculate the max volume
+            var totalVolume:Float = 0
+            
+            // For each data point
+            for i in 0...dataSet.count-1 {
+                
+                // Calculates the data value
+                for sets in 0...dataSet[i].repsArray.count-1 {
+                    
+                    let calc = Float(dataSet[i].repsArray[sets]) * dataSet[i].weightsArray[sets]
+                    
+                    totalVolume = totalVolume + calc
+                    
+                }
+                
+                let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(totalVolume))
+                
+                // Adds it into the chart
+                chartPoints.append(value)
+                
+                // Reset the value
+                totalVolume = 0
+                
+            }
+            
             updateGraph()
         }
     }
+    
+    // MARK: - Time select
     
     @IBAction func timeRangeDidChange(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             dateLabel.text = "Weekly"
             /*
-            // Change the range to last 7 days
-            // Getting the current date
-            let df = DateFormatter()
-            df.dateFormat = "dd"
-            var currDate = df.string(from: Date())
-            
-            var startDate = Int(currDate)! - 7
-            
-            dateRange.removeAll()
-            
-            for startDate in 1...7 {
-                dateRange.append(startDate)
-                startDate = startDate + 1
-            }
-            */
+             // Change the range to last 7 days
+             // Getting the current date
+             let df = DateFormatter()
+             df.dateFormat = "dd"
+             var currDate = df.string(from: Date())
+             
+             var startDate = Int(currDate)! - 7
+             
+             dateRange.removeAll()
+             
+             for startDate in 1...7 {
+             dateRange.append(startDate)
+             startDate = startDate + 1
+             }
+             */
             updateGraph()
         case 1:
             dateLabel.text = "Monthly"
@@ -167,9 +227,9 @@ class DataViewController: UIViewController, ChartViewDelegate {
         }
     }
     
-    func getSelectedData() {
+    func getSelectedDates() {
         
-        db.collection("users").document("\(userId)").collection("ExerciseData").document("AllExercises").collection(exerciseName).order(by: "Date", descending: true).getDocuments() { (querySnapshot, err) in
+        db.collection("users").document("\(userId)").collection("ExerciseData").document("AllExercises").collection(exerciseName).order(by: "Date", descending: false).getDocuments() { (querySnapshot, err) in
             if err != nil {
                 // Error
             } else {
@@ -177,14 +237,71 @@ class DataViewController: UIViewController, ChartViewDelegate {
                 
                 for document in querySnapshot!.documents {
                     
-                    /*
-                    // Sets the date (mostRecent) as the document ID
-                    self.mostRecent = document.documentID
+                    let data:[String:Any] = document.data()
                     
-                    // There are records, pull the most recent one
-                    self.repsAndWeightsUpdate(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
- 
- */
+                    let date = data["Date"] as! String
+                    
+                    self.returnedExercises.append(date)
+                }
+                self.getSelectedData()
+            }
+        }
+    }
+    
+    func getSelectedData() {
+        
+        var exerciseIndex = 0
+        
+        for i in 0...Master.exercises.count - 1 {
+            if Master.exercises[i].name == self.exerciseName {
+                exerciseIndex = i
+            }
+        }
+        
+        let numOfSets = Master.exercises[exerciseIndex].totalSets
+        
+        // For each date record
+        for count in 0...self.returnedExercises.count-1 {
+            
+            // Creates a new dataSet
+            dataSet.append(dataSetStruct())
+            
+            dataSet[count].date = returnedExercises[count]
+            
+            for number in 0...(numOfSets - 1) {
+                
+                // Retrives the reps
+                let repsDbCallHistory = db.collection("users").document("\(userId)").collection("ExerciseData").document("AllExercises").collection(exerciseName).document(returnedExercises[count]).collection("Set\(number + 1)").document("reps")
+                
+                repsDbCallHistory.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        // For every document (Set) in the database, copy the values and add them to the array
+                        
+                        let data:[String:Any] = document.data()!
+                        
+                        self.dataSet[count].repsArray.append(data["Reps\(number + 1)"] as! Int)
+                    }
+                    else {
+                        // error
+                    }
+                }
+                
+                //Retrives the weights
+                let weightsDbCallHistory = db.collection("users").document("\(userId)").collection("ExerciseData").document("AllExercises").collection(exerciseName).document(returnedExercises[count]).collection("Set\(number + 1)").document("weights")
+                
+                weightsDbCallHistory.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        // For every document (Set) in the database, copy the values and add them to the array
+                        
+                        let data:[String:Any] = document.data()!
+                        
+                        self.dataSet[count].weightsArray.append(data["Weight\(number + 1)"] as! Float)
+                        
+                        self.updateGraph()
+                    }
+                    else {
+                        // error
+                    }
                 }
             }
         }

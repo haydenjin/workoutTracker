@@ -73,7 +73,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         addWorkOutTapped = false
     }
     
-    
     // MARK: - Tableview Functions
     
     // Returns the number of sections (# of workouts)
