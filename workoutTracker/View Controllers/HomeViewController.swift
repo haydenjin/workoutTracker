@@ -36,7 +36,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let delegate = UIApplication.shared.delegate as! AppDelegate
     
-    
     // MARK: - View Functions
     
     override func viewDidLoad() {
@@ -57,9 +56,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Requests an ad
         bannerView.load(GADRequest())
-        
-        // Code that I commented out because it was causing a crash, On stack overflow it said you need it but i guess not?
-        //self.tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
         // Assigning the FirstViewController as the datasource of the tableview
         tableView.dataSource = self

@@ -45,5 +45,7 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string></string>
+	<key>GADIsAdManagerApp</key>
+	<string>true</string>
 </dict>
 </plist>
