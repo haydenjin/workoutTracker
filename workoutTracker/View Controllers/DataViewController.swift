@@ -28,13 +28,9 @@ class DataViewController: UIViewController, ChartViewDelegate {
     
     var exerciseName = ""
     
-    var testArray = [1,2,3,4,5,6,7,8,9,10,11,12].map{Double($0)}
-    
-    var aveVolumeArray = [Double]()
-    
-    var dateRange = [String]()
-    
     var returnedExercises = [String]()
+    
+    var returnedOneRepMax = [String]()
     
     // Data set structure
     struct dataSetStruct {
@@ -46,18 +42,45 @@ class DataViewController: UIViewController, ChartViewDelegate {
         var weightsArray = [Float]()
     }
     
+    // Data set structure
+    struct oneRepMaxStruct {
+        
+        var date = ""
+        
+        var weight = Float(0.0)
+    }
+    
     // Main Data set
     var dataSet = [dataSetStruct]()
     
-    var chartPoints: [ChartDataEntry] = [ChartDataEntry(x: 0.0, y: 275.0),ChartDataEntry(x: 1.0, y: 275.0),ChartDataEntry(x: 2.0, y: 280.0),ChartDataEntry(x: 3.0, y: 285.0),ChartDataEntry(x: 4.0, y: 275.0),ChartDataEntry(x: 5.0, y: 290.0),ChartDataEntry(x: 6.0, y: 295.0)]
+    // One Rep Max set
+    var oneRPDataSet = [oneRepMaxStruct]()
     
+    var chartPoints: [ChartDataEntry] = []
+    
+    var exerciseIndex = 0
+    
+    var numOfSets = 0
+    
+    // MARK:- View functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Clear previous memory
+        oneRPDataSet.removeAll()
+        dataSet.removeAll()
+        
         exerciseLabel.text = exerciseName
         
-        getSelectedDates()
+        for i in 0...Master.exercises.count - 1 {
+            if Master.exercises[i].name == self.exerciseName {
+                exerciseIndex = i
+            }
+        }
         
+        numOfSets = Master.exercises[exerciseIndex].totalSets
+        
+        getSelectedDates()
     }
     
     func updateGraph() {
@@ -119,70 +142,160 @@ class DataViewController: UIViewController, ChartViewDelegate {
             // Update the array of chart points
             chartPoints.removeAll()
             
-            // Calculate the max volume
-            var totalVolume:Float = 0
-            
-            // For each data point
-            for i in 0...dataSet.count-1 {
+            if dataSet.count > 0 {
                 
-                // Calculates the data value
-                for sets in 0...dataSet[i].repsArray.count-1 {
+                // Calculate the max volume
+                var totalVolume:Float = 0
+                
+                // For each data point
+                for i in 0...dataSet.count-1 {
                     
-                    let calc = Float(dataSet[i].repsArray[sets]) * dataSet[i].weightsArray[sets]
+                    // Calculates the data value
+                    for sets in 0...dataSet[i].repsArray.count-1 {
+                        
+                        let calc = Float(dataSet[i].repsArray[sets]) * dataSet[i].weightsArray[sets]
+                        
+                        totalVolume = totalVolume + calc
+                        
+                    }
                     
-                    totalVolume = totalVolume + calc
+                    let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(totalVolume))
+                    
+                    // Adds it into the chart
+                    chartPoints.append(value)
+                    
+                    // Reset the value
+                    totalVolume = 0
                     
                 }
-                
-                let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(totalVolume))
-                
-                // Adds it into the chart
-                chartPoints.append(value)
-                
-                // Reset the value
-                totalVolume = 0
-                
             }
             
             updateGraph()
+            
         case 1:
             chartType.text = "Average Weight"
+            
+            // Update the array of chart points
+            chartPoints.removeAll()
+            
+            // Calculate the max volume
+            var aveWeight:Float = 0
+            
+            if dataSet.count > 0 {
+                
+                // For each data point
+                for i in 0...dataSet.count-1 {
+                    
+                    // Calculates the data value
+                    for sets in 0...dataSet[i].repsArray.count-1 {
+                        
+                        aveWeight = aveWeight + dataSet[i].weightsArray[sets]
+                        
+                    }
+                    
+                    aveWeight = (aveWeight / Float(dataSet[i].repsArray.count))
+                    
+                    let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(aveWeight))
+                    
+                    // Adds it into the chart
+                    chartPoints.append(value)
+                    
+                    // Reset the value
+                    aveWeight = 0
+                    
+                }
+            }
+
             updateGraph()
+            
         case 2:
             chartType.text = "Average reps"
+            
+            // Update the array of chart points
+            chartPoints.removeAll()
+            
+            // Calculate the max volume
+            var aveReps:Float = 0
+            
+            if dataSet.count > 0 {
+                // For each data point
+                for i in 0...dataSet.count-1 {
+                    
+                    // Calculates the data value
+                    for sets in 0...dataSet[i].repsArray.count-1 {
+                        
+                        aveReps = aveReps + Float(dataSet[i].repsArray[sets])
+                        
+                    }
+                    
+                    aveReps = (aveReps / Float(dataSet[i].repsArray.count))
+                    
+                    let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(aveReps))
+                    
+                    // Adds it into the chart
+                    chartPoints.append(value)
+                    
+                    // Reset the value
+                    aveReps = 0
+                    
+                }
+            }
+
             updateGraph()
+            
         case 3:
             chartType.text = "One Rep Max"
+            
+            // Update the array of chart points
+            chartPoints.removeAll()
+            
+            if oneRPDataSet.count > 0 {
+                
+                // For each data point
+                for i in 0...oneRPDataSet.count-1 {
+                    
+                    let value = ChartDataEntry(x: Double(oneRPDataSet[i].date) ?? Double(i), y: Double(oneRPDataSet[i].weight))
+                    
+                    // Adds it into the chart
+                    chartPoints.append(value)
+                    
+                }
+            }
+
             updateGraph()
+            
         default:
             chartType.text = "Total Volume"
             
             // Update the array of chart points
             chartPoints.removeAll()
             
-            // Calculate the max volume
-            var totalVolume:Float = 0
-            
-            // For each data point
-            for i in 0...dataSet.count-1 {
+            if dataSet.count > 0 {
                 
-                // Calculates the data value
-                for sets in 0...dataSet[i].repsArray.count-1 {
+                // Calculate the max volume
+                var totalVolume:Float = 0
+                
+                // For each data point
+                for i in 0...dataSet.count-1 {
                     
-                    let calc = Float(dataSet[i].repsArray[sets]) * dataSet[i].weightsArray[sets]
+                    // Calculates the data value
+                    for sets in 0...dataSet[i].repsArray.count-1 {
+                        
+                        let calc = Float(dataSet[i].repsArray[sets]) * dataSet[i].weightsArray[sets]
+                        
+                        totalVolume = totalVolume + calc
+                        
+                    }
                     
-                    totalVolume = totalVolume + calc
+                    let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(totalVolume))
+                    
+                    // Adds it into the chart
+                    chartPoints.append(value)
+                    
+                    // Reset the value
+                    totalVolume = 0
                     
                 }
-                
-                let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(totalVolume))
-                
-                // Adds it into the chart
-                chartPoints.append(value)
-                
-                // Reset the value
-                totalVolume = 0
-                
             }
             
             updateGraph()
@@ -227,6 +340,8 @@ class DataViewController: UIViewController, ChartViewDelegate {
         }
     }
     
+    // MARK: - Getting data
+    
     func getSelectedDates() {
         
         db.collection("users").document("\(userId)").collection("ExerciseData").document("AllExercises").collection(exerciseName).order(by: "Date", descending: false).getDocuments() { (querySnapshot, err) in
@@ -242,60 +357,105 @@ class DataViewController: UIViewController, ChartViewDelegate {
                     let date = data["Date"] as! String
                     
                     self.returnedExercises.append(date)
+                    
                 }
                 self.getSelectedData()
+            }
+        }
+        
+        db.collection("users").document("\(userId)").collection("UserInputData").document("OneRepMax").collection(exerciseName).order(by: "Date", descending: false).getDocuments() { (querySnapshot, err) in
+            if err != nil {
+                // Error
+            } else {
+                // Query returns a list of dates for the selected exercise
+                
+                for document in querySnapshot!.documents {
+                    
+                    let data:[String:Any] = document.data()
+                    
+                    let date = data["Date"] as! String
+                    
+                    self.returnedOneRepMax.append(date)
+                }
+                self.getOneRepMax()
             }
         }
     }
     
     func getSelectedData() {
         
-        var exerciseIndex = 0
-        
-        for i in 0...Master.exercises.count - 1 {
-            if Master.exercises[i].name == self.exerciseName {
-                exerciseIndex = i
-            }
-        }
-        
-        let numOfSets = Master.exercises[exerciseIndex].totalSets
-        
-        // For each date record
-        for count in 0...self.returnedExercises.count-1 {
+        if returnedExercises.count > 0 {
             
-            // Creates a new dataSet
-            dataSet.append(dataSetStruct())
-            
-            dataSet[count].date = returnedExercises[count]
-            
-            for number in 0...(numOfSets - 1) {
+            // For each date record
+            for count in 0...self.returnedExercises.count-1 {
                 
-                // Retrives the reps
-                let repsDbCallHistory = db.collection("users").document("\(userId)").collection("ExerciseData").document("AllExercises").collection(exerciseName).document(returnedExercises[count]).collection("Set\(number + 1)").document("reps")
+                // Creates a new dataSet
+                dataSet.append(dataSetStruct())
                 
-                repsDbCallHistory.getDocument { (document, error) in
-                    if let document = document, document.exists {
-                        // For every document (Set) in the database, copy the values and add them to the array
-                        
-                        let data:[String:Any] = document.data()!
-                        
-                        self.dataSet[count].repsArray.append(data["Reps\(number + 1)"] as! Int)
+                dataSet[count].date = returnedExercises[count]
+                
+                for number in 0...(numOfSets - 1) {
+                    
+                    // Retrives the reps
+                    let repsDbCallHistory = db.collection("users").document("\(userId)").collection("ExerciseData").document("AllExercises").collection(exerciseName).document(returnedExercises[count]).collection("Set\(number + 1)").document("reps")
+                    
+                    repsDbCallHistory.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            // For every document (Set) in the database, copy the values and add them to the array
+                            
+                            let data:[String:Any] = document.data()!
+                            
+                            self.dataSet[count].repsArray.append(data["Reps\(number + 1)"] as! Int)
+                        }
+                        else {
+                            // error
+                        }
                     }
-                    else {
-                        // error
+                    
+                    //Retrives the weights
+                    let weightsDbCallHistory = db.collection("users").document("\(userId)").collection("ExerciseData").document("AllExercises").collection(exerciseName).document(returnedExercises[count]).collection("Set\(number + 1)").document("weights")
+                    
+                    weightsDbCallHistory.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            // For every document (Set) in the database, copy the values and add them to the array
+                            
+                            let data:[String:Any] = document.data()!
+                            
+                            self.dataSet[count].weightsArray.append(data["Weight\(number + 1)"] as! Float)
+                            
+                            self.updateGraph()
+                        }
+                        else {
+                            // error
+                        }
                     }
                 }
+            }
+        }
+    }
+    
+    func getOneRepMax() {
+        
+        if returnedOneRepMax.count > 0 {
+            
+            // For each date record
+            for count in 0...self.returnedOneRepMax.count-1 {
                 
-                //Retrives the weights
-                let weightsDbCallHistory = db.collection("users").document("\(userId)").collection("ExerciseData").document("AllExercises").collection(exerciseName).document(returnedExercises[count]).collection("Set\(number + 1)").document("weights")
+                // Creates a new dataSet
+                oneRPDataSet.append(oneRepMaxStruct())
                 
-                weightsDbCallHistory.getDocument { (document, error) in
+                oneRPDataSet[count].date = returnedOneRepMax[count]
+                
+                // Retrives the reps
+                let oneRepMax = db.collection("users").document("\(userId)").collection("UserInputData").document("OneRepMax").collection(exerciseName).document(returnedOneRepMax[count])
+                
+                oneRepMax.getDocument { (document, error) in
                     if let document = document, document.exists {
                         // For every document (Set) in the database, copy the values and add them to the array
                         
                         let data:[String:Any] = document.data()!
                         
-                        self.dataSet[count].weightsArray.append(data["Weight\(number + 1)"] as! Float)
+                        self.oneRPDataSet[count].weight = Float(data["Weight"] as! String)!
                         
                         self.updateGraph()
                     }
@@ -305,5 +465,40 @@ class DataViewController: UIViewController, ChartViewDelegate {
                 }
             }
         }
+    }
+    
+    // MARK: - Default screen setup
+    
+    func defaultSetup() {
+        
+        // Update the array of chart points
+        chartPoints.removeAll()
+        
+        // Calculate the max volume
+        var totalVolume:Float = 0
+        
+        // For each data point
+        for i in 0...dataSet.count-1 {
+            
+            // Calculates the data value
+            for sets in 0...dataSet[i].repsArray.count-1 {
+                
+                let calc = Float(dataSet[i].repsArray[sets]) * dataSet[i].weightsArray[sets]
+                
+                totalVolume = totalVolume + calc
+                
+            }
+            
+            let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(totalVolume))
+            
+            // Adds it into the chart
+            chartPoints.append(value)
+            
+            // Reset the value
+            totalVolume = 0
+            
+        }
+        
+        updateGraph()
     }
 }

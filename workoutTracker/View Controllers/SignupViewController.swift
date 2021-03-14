@@ -22,6 +22,7 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -115,6 +116,8 @@ class SignupViewController: UIViewController {
                             self.showError("User data couldn't be added to database")
                         }
                     }
+                    
+                    StructVariables.comingFromLogin = true
                 
                     // Move to the home screen
                     self.transitionToHome()
@@ -133,5 +136,4 @@ class SignupViewController: UIViewController {
         // Setting the current view and making it visible 
         view.window?.makeKeyAndVisible()
     }
-    
 }

@@ -13,6 +13,10 @@ class SettingsViewController: UIViewController {
     
     @IBAction func signOutTapped(_ sender: Any) {
         // Logs user out
+        
+        Master.workouts.removeAll()
+        Master.exercises.removeAll()
+        
         AppManager.shared.logout()
     }
     

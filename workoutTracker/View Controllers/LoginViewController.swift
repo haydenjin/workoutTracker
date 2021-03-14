@@ -54,6 +54,8 @@ class LoginViewController: UIViewController {
             }
             else {
                 
+                StructVariables.comingFromLogin = true
+                
                 // setting the variable as the home view
                 let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? UITabBarController
                 
@@ -63,6 +65,5 @@ class LoginViewController: UIViewController {
                 self.view.window?.makeKeyAndVisible()
             }
         }
-        
     }
 }

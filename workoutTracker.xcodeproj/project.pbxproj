@@ -18,6 +18,7 @@
 		BC20590524C69A630013383C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC20590424C69A630013383C /* GoogleService-Info.plist */; };
 		BC29812B24C7E1930058D756 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29812A24C7E1930058D756 /* Constants.swift */; };
 		BC2C35C225E2C4E7006219C4 /* EditExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2C35C125E2C4E7006219C4 /* EditExerciseViewController.swift */; };
+		BC2E93B125FD624D003C7601 /* DataInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2E93B025FD624D003C7601 /* DataInputViewController.swift */; };
 		BC57905C25EDCE2C00895164 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57905B25EDCE2C00895164 /* ThemesViewController.swift */; };
 		BC57905F25F5746300895164 /* ExerciseDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57905E25F5746300895164 /* ExerciseDataViewController.swift */; };
 		BC65EC7D24C0B2E600AB3B30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC65EC7C24C0B2E600AB3B30 /* AppDelegate.swift */; };
@@ -56,6 +57,7 @@
 		BC20590424C69A630013383C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC29812A24C7E1930058D756 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC2C35C125E2C4E7006219C4 /* EditExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseViewController.swift; sourceTree = "<group>"; };
+		BC2E93B025FD624D003C7601 /* DataInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInputViewController.swift; sourceTree = "<group>"; };
 		BC57905925EB077A00895164 /* workoutTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = workoutTracker.entitlements; sourceTree = "<group>"; };
 		BC57905B25EDCE2C00895164 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		BC57905E25F5746300895164 /* ExerciseDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDataViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				BC57905B25EDCE2C00895164 /* ThemesViewController.swift */,
 				BC57905E25F5746300895164 /* ExerciseDataViewController.swift */,
 				BC6D1CFE25C2584F00641216 /* DataViewController.swift */,
+				BC2E93B025FD624D003C7601 /* DataInputViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				BCD9A22C24C68514001F502B /* LoginViewController.swift in Sources */,
 				BC147EA624D1CB1100C4D4CF /* ActiveWorkoutTableViewCell.swift in Sources */,
 				BC726E6424D0809600B14BF7 /* HomeTableViewCell.swift in Sources */,
+				BC2E93B125FD624D003C7601 /* DataInputViewController.swift in Sources */,
 				BC088C1524C8A80B005ACD22 /* AppContainerViewController.swift in Sources */,
 				BC57905F25F5746300895164 /* ExerciseDataViewController.swift in Sources */,
 			);

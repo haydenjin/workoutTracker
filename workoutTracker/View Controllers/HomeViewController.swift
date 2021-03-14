@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var AddNewWorkout: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var welcomeLabel: UILabel!
     
     
     // Get a reference to the database
@@ -42,10 +43,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         if delegate.firstLoad == true {
+            Master.workouts.removeAll()
+            Master.exercises.removeAll()
             getData()
             delegate.firstLoad = false
+            tableView.reloadData()
+        } else if StructVariables.comingFromLogin == true {
+            Master.workouts.removeAll()
+            Master.exercises.removeAll()
+            getData()
+            StructVariables.comingFromLogin = false
+            tableView.reloadData()
         } else {
             tableView.reloadData()
+        }
+        
+        db.collection("users").document("\(userId)").getDocument { (document, error) in
+            if let document = document, document.exists {
+                
+                let data:[String:Any] = document.data()!
+                
+                self.welcomeLabel.text = "Welcome \(data["firstname"] as! String)! "
+                
+            }
         }
         
         // Sets the screen for the ad
@@ -196,6 +216,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if (unwindSegue.source is EditWorkoutViewController || unwindSegue.source is AddWorkoutViewController) {
             // If you are coming back from EditWorkoutViewController, refresh the page
             Master.workouts.removeAll()
+            Master.exercises.removeAll()
             getData()
             tableView.reloadData()
         }

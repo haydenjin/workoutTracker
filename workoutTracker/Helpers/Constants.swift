@@ -36,4 +36,7 @@ class StructVariables {
     
     // Used to keep track of looping number of sets in order to update data
     static var count2 = 0
+    
+    // Checks if user is coming from loggin screen
+    static var comingFromLogin = false
 }
