@@ -31,6 +31,11 @@ class DataInputViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         getExerciseNames()
         
+        if exerciseNames.count > 0 {
+            //Set a default value for selected
+            selectedExercise = exerciseNames[0]
+        }
+        
         pickerView.delegate = self
         pickerView.dataSource = self
         

@@ -20,10 +20,7 @@ class ThemesViewController: UIViewController {
     
     @IBAction func blackMint(_ sender: Any) {
         
-        var body: some View {
-            Color.black.overlay(VStack(spacing: 20) {
-            }).edgesIgnoringSafeArea(.vertical)
-        }
+        Utilities.Themes.blackMint()
         
         print("turn black")
 
@@ -31,10 +28,7 @@ class ThemesViewController: UIViewController {
     
     @IBAction func tealWhite(_ sender: Any) {
         
-        var body: some View {
-            Color.white.overlay(VStack(spacing: 20) {
-            }).edgesIgnoringSafeArea(.vertical)
-        }
+        Utilities.Themes.tealWhite()
         
         print("turn white")
     }

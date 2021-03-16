@@ -66,5 +66,41 @@ class Utilities {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}$")
         return passwordTest.evaluate(with: password)
     }
+    
+    struct Themes {
+        
+        static var backgroundColor:UIColor?
+        static var buttonTextColor:UIColor?
+        static var buttonBackgroundColor:UIColor?
+        static var tableviewCellColor:UIColor?
+        
+        static public func tealWhite() {
+            self.backgroundColor = UIColor.white
+            self.buttonTextColor = UIColor.blue
+            self.buttonBackgroundColor = UIColor.white
+            self.tableviewCellColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+            updateDisplay()
+        }
+
+        static public func blackMint() {
+            self.backgroundColor = UIColor.darkGray
+            self.buttonTextColor = UIColor.white
+            self.buttonBackgroundColor = UIColor.black
+            self.tableviewCellColor = UIColor(red: 52, green: 235, blue: 161, alpha: 1)
+            updateDisplay()
+        }
+
+        static public func updateDisplay() {
+            let proxyButton = UIButton.appearance()
+            proxyButton.setTitleColor(Themes.buttonTextColor, for: .normal)
+            proxyButton.backgroundColor = Themes.buttonBackgroundColor
+
+            let proxyView = UIView.appearance()
+            proxyView.backgroundColor = backgroundColor
+            
+            let tableView = UITableViewCell.appearance()
+            tableView.backgroundColor = tableviewCellColor
+        }
+    }
 
 }

@@ -205,7 +205,7 @@ class DataViewController: UIViewController, ChartViewDelegate {
                     
                 }
             }
-
+            
             updateGraph()
             
         case 2:
@@ -240,7 +240,7 @@ class DataViewController: UIViewController, ChartViewDelegate {
                     
                 }
             }
-
+            
             updateGraph()
             
         case 3:
@@ -261,7 +261,7 @@ class DataViewController: UIViewController, ChartViewDelegate {
                     
                 }
             }
-
+            
             updateGraph()
             
         default:
@@ -377,7 +377,11 @@ class DataViewController: UIViewController, ChartViewDelegate {
                     
                     self.returnedOneRepMax.append(date)
                 }
-                self.getOneRepMax()
+                self.getOneRepMax(completion: { message in
+                       print(message)
+                })
+                
+                print("Finished getting data")
             }
         }
     }
@@ -390,14 +394,14 @@ class DataViewController: UIViewController, ChartViewDelegate {
             for count in 0...self.returnedExercises.count-1 {
                 
                 // Creates a new dataSet
-                dataSet.append(dataSetStruct())
+                self.dataSet.append(dataSetStruct())
                 
-                dataSet[count].date = returnedExercises[count]
+                self.dataSet[count].date = self.returnedExercises[count]
                 
-                for number in 0...(numOfSets - 1) {
+                for number in 0...(self.numOfSets - 1) {
                     
                     // Retrives the reps
-                    let repsDbCallHistory = db.collection("users").document("\(userId)").collection("ExerciseData").document("AllExercises").collection(exerciseName).document(returnedExercises[count]).collection("Set\(number + 1)").document("reps")
+                    let repsDbCallHistory = self.db.collection("users").document("\(self.userId)").collection("ExerciseData").document("AllExercises").collection(self.exerciseName).document(self.returnedExercises[count]).collection("Set\(number + 1)").document("reps")
                     
                     repsDbCallHistory.getDocument { (document, error) in
                         if let document = document, document.exists {
@@ -406,14 +410,15 @@ class DataViewController: UIViewController, ChartViewDelegate {
                             let data:[String:Any] = document.data()!
                             
                             self.dataSet[count].repsArray.append(data["Reps\(number + 1)"] as! Int)
+                            
+                            
                         }
                         else {
                             // error
                         }
                     }
-                    
                     //Retrives the weights
-                    let weightsDbCallHistory = db.collection("users").document("\(userId)").collection("ExerciseData").document("AllExercises").collection(exerciseName).document(returnedExercises[count]).collection("Set\(number + 1)").document("weights")
+                    let weightsDbCallHistory = self.db.collection("users").document("\(self.userId)").collection("ExerciseData").document("AllExercises").collection(self.exerciseName).document(self.returnedExercises[count]).collection("Set\(number + 1)").document("weights")
                     
                     weightsDbCallHistory.getDocument { (document, error) in
                         if let document = document, document.exists {
@@ -434,9 +439,11 @@ class DataViewController: UIViewController, ChartViewDelegate {
         }
     }
     
-    func getOneRepMax() {
+    func getOneRepMax(completion: @escaping (_ message: String) -> Void) {
         
         if returnedOneRepMax.count > 0 {
+            
+            print("Getting Data")
             
             // For each date record
             for count in 0...self.returnedOneRepMax.count-1 {
@@ -456,6 +463,10 @@ class DataViewController: UIViewController, ChartViewDelegate {
                         let data:[String:Any] = document.data()!
                         
                         self.oneRPDataSet[count].weight = Float(data["Weight"] as! String)!
+                        
+                        print("Getting data: \(count)")
+                        
+                        completion("DONE")
                         
                         self.updateGraph()
                     }
