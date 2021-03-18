@@ -101,17 +101,20 @@
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Name         " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xr-jU-pjh">
                                                                     <rect key="frame" x="50" y="0.0" width="364" height="60.5"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="60" id="kXA-Pr-2Zp"/>
                                                             </constraints>
                                                         </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="Ary-3P-pX3" firstAttribute="top" secondItem="0eO-MW-hrB" secondAttribute="top" id="3Nx-a1-2Rx"/>
                                                         <constraint firstAttribute="trailing" secondItem="Ary-3P-pX3" secondAttribute="trailing" id="6tI-eq-uSD"/>
@@ -119,6 +122,7 @@
                                                         <constraint firstItem="Ary-3P-pX3" firstAttribute="leading" secondItem="0eO-MW-hrB" secondAttribute="leading" id="tEI-Ek-9xZ"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <outlet property="workoutName" destination="1Xr-jU-pjh" id="kJi-b8-bdn"/>
                                                     <segue destination="GFu-VJ-q6a" kind="presentation" modalPresentationStyle="fullScreen" id="ped-C1-irC"/>
@@ -145,6 +149,7 @@
                     <connections>
                         <outlet property="AddNewWorkout" destination="OcQ-T7-gHn" id="AhW-PE-1Al"/>
                         <outlet property="bannerView" destination="Msg-BJ-9h9" id="5Kv-4r-wAZ"/>
+                        <outlet property="sortButton" destination="PFD-tn-kfS" id="nbN-Bq-bLq"/>
                         <outlet property="tableView" destination="Zum-bX-4G5" id="uuC-9S-75Y"/>
                         <outlet property="welcomeLabel" destination="iwL-ZD-ZRY" id="55J-on-oxc"/>
                     </connections>
@@ -1063,6 +1068,7 @@
                     <navigationItem key="navigationItem" id="Yb6-0o-ezF"/>
                     <connections>
                         <outlet property="nameOfWorkout" destination="4NJ-e8-rqq" id="YNM-vq-oVR"/>
+                        <outlet property="sortButton" destination="U5d-Wu-diA" id="WDY-pk-fev"/>
                         <outlet property="tableView" destination="ltr-M8-Ny8" id="ilG-zI-b8g"/>
                         <segue destination="7ip-3m-FuF" kind="unwind" identifier="unwindSegueToHome" unwindAction="unwindToHome:" id="d1J-Qs-805"/>
                     </connections>
@@ -1939,7 +1945,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="GzQ-Dt-Avu"/>
         <segue reference="ped-C1-irC"/>
-        <segue reference="Ihh-N4-gOA"/>
+        <segue reference="4Yb-N5-Drb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chart.pie.fill" catalog="system" width="128" height="121"/>

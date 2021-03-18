@@ -83,6 +83,7 @@ class DataViewController: UIViewController, ChartViewDelegate {
         getSelectedDates()
     }
     
+    // MARK:- Update Graph
     func updateGraph() {
         
         // Setting the back ground color
@@ -103,6 +104,10 @@ class DataViewController: UIViewController, ChartViewDelegate {
         lineChart.xAxis.labelFont = .boldSystemFont(ofSize: 12)
         lineChart.xAxis.setLabelCount(6, force: false)
         lineChart.xAxis.axisLineColor = .black
+        lineChart.xAxis.valueFormatter = ChartXAxisFormatter()
+        lineChart.xAxis.setLabelCount(dataSet.count, force: true)
+        lineChart.xAxis.granularity = 1
+        lineChart.xAxis.avoidFirstLastClippingEnabled = true
         
         // Animate the movement
         lineChart.animate(xAxisDuration: 0.5)
@@ -159,7 +164,18 @@ class DataViewController: UIViewController, ChartViewDelegate {
                         
                     }
                     
-                    let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(totalVolume))
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    
+                    let date = dateFormatter.date(from: dataSet[i].date)!
+                    
+                    let calender = Calendar.current
+                    let components = calender.dateComponents([.year, .month, .day], from: date)
+                    
+                    let finalDate = calender.date(from: components)!.timeIntervalSince1970
+                    
+                    let value = ChartDataEntry(x: Double(finalDate), y: Double(totalVolume))
                     
                     // Adds it into the chart
                     chartPoints.append(value)
@@ -195,7 +211,18 @@ class DataViewController: UIViewController, ChartViewDelegate {
                     
                     aveWeight = (aveWeight / Float(dataSet[i].repsArray.count))
                     
-                    let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(aveWeight))
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    
+                    let date = dateFormatter.date(from: dataSet[i].date)!
+                    
+                    let calender = Calendar.current
+                    let components = calender.dateComponents([.year, .month, .day], from: date)
+                    
+                    let finalDate = calender.date(from: components)!.timeIntervalSince1970
+                    
+                    let value = ChartDataEntry(x: Double(finalDate), y: Double(aveWeight))
                     
                     // Adds it into the chart
                     chartPoints.append(value)
@@ -230,7 +257,18 @@ class DataViewController: UIViewController, ChartViewDelegate {
                     
                     aveReps = (aveReps / Float(dataSet[i].repsArray.count))
                     
-                    let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(aveReps))
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    
+                    let date = dateFormatter.date(from: dataSet[i].date)!
+                    
+                    let calender = Calendar.current
+                    let components = calender.dateComponents([.year, .month, .day], from: date)
+                    
+                    let finalDate = calender.date(from: components)!.timeIntervalSince1970
+                    
+                    let value = ChartDataEntry(x: Double(finalDate), y: Double(aveReps))
                     
                     // Adds it into the chart
                     chartPoints.append(value)
@@ -254,7 +292,18 @@ class DataViewController: UIViewController, ChartViewDelegate {
                 // For each data point
                 for i in 0...oneRPDataSet.count-1 {
                     
-                    let value = ChartDataEntry(x: Double(oneRPDataSet[i].date) ?? Double(i), y: Double(oneRPDataSet[i].weight))
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    
+                    let date = dateFormatter.date(from: dataSet[i].date)!
+                    
+                    let calender = Calendar.current
+                    let components = calender.dateComponents([.year, .month, .day], from: date)
+                    
+                    let finalDate = calender.date(from: components)!.timeIntervalSince1970
+                    
+                    let value = ChartDataEntry(x: Double(finalDate), y: Double(oneRPDataSet[i].weight))
                     
                     // Adds it into the chart
                     chartPoints.append(value)
@@ -287,7 +336,18 @@ class DataViewController: UIViewController, ChartViewDelegate {
                         
                     }
                     
-                    let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(totalVolume))
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    
+                    let date = dateFormatter.date(from: dataSet[i].date)!
+                    
+                    let calender = Calendar.current
+                    let components = calender.dateComponents([.year, .month, .day], from: date)
+                    
+                    let finalDate = calender.date(from: components)!.timeIntervalSince1970
+                    
+                    let value = ChartDataEntry(x: Double(finalDate), y: Double(totalVolume))
                     
                     // Adds it into the chart
                     chartPoints.append(value)
@@ -308,35 +368,29 @@ class DataViewController: UIViewController, ChartViewDelegate {
         switch sender.selectedSegmentIndex {
         case 0:
             dateLabel.text = "Weekly"
-            /*
-             // Change the range to last 7 days
-             // Getting the current date
-             let df = DateFormatter()
-             df.dateFormat = "dd"
-             var currDate = df.string(from: Date())
-             
-             var startDate = Int(currDate)! - 7
-             
-             dateRange.removeAll()
-             
-             for startDate in 1...7 {
-             dateRange.append(startDate)
-             startDate = startDate + 1
-             }
-             */
+            
             updateGraph()
+            //lineChart.setVisibleXRangeMaximum(1)
+            
         case 1:
             dateLabel.text = "Monthly"
             updateGraph()
+            //lineChart.setVisibleXRangeMaximum(30)
         case 2:
             dateLabel.text = "Yearly"
             updateGraph()
+            
+            //lineChart.setVisibleXRangeMaximum(365)
         case 3:
             dateLabel.text = "All time"
             updateGraph()
+            
+            //lineChart.setVisibleXRangeMaximum(.infinity)
         default:
             dateLabel.text = "Weekly"
             updateGraph()
+            
+            //lineChart.setVisibleXRangeMaximum(7)
         }
     }
     
@@ -511,5 +565,21 @@ class DataViewController: UIViewController, ChartViewDelegate {
         }
         
         updateGraph()
+    }
+    
+    // MARK: - Chart date format
+    
+    class ChartXAxisFormatter: NSObject, IAxisValueFormatter {
+
+        func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+
+            let dateFormatter = DateFormatter()
+            dateFormatter.setLocalizedDateFormatFromTemplate("MM/dd")
+            dateFormatter.locale = .current
+
+            let date = Date(timeIntervalSince1970: value)
+
+            return dateFormatter.string(from: date)
+        }
     }
 }

@@ -14,6 +14,9 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var nameOfWorkout: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var sortButton: UIButton!
+    
+    
     // Varable for the cell identifier
     let cellReuseIdentifier = "ActiveWorkoutCell"
     
@@ -116,9 +119,15 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
             }
             
             tableView.isEditing = false
+            
+            sortButton.setTitle("Sort", for: .normal)
+            sortButton.setTitleColor(.purple, for: .normal)
         }
         else {
             tableView.isEditing = true
+            
+            sortButton.setTitle("Save", for: .normal)
+            sortButton.setTitleColor(.red, for: .normal)
         }
     }
     

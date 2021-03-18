@@ -48,7 +48,7 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
         }
         else {
             // Create some variables
-            let name = nameOfExercise.text!
+            var name = nameOfExercise.text!
             let exerciseNotes = notes.text
             let sets = Int(numberOfSets.text!)
             let reps = Int(numberOfReps.text!)
@@ -59,8 +59,10 @@ class PopupViewController: UIViewController, UITextFieldDelegate {
             
             // Add a new document to the users file
             
+            name = Utilities.onlyLettersOrNumbers(name)
+            
             // Path (users/uid/exercises/nameOfWorkout/nameOfExercise/nameOfExercise/data
-            let db = db.collection("users").document("\(userId)").collection("Exercises").document("\(name)")
+            let db = db.collection("users").document("\(userId)").collection("Exercises").document(name)
             
             // Adding the note
             db.setData(["Notes": String(exerciseNotes!)], merge: true)

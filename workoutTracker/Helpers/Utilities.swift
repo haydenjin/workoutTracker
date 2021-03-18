@@ -67,6 +67,14 @@ class Utilities {
         return passwordTest.evaluate(with: password)
     }
     
+    // Returns the string but only with a-z & 0-9
+    static func onlyLettersOrNumbers(_ string : String) -> String {
+        
+        let pattern = "[^A-Za-z0-9 ]+"
+        let result = string.replacingOccurrences(of: pattern, with: "", options: [.regularExpression])
+        return result
+    }
+    
     struct Themes {
         
         static var backgroundColor:UIColor?
@@ -86,7 +94,7 @@ class Utilities {
             self.backgroundColor = UIColor.darkGray
             self.buttonTextColor = UIColor.white
             self.buttonBackgroundColor = UIColor.black
-            self.tableviewCellColor = UIColor(red: 52, green: 235, blue: 161, alpha: 1)
+            self.tableviewCellColor = UIColor(red: 52, green: 235, blue: 161, alpha: 1) //Green
             updateDisplay()
         }
 
@@ -98,9 +106,8 @@ class Utilities {
             let proxyView = UIView.appearance()
             proxyView.backgroundColor = backgroundColor
             
-            let tableView = UITableViewCell.appearance()
+            let tableView = UIListContentView.appearance()
             tableView.backgroundColor = tableviewCellColor
         }
     }
-
 }

@@ -17,6 +17,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var welcomeLabel: UILabel!
     
+    @IBOutlet weak var sortButton: UIButton!
+    
     
     // Get a reference to the database
     let db = Firestore.firestore()
@@ -165,11 +167,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             tableView.isEditing = false
+            
+            sortButton.setTitle("Sort", for: .normal)
+            sortButton.setTitleColor(.purple, for: .normal)
         }
         else {
             tableView.isEditing = true
+            
+            sortButton.setTitle("Save", for: .normal)
+            sortButton.setTitleColor(.red, for: .normal)
         }
-        
     }
     
     // Lets tableview cells be moved
@@ -204,7 +211,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Have to reload the tableview so 1 cell per section is enforced
         self.tableView.reloadData()
-        
     }
     
     

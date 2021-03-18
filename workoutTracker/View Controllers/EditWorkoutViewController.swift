@@ -69,10 +69,12 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
             // MARK: - Save in workouts
             
             // Setting the name of the workout
-            let name = workoutName.text!
+            var name = workoutName.text!
+            
+            name = Utilities.onlyLettersOrNumbers(name)
             
             // Adds the array of exercises to the database
-            let workout = db.collection("users").document("\(userId)").collection("Workouts").document(name)
+            let workout = db.collection("users").document(userId).collection("Workouts").document(name)
             
             // Add a random message so Workouts will appear in queries (Not a virtual document)
             workout.setData(["Set": "Not virtual"], merge: true)
