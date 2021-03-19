@@ -8,14 +8,12 @@
 
 import UIKit
 
-class ActiveWorkoutTableViewCell: UITableViewCell {
+class DataTableViewCell: UITableViewCell {
 
     // Empty variable for exercise
     var exercise:Exercises?
     
     @IBOutlet weak var name: UILabel!
-    
-    @IBOutlet weak var checkMarkImage: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,15 +39,5 @@ class ActiveWorkoutTableViewCell: UITableViewCell {
         
         // Start setting the fields
         self.name.text = exercise!.name
-        
-        if Master.workoutCheck.count > 0 {
-            
-            for i in 0...Master.workoutCheck.count - 1 {
-                if Master.workoutCheck[i].name == exercise!.name && Master.workoutCheck[i].done == true {
-                    
-                    self.checkMarkImage.alpha = 1
-                }
-            }
-        }
     }
 }

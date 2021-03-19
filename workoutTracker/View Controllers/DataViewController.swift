@@ -87,27 +87,31 @@ class DataViewController: UIViewController, ChartViewDelegate {
     func updateGraph() {
         
         // Setting the back ground color
-        lineChart.backgroundColor = .lightGray
+        lineChart.backgroundColor = UIColor(red: 190/255, green: 218/255, blue: 190/255, alpha: 1) //Shade of gray
         
-        // Removing right axis
+        
+        // Removing right Y axis
         lineChart.rightAxis.enabled = false
         
-        // Modifying left axis
+        lineChart.legend.enabled = false
+        
+        // Modifying left Y axis
         let yAxis = lineChart.leftAxis
         yAxis.labelFont = .boldSystemFont(ofSize: 12)
-        yAxis.setLabelCount(6, force: false)
         yAxis.axisLineColor = .black
+        yAxis.granularity = 1
+        yAxis.axisLineWidth = 3
         
         // Moving label down to bottom
         
         lineChart.xAxis.labelPosition = .bottom
         lineChart.xAxis.labelFont = .boldSystemFont(ofSize: 12)
-        lineChart.xAxis.setLabelCount(6, force: false)
         lineChart.xAxis.axisLineColor = .black
         lineChart.xAxis.valueFormatter = ChartXAxisFormatter()
         lineChart.xAxis.setLabelCount(dataSet.count, force: true)
         lineChart.xAxis.granularity = 1
         lineChart.xAxis.avoidFirstLastClippingEnabled = true
+        lineChart.xAxis.axisLineWidth = 3
         
         // Animate the movement
         lineChart.animate(xAxisDuration: 0.5)
@@ -119,7 +123,7 @@ class DataViewController: UIViewController, ChartViewDelegate {
         line1.colors = [NSUIColor.blue]
         
         // Customizing the lines
-        line1.circleRadius = 3
+        line1.circleRadius = 6
         line1.mode = .horizontalBezier
         line1.lineWidth = 3
         line1.setColor(.green)

@@ -109,7 +109,7 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
             
             // Get a reference to the database
             let db = Firestore.firestore()
-                
+            
             // Get current user ID
             let userId = Auth.auth().currentUser!.uid
             
@@ -175,6 +175,16 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
                 self.index = i
             }
         }
+        
+        if Master.workoutCheck.count == 0 {
+            for i in 0...Master.workouts[index].exercises.count - 1 {
+                
+                let workoutCheck = WorkoutChecker()
+                workoutCheck.addNewRecord(name: Master.workouts[index].exercises[i].name, done: false)
+                
+                Master.workoutCheck.append(workoutCheck)
+            }
+        }
     }
     
     // MARK: - Completing workout
@@ -182,83 +192,122 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
     // Sends data of finished workout back to database
     @IBAction func completeWorkoutTapped(_ sender: Any) {
         
-        /*
-        for workout in exercisesArray {
-            print(workout.name)
-            print(workout.sets)
-            for num in 0...workout.sets.count{
-                print(workout.sets[num].reps)
-                print(workout.sets[num].weights)
-            }
+        var allDone = true
+        
+        if Master.workoutCheck.count > 0 {
             
-        }
-        
-        // Get a reference to the database
-        let db = Firestore.firestore()
-        
-        // Get current user ID
-        let userId = Auth.auth().currentUser!.uid
-        
-        // Setting the name of the workout
-        let name = nameOfWorkout.text
-        
-        tableView.reloadData()
-        
-        // For loop to add every exercise
-        for count in 0...(exercisesArray.count - 1) {
-            
-            // Adds the array of exercises to the database with a date stamp
-            let workoutData = db.collection("users").document("\(userId)").collection("WorkoutData").document(name!)
-            
-            for _ in 0...(exercisesArray.count - 1) {
-                workoutData.setData(["Date": FieldValue.serverTimestamp()])
-                
-                //Creates todays date
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd"
-                
-                // Path (users/uid/workouts/Exercises/NameofExercise/data)
-                workoutData.collection("\(exercisesArray[count].name)").document(formatter.string(from: Date()))
-                
-                for num in 0...exercisesArray[count - 1].sets.count {
+            for i in 0...Master.workoutCheck.count - 1 {
+                if Master.workoutCheck[i].done == false {
                     
-                    workoutData.collection("Set" + String(num)).document("reps").setData(["Reps": exercisesArray[count].sets[num].reps], merge: true)
-                    
-                    workoutData.collection("Set" + String(num)).document("weights").setData(["Weight": exercisesArray[count].sets[num].weights], merge: true)
+                    allDone = false
                 }
             }
         }
-        */
         
-        // MARK: - Field Formating functions
-        
-        // Function to formate the text fields
-        func formatTextField(_ textField:UITextField) {
+        if allDone == false {
             
-            // Create a variable
-            let textfield = textField
+            // Create a message
+            let confirmMessage = UIAlertController(title: "Confirm", message: "You still have incomplete exercises, are you sure you want to complete the workout now?", preferredStyle: .alert)
             
-            // Make itself the delegate
-            textfield.delegate = self
+            // Delete option
+            let delete = UIAlertAction(title: "Complete Now", style: .default, handler: { (action) -> Void in
+                
+                Master.workoutCheck.removeAll()
+                
+                self.performSegue(withIdentifier: "returnToHome", sender: self)
+            })
             
-            // Set the return as (done)
-            textfield.returnKeyType = .done
+            // Cancel option
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action) -> Void in })
+
+            // Add the options to the message
+            confirmMessage.addAction(delete)
+            confirmMessage.addAction(cancel)
             
-            // Auto caps the first letter of each sentence
-            textfield.autocapitalizationType = .sentences
-            
-            // Center the screen on the text field when clicked
-            textfield.center = self.view.center
+            self.present(confirmMessage, animated: true, completion: nil)
             
         }
+
         
-        // Function to drop down text field after its done being used
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-            return true
-        }
+        /*
+         for workout in exercisesArray {
+         print(workout.name)
+         print(workout.sets)
+         for num in 0...workout.sets.count{
+         print(workout.sets[num].reps)
+         print(workout.sets[num].weights)
+         }
+         
+         }
+         
+         // Get a reference to the database
+         let db = Firestore.firestore()
+         
+         // Get current user ID
+         let userId = Auth.auth().currentUser!.uid
+         
+         // Setting the name of the workout
+         let name = nameOfWorkout.text
+         
+         tableView.reloadData()
+         
+         // For loop to add every exercise
+         for count in 0...(exercisesArray.count - 1) {
+         
+         // Adds the array of exercises to the database with a date stamp
+         let workoutData = db.collection("users").document("\(userId)").collection("WorkoutData").document(name!)
+         
+         for _ in 0...(exercisesArray.count - 1) {
+         workoutData.setData(["Date": FieldValue.serverTimestamp()])
+         
+         //Creates todays date
+         let formatter = DateFormatter()
+         formatter.dateFormat = "yyyy-MM-dd"
+         
+         // Path (users/uid/workouts/Exercises/NameofExercise/data)
+         workoutData.collection("\(exercisesArray[count].name)").document(formatter.string(from: Date()))
+         
+         for num in 0...exercisesArray[count - 1].sets.count {
+         
+         workoutData.collection("Set" + String(num)).document("reps").setData(["Reps": exercisesArray[count].sets[num].reps], merge: true)
+         
+         workoutData.collection("Set" + String(num)).document("weights").setData(["Weight": exercisesArray[count].sets[num].weights], merge: true)
+         }
+         }
+         }
+         */
         
     }
+    
+    // MARK: - Field Formating functions
+    
+    // Function to formate the text fields
+    func formatTextField(_ textField:UITextField) {
+        
+        // Create a variable
+        let textfield = textField
+        
+        // Make itself the delegate
+        textfield.delegate = self
+        
+        // Set the return as (done)
+        textfield.returnKeyType = .done
+        
+        // Auto caps the first letter of each sentence
+        textfield.autocapitalizationType = .sentences
+        
+        // Center the screen on the text field when clicked
+        textfield.center = self.view.center
+        
+    }
+    
+    // Function to drop down text field after its done being used
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
     
     // MARK: - Sending data to ExerciseVC
     
@@ -280,5 +329,44 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         
         // Setting data to pass over
         sb.exerciseName = selectedExercise.name
+    }
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        
+        var allDone = true
+        
+        if Master.workoutCheck.count > 0 {
+            
+            for i in 0...Master.workoutCheck.count - 1 {
+                if Master.workoutCheck[i].done == false {
+                    
+                    allDone = false
+                }
+            }
+        }
+
+        if allDone == false {
+            
+            // Create a message
+            let confirmMessage = UIAlertController(title: "Confirm", message: "You still have incomplete exercises, are you sure you want to complete the workout now?", preferredStyle: .alert)
+            
+            // Delete option
+            let delete = UIAlertAction(title: "Complete Now", style: .default, handler: { (action) -> Void in
+                
+                Master.workoutCheck.removeAll()
+                
+                self.performSegue(withIdentifier: "returnToHome", sender: self)
+            })
+            
+            // Cancel option
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action) -> Void in })
+
+            // Add the options to the message
+            confirmMessage.addAction(delete)
+            confirmMessage.addAction(cancel)
+            
+            self.present(confirmMessage, animated: true, completion: nil)
+            
+        }
     }
 }

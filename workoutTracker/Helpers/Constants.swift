@@ -27,6 +27,8 @@ class Master {
     
     // Master Exercises Array
     static var exercises = [Exercises]()
+    
+    static var workoutCheck = [WorkoutChecker]()
 }
 
 class StructVariables {

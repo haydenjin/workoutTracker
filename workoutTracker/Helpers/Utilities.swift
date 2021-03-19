@@ -86,7 +86,7 @@ class Utilities {
             self.backgroundColor = UIColor.white
             self.buttonTextColor = UIColor.blue
             self.buttonBackgroundColor = UIColor.white
-            self.tableviewCellColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+            self.tableviewCellColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
             updateDisplay()
         }
 
@@ -94,7 +94,7 @@ class Utilities {
             self.backgroundColor = UIColor.darkGray
             self.buttonTextColor = UIColor.white
             self.buttonBackgroundColor = UIColor.black
-            self.tableviewCellColor = UIColor(red: 52, green: 235, blue: 161, alpha: 1) //Green
+            self.tableviewCellColor = UIColor(red: 52/255, green: 235/255, blue: 161/255, alpha: 1) //Green
             updateDisplay()
         }
 
@@ -106,7 +106,7 @@ class Utilities {
             let proxyView = UIView.appearance()
             proxyView.backgroundColor = backgroundColor
             
-            let tableView = UIListContentView.appearance()
+            let tableView = UILabel.appearance()
             tableView.backgroundColor = tableviewCellColor
         }
     }

@@ -16,3 +16,16 @@ class Workouts {
     var exercises = [Exercises]()
     
 }
+
+// Used to check if all exercises in an workout has been completed
+class WorkoutChecker {
+    
+    var name = ""
+    var done = false
+    
+    func addNewRecord(name:String, done:Bool) {
+        self.name = name
+        self.done = done
+    }
+    
+}

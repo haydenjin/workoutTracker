@@ -83,6 +83,15 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Reset the count
         StructVariables.count2 = 0
+        
+        // Show checkmark
+        
+        for i in 0...Master.workoutCheck.count - 1 {
+            if Master.workoutCheck[i].name == exerciseName {
+                
+                Master.workoutCheck[i].done = true
+            }
+        }
     }
     
     // MARK: - Tableview Functions

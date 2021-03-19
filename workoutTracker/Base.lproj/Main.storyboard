@@ -965,7 +965,8 @@
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <state key="normal" title="Back"/>
                                         <connections>
-                                            <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" id="arf-S5-J31"/>
+                                            <action selector="backButtonTapped:" destination="GFu-VJ-q6a" eventType="touchUpInside" id="6iq-Xk-Ahu"/>
+                                            <segue destination="49e-Tb-3d3" kind="presentation" identifier="returnToHome" modalPresentationStyle="fullScreen" id="arf-S5-J31"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NJ-e8-rqq">
@@ -1015,8 +1016,16 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pMb-bq-JHP">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
                                                             <subviews>
+                                                                <button opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYe-wr-lLi">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="50" id="ZRp-Fc-U3Y"/>
+                                                                    </constraints>
+                                                                    <color key="tintColor" systemColor="systemGreenColor"/>
+                                                                    <state key="normal" image="checkmark.circle.fill" catalog="system"/>
+                                                                </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whf-9e-enL">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
+                                                                    <rect key="frame" x="60" y="0.0" width="354" height="50.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="50" id="TOc-rx-oq1"/>
                                                                     </constraints>
@@ -1036,6 +1045,7 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="checkMarkImage" destination="hYe-wr-lLi" id="KcT-mC-MUj"/>
                                                     <outlet property="name" destination="whf-9e-enL" id="jbW-ar-0rs"/>
                                                     <segue destination="n2c-Ql-9Py" kind="presentation" modalPresentationStyle="fullScreen" id="wrJ-KY-I6c"/>
                                                 </connections>
@@ -1050,7 +1060,7 @@
                                         <state key="normal" title="Complete Workout"/>
                                         <connections>
                                             <action selector="completeWorkoutTapped:" destination="GFu-VJ-q6a" eventType="touchUpInside" id="G8U-1x-upe"/>
-                                            <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" id="4Yb-N5-Drb"/>
+                                            <segue destination="49e-Tb-3d3" kind="presentation" identifier="returnToHome" modalPresentationStyle="fullScreen" id="4Yb-N5-Drb"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1771,7 +1781,7 @@
                                         <rect key="frame" x="0.0" y="40" width="414" height="719"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActiveWorkoutCell" id="OCc-e9-8OI" customClass="ActiveWorkoutTableViewCell" customModule="workoutTracker" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DataTableViewCell" id="OCc-e9-8OI" customClass="DataTableViewCell" customModule="workoutTracker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="50.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OCc-e9-8OI" id="cwK-21-r3a">
@@ -1949,6 +1959,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chart.pie.fill" catalog="system" width="128" height="121"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="sportscourt.fill" catalog="system" width="128" height="84"/>
@@ -1960,6 +1971,9 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

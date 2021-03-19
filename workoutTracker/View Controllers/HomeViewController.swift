@@ -16,7 +16,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var welcomeLabel: UILabel!
-    
     @IBOutlet weak var sortButton: UIButton!
     
     

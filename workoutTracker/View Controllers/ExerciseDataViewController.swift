@@ -14,7 +14,7 @@ class ExerciseDataViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tableView: UITableView!
     
     // Varable for the cell identifier
-    let cellReuseIdentifier = "ActiveWorkoutCell"
+    let cellReuseIdentifier = "DataTableViewCell"
     
     // Variable for spacing between rows (Sections)
     let cellSpacingHeight: CGFloat = 10
@@ -69,7 +69,7 @@ class ExerciseDataViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Picking what cell displays this data
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ActiveWorkoutTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! DataTableViewCell
         
         // Configure cell with data with the object in each array slot
         let exercise = Master.exercises[indexPath.section]
