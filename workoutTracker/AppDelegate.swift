@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import GoogleMobileAds
+import Purchases
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Init firebase
         FirebaseApp.configure()
+        
+        Purchases.debugLogsEnabled = true
+        Purchases.configure(withAPIKey: "QfEEhSTeVfHgvKBCNkckGfYppkiqaYsT")
         
         // Init AdMob
         GADMobileAds.sharedInstance().start(completionHandler: nil)

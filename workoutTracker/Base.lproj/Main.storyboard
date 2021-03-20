@@ -469,7 +469,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jsD-8q-gpI">
-                                <rect key="frame" x="0.0" y="44" width="414" height="280"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="420"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgt-AU-HQO">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -512,6 +512,26 @@
                                             <segue destination="m78-bm-gYS" kind="presentation" modalPresentationStyle="fullScreen" id="d8a-7k-d0X"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubw-xA-t81">
+                                        <rect key="frame" x="0.0" y="280" width="414" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="ZWV-F7-6C8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRf-jC-8kJ">
+                                        <rect key="frame" x="0.0" y="380" width="414" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="cJT-Pv-VnZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Get Pro"/>
+                                        <connections>
+                                            <segue destination="GQM-4y-pj3" kind="presentation" modalPresentationStyle="fullScreen" id="lvt-AL-tlg"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -524,6 +544,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="getProButton" destination="dRf-jC-8kJ" id="onL-I9-8D4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -591,7 +614,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8A5-MQ-349" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="97" y="-595"/>
+            <point key="canvasLocation" x="387" y="-595"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="v72-Pe-xG1">
@@ -1951,11 +1974,61 @@
             </objects>
             <point key="canvasLocation" x="1400" y="-1115"/>
         </scene>
+        <!--Pro View Controller-->
+        <scene sceneID="Ged-fU-jw3">
+            <objects>
+                <viewController id="GQM-4y-pj3" customClass="ProViewController" customModule="workoutTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yaB-Ep-eOd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vdq-l4-VCF">
+                                <rect key="frame" x="0.0" y="44" width="414" height="75"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDO-vU-45L">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="sfB-37-P9A"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" id="Hdu-UD-tW8"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up for pro" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGQ-FF-eYS">
+                                        <rect key="frame" x="0.0" y="40" width="414" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="Ou1-7n-lxl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="agR-iR-lKe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Vdq-l4-VCF" firstAttribute="leading" secondItem="agR-iR-lKe" secondAttribute="leading" id="bBQ-EK-VhZ"/>
+                            <constraint firstItem="Vdq-l4-VCF" firstAttribute="top" secondItem="agR-iR-lKe" secondAttribute="top" id="gyo-Zy-Zbt"/>
+                            <constraint firstItem="agR-iR-lKe" firstAttribute="trailing" secondItem="Vdq-l4-VCF" secondAttribute="trailing" id="iVF-gk-7If"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="stackView" destination="Vdq-l4-VCF" id="ZfX-jG-AZw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z7D-SK-kgk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="387" y="54"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="GzQ-Dt-Avu"/>
         <segue reference="ped-C1-irC"/>
-        <segue reference="4Yb-N5-Drb"/>
+        <segue reference="Hdu-UD-tW8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chart.pie.fill" catalog="system" width="128" height="121"/>

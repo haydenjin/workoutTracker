@@ -177,7 +177,7 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         if Master.workoutCheck.count == 0 {
-            for i in 0...Master.workouts[index].exercises.count - 1 {
+            for i in 0...Master.workouts[self.index].exercises.count - 1 {
                 
                 let workoutCheck = WorkoutChecker()
                 workoutCheck.addNewRecord(name: Master.workouts[index].exercises[i].name, done: false)
@@ -335,10 +335,10 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         
         var allDone = true
         
-        if Master.workoutCheck.count > 0 {
+        if Master.workoutCheck.count >= 0 {
             
             for i in 0...Master.workoutCheck.count - 1 {
-                if Master.workoutCheck[i].done == false {
+                if Master.workoutCheck[i].done == true {
                     
                     allDone = false
                 }
