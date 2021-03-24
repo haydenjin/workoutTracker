@@ -14,6 +14,9 @@
 		BC1039CB260448F30017A01E /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1039CA260448F30017A01E /* DataTableViewCell.swift */; };
 		BC1039CF260506DA0017A01E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1039CE260506DA0017A01E /* StoreKit.framework */; };
 		BC1039D126066B1A0017A01E /* ProViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1039D026066B1A0017A01E /* ProViewController.swift */; };
+		BC103A29260947A50017A01E /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = BC103A28260947A50017A01E /* giphy.gif */; };
+		BC103A2C26094A520017A01E /* gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC103A2B26094A520017A01E /* gif.swift */; };
+		BC103A2F260A92270017A01E /* forgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC103A2E260A92270017A01E /* forgotPasswordViewController.swift */; };
 		BC147EA624D1CB1100C4D4CF /* ActiveWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC147EA524D1CB1100C4D4CF /* ActiveWorkoutTableViewCell.swift */; };
 		BC15C30324CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC15C30224CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift */; };
 		BC1D142D25CB84FA00EACE7E /* EditWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1D142C25CB84FA00EACE7E /* EditWorkoutViewController.swift */; };
@@ -55,6 +58,9 @@
 		BC1039CA260448F30017A01E /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
 		BC1039CE260506DA0017A01E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BC1039D026066B1A0017A01E /* ProViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProViewController.swift; sourceTree = "<group>"; };
+		BC103A28260947A50017A01E /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = "<group>"; };
+		BC103A2B26094A520017A01E /* gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gif.swift; sourceTree = "<group>"; };
+		BC103A2E260A92270017A01E /* forgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgotPasswordViewController.swift; sourceTree = "<group>"; };
 		BC147EA324D1B9BD00C4D4CF /* WorkoutStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutStartedViewController.swift; sourceTree = "<group>"; };
 		BC147EA524D1CB1100C4D4CF /* ActiveWorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		BC15C30224CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExercisesTableViewCell.swift; sourceTree = "<group>"; };
@@ -160,6 +166,7 @@
 				BC65EC7E24C0B2E600AB3B30 /* SceneDelegate.swift */,
 				BC65EC8424C0B2E600AB3B30 /* Main.storyboard */,
 				BC65EC8724C0B2E700AB3B30 /* Assets.xcassets */,
+				BC103A28260947A50017A01E /* giphy.gif */,
 				BC65EC8924C0B2E700AB3B30 /* LaunchScreen.storyboard */,
 				BC65EC8C24C0B2E700AB3B30 /* Info.plist */,
 				BC20590424C69A630013383C /* GoogleService-Info.plist */,
@@ -173,6 +180,7 @@
 				BC91EEE524C6911C0074193A /* Utilities.swift */,
 				BC29812A24C7E1930058D756 /* Constants.swift */,
 				BC088C1624C8CB6E005ACD22 /* AppManager.swift */,
+				BC103A2B26094A520017A01E /* gif.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -209,6 +217,7 @@
 				BC6D1CFE25C2584F00641216 /* DataViewController.swift */,
 				BC2E93B025FD624D003C7601 /* DataInputViewController.swift */,
 				BC1039D026066B1A0017A01E /* ProViewController.swift */,
+				BC103A2E260A92270017A01E /* forgotPasswordViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -274,6 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC103A29260947A50017A01E /* giphy.gif in Resources */,
 				BC65EC8B24C0B2E700AB3B30 /* LaunchScreen.storyboard in Resources */,
 				BC20590524C69A630013383C /* GoogleService-Info.plist in Resources */,
 				BC65EC8824C0B2E700AB3B30 /* Assets.xcassets in Resources */,
@@ -347,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC103A2F260A92270017A01E /* forgotPasswordViewController.swift in Sources */,
 				BCD9A22A24C68506001F502B /* SignupViewController.swift in Sources */,
 				BC088C1324C89B29005ACD22 /* AddWorkoutViewController.swift in Sources */,
 				BC1039D126066B1A0017A01E /* ProViewController.swift in Sources */,
@@ -358,6 +369,7 @@
 				BCD4D71824C9385800F4498B /* PopupViewController.swift in Sources */,
 				BC20590324C6933E0013383C /* RootViewController.swift in Sources */,
 				BCC17B9E24E32A4900E24ECD /* ExerciseViewController.swift in Sources */,
+				BC103A2C26094A520017A01E /* gif.swift in Sources */,
 				BC65EC8124C0B2E600AB3B30 /* HomeViewController.swift in Sources */,
 				BC1039CB260448F30017A01E /* DataTableViewCell.swift in Sources */,
 				BC088C1724C8CB6E005ACD22 /* AppManager.swift in Sources */,

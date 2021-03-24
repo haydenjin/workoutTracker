@@ -78,7 +78,7 @@ class ProViewController: UIViewController {
                     self.stackView.addArrangedSubview(button)
                     
                     // Position it and size it
-                    let height = NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 90)
+                    let height = NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 60)
                     
                     button.addConstraint(height)
                     

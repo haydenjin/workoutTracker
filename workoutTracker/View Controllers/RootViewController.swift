@@ -13,11 +13,16 @@ class RootViewController: UIViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var gif: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpElements()
+        
+        gif.loadGif(name: "giphy")
+        
     }
     
     func setUpElements() {

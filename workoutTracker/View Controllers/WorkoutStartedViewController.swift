@@ -121,7 +121,7 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
             tableView.isEditing = false
             
             sortButton.setTitle("Sort", for: .normal)
-            sortButton.setTitleColor(.purple, for: .normal)
+            sortButton.setTitleColor(.systemBlue, for: .normal)
         }
         else {
             tableView.isEditing = true

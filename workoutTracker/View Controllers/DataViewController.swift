@@ -81,13 +81,19 @@ class DataViewController: UIViewController, ChartViewDelegate {
         numOfSets = Master.exercises[exerciseIndex].totalSets
         
         getSelectedDates()
+        
+        // Lets getSelectedDates finish running before function is ran
+        let seconds = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            self.defaultSetup()
+        }
     }
     
     // MARK:- Update Graph
     func updateGraph() {
         
         // Setting the back ground color
-        lineChart.backgroundColor = UIColor(red: 190/255, green: 218/255, blue: 190/255, alpha: 1) //Shade of gray
+        //lineChart.backgroundColor = UIColor(red: 235/255, green: 239/255, blue: 242/255, alpha: 1) //Shade of gray
         
         
         // Removing right Y axis
@@ -98,20 +104,22 @@ class DataViewController: UIViewController, ChartViewDelegate {
         // Modifying left Y axis
         let yAxis = lineChart.leftAxis
         yAxis.labelFont = .boldSystemFont(ofSize: 12)
+        yAxis.labelTextColor = .black
         yAxis.axisLineColor = .black
         yAxis.granularity = 1
         yAxis.axisLineWidth = 3
         
         // Moving label down to bottom
-        
-        lineChart.xAxis.labelPosition = .bottom
-        lineChart.xAxis.labelFont = .boldSystemFont(ofSize: 12)
-        lineChart.xAxis.axisLineColor = .black
-        lineChart.xAxis.valueFormatter = ChartXAxisFormatter()
-        lineChart.xAxis.setLabelCount(dataSet.count, force: true)
-        lineChart.xAxis.granularity = 1
-        lineChart.xAxis.avoidFirstLastClippingEnabled = true
-        lineChart.xAxis.axisLineWidth = 3
+        let xAxis = lineChart.xAxis
+        xAxis.labelPosition = .bottom
+        xAxis.labelFont = .boldSystemFont(ofSize: 12)
+        xAxis.axisLineColor = .black
+        yAxis.labelTextColor = .black
+        xAxis.valueFormatter = ChartXAxisFormatter()
+        xAxis.setLabelCount(dataSet.count, force: true)
+        xAxis.granularity = 1
+        xAxis.avoidFirstLastClippingEnabled = true
+        xAxis.axisLineWidth = 3
         
         // Animate the movement
         lineChart.animate(xAxisDuration: 0.5)
@@ -119,11 +127,12 @@ class DataViewController: UIViewController, ChartViewDelegate {
         // Creates line that connects the dots
         let line1 = LineChartDataSet(entries: chartPoints, label: "Number")
         
-        // Sets the line color to blue
-        line1.colors = [NSUIColor.blue]
-        
         // Customizing the lines
         line1.circleRadius = 6
+        line1.setCircleColors(.black)
+        line1.setColor(.black)
+        line1.circleHoleColor = .black
+        line1.colors = [.black]
         line1.mode = .horizontalBezier
         line1.lineWidth = 3
         line1.setColor(.green)
@@ -131,6 +140,8 @@ class DataViewController: UIViewController, ChartViewDelegate {
         line1.drawVerticalHighlightIndicatorEnabled = false
         
         let data = LineChartData()
+        
+        data.setValueTextColor(.black)
         
         data.addDataSet(line1)
         
@@ -180,6 +191,7 @@ class DataViewController: UIViewController, ChartViewDelegate {
                     let finalDate = calender.date(from: components)!.timeIntervalSince1970
                     
                     let value = ChartDataEntry(x: Double(finalDate), y: Double(totalVolume))
+                    
                     
                     // Adds it into the chart
                     chartPoints.append(value)
@@ -300,7 +312,7 @@ class DataViewController: UIViewController, ChartViewDelegate {
                     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     
-                    let date = dateFormatter.date(from: dataSet[i].date)!
+                    let date = dateFormatter.date(from: oneRPDataSet[i].date)!
                     
                     let calender = Calendar.current
                     let components = calender.dateComponents([.year, .month, .day], from: date)
@@ -546,25 +558,50 @@ class DataViewController: UIViewController, ChartViewDelegate {
         // Calculate the max volume
         var totalVolume:Float = 0
         
-        // For each data point
-        for i in 0...dataSet.count-1 {
+        if dataSet.count > 0 {
             
-            // Calculates the data value
-            for sets in 0...dataSet[i].repsArray.count-1 {
+            // For each data point
+            for i in 0...dataSet.count-1 {
                 
-                let calc = Float(dataSet[i].repsArray[sets]) * dataSet[i].weightsArray[sets]
+                // Makes sure there is no empty array
+                guard dataSet[i].repsArray.count != 0 else {
+                    return
+                }
                 
-                totalVolume = totalVolume + calc
+                // Calculates the data value
+                for sets in 0...dataSet[i].repsArray.count-1 {
+                    
+                    // Makes sure there is no empty array
+                    guard dataSet[i].weightsArray.count != 0 else {
+                        return
+                    }
+                    
+                    let calc = Float(dataSet[i].repsArray[sets]) * dataSet[i].weightsArray[sets]
+                    
+                    totalVolume = totalVolume + calc
+                    
+                }
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                
+                let date = dateFormatter.date(from: dataSet[i].date)!
+                
+                let calender = Calendar.current
+                let components = calender.dateComponents([.year, .month, .day], from: date)
+                
+                let finalDate = calender.date(from: components)!.timeIntervalSince1970
+                
+                let value = ChartDataEntry(x: Double(finalDate), y: Double(totalVolume))
+                
+                // Adds it into the chart
+                chartPoints.append(value)
+                
+                // Reset the value
+                totalVolume = 0
                 
             }
-            
-            let value = ChartDataEntry(x: Double(dataSet[i].date) ?? Double(i), y: Double(totalVolume))
-            
-            // Adds it into the chart
-            chartPoints.append(value)
-            
-            // Reset the value
-            totalVolume = 0
             
         }
         

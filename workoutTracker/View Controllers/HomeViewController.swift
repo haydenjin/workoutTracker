@@ -38,6 +38,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let delegate = UIApplication.shared.delegate as! AppDelegate
     
+    let seconds = 0.3
+    
     // MARK: - View Functions
     
     override func viewDidLoad() {
@@ -48,15 +50,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             Master.exercises.removeAll()
             getData()
             delegate.firstLoad = false
-            tableView.reloadData()
+            
         } else if StructVariables.comingFromLogin == true {
             Master.workouts.removeAll()
             Master.exercises.removeAll()
             getData()
             StructVariables.comingFromLogin = false
-            tableView.reloadData()
-        } else {
-            tableView.reloadData()
+            
         }
         
         db.collection("users").document("\(userId)").getDocument { (document, error) in
@@ -86,7 +86,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Makes lines that separate tableView cells invisible
         self.tableView.separatorColor = UIColor .clear
         
-        tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            self.tableView.reloadData()
+        }
         
     }
     
@@ -168,7 +170,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.isEditing = false
             
             sortButton.setTitle("Sort", for: .normal)
-            sortButton.setTitleColor(.purple, for: .normal)
+            sortButton.setTitleColor(.systemBlue, for: .normal)
         }
         else {
             tableView.isEditing = true

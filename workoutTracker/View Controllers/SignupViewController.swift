@@ -21,6 +21,8 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var passwordTextfield: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var confirmPassword: UITextField!
+    
     
     
     override func viewDidLoad() {
@@ -39,6 +41,7 @@ class SignupViewController: UIViewController {
         Utilities.styleTextField(lastNameTextField)
         Utilities.styleTextField(emailTextField)
         Utilities.styleTextField(passwordTextfield)
+        Utilities.styleTextField(confirmPassword)
         Utilities.styleFilledButton(signUpButton)
     }
     
@@ -49,6 +52,7 @@ class SignupViewController: UIViewController {
         if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            confirmPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordTextfield.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             
             return "Please fill in all fields"
@@ -57,8 +61,14 @@ class SignupViewController: UIViewController {
         // Check if the password is secure
         let cleanedPasswork = passwordTextfield.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
+        let cleanedConfirmPasswork = confirmPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
         if Utilities.isPasswordValid(cleanedPasswork) == false {
             return "Password isn't secure enough, please make sure your password has at least (One character)(One uppercase character)(One special character) and (Is at least 6 characters long)"
+        }
+        
+        if cleanedPasswork != cleanedConfirmPasswork {
+            return "Passwords do not match"
         }
         
         // Check if email is valid
