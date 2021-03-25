@@ -66,6 +66,8 @@ class DataViewController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .light
+        
         // Clear previous memory
         oneRPDataSet.removeAll()
         dataSet.removeAll()
@@ -93,7 +95,7 @@ class DataViewController: UIViewController, ChartViewDelegate {
     func updateGraph() {
         
         // Setting the back ground color
-        //lineChart.backgroundColor = UIColor(red: 235/255, green: 239/255, blue: 242/255, alpha: 1) //Shade of gray
+        lineChart.backgroundColor = .white//UIColor(red: 235/255, green: 239/255, blue: 242/255, alpha: 1) //Shade of gray
         
         
         // Removing right Y axis
@@ -129,13 +131,12 @@ class DataViewController: UIViewController, ChartViewDelegate {
         
         // Customizing the lines
         line1.circleRadius = 6
-        line1.setCircleColors(.black)
+        line1.setCircleColors(.purple)
         line1.setColor(.black)
-        line1.circleHoleColor = .black
-        line1.colors = [.black]
+        line1.circleHoleColor = UIColor(red: 175/255, green: 248/255, blue: 219/255, alpha: 1)
         line1.mode = .horizontalBezier
         line1.lineWidth = 3
-        line1.setColor(.green)
+        line1.setColor(.black)
         line1.drawHorizontalHighlightIndicatorEnabled = false
         line1.drawVerticalHighlightIndicatorEnabled = false
         
