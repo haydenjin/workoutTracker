@@ -16,7 +16,7 @@ class forgotPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        overrideUserInterfaceStyle = .light
     }
     @IBAction func resetPassword(_ sender: Any) {
         Auth.auth().sendPasswordReset(withEmail: "email@email") { error in

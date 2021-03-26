@@ -112,6 +112,8 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .light
+        
         if clear == true {
             StructVariables.nameOfWorkout = ""
         }

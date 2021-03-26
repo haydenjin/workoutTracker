@@ -145,6 +145,8 @@ class EditWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .light
+        
         if clear == true {
             StructVariables.nameOfWorkout = ""
         }

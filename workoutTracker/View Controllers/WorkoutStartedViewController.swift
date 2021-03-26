@@ -36,6 +36,8 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .light
+        
         getData(workoutName: workoutName)
         
         // Name is passed in by HomeViewController
@@ -227,8 +229,20 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
             self.present(confirmMessage, animated: true, completion: nil)
             
         }
-
         
+        // Get a reference to the database
+        let db = Firestore.firestore()
+        
+        // Get current user ID
+        let userId = Auth.auth().currentUser!.uid
+        
+        // Getting the current date
+        let df = DateFormatter()
+        df.dateFormat = "MMM-dd"
+        let date = df.string(from: Date())
+
+        db.collection("users").document("\(userId)").collection("LastPerformed").document("\(workoutName)").setData(["Date": date])
+
         /*
          for workout in exercisesArray {
          print(workout.name)

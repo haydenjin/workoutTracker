@@ -29,6 +29,8 @@ class DataInputViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .light
+        
         getExerciseNames()
         
         if exerciseNames.count > 0 {

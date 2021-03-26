@@ -68,7 +68,7 @@ class DataViewController: UIViewController, ChartViewDelegate {
         
         overrideUserInterfaceStyle = .light
         
-        // Clear previous memory
+        // Clear previous memoryv
         oneRPDataSet.removeAll()
         dataSet.removeAll()
         

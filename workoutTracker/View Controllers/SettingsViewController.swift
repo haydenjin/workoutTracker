@@ -19,11 +19,15 @@ class SettingsViewController: UIViewController {
         Master.workouts.removeAll()
         Master.exercises.removeAll()
         
+        StructVariables.getDataCalled = false
+        
         AppManager.shared.logout()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        overrideUserInterfaceStyle = .light
         
         // Listen for function turned pro
         NotificationCenter.default.addObserver(self, selector: #selector(showProContent), name: NSNotification.Name("turned pro"), object: nil)

@@ -51,6 +51,8 @@ class EditExerciseViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .light
+        
         getData(workoutName: workoutName, exerciseName: exerciseName)
         
     }

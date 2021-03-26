@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import GoogleMobileAds
+import Purchases
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -31,8 +32,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Variable for spacing between rows (Sections)
     let cellSpacingHeight: CGFloat = 10
     
-    var addWorkOutTapped = false
-    
     // Holds the most recent workout logged (DATE)
     var mostRecent = ""
     
@@ -40,23 +39,36 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let seconds = 0.3
     
+    
     // MARK: - View Functions
+    
+    override class func awakeFromNib() {
+        print("Hello")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .light
+        
         if delegate.firstLoad == true {
-            Master.workouts.removeAll()
-            Master.exercises.removeAll()
-            getData()
-            delegate.firstLoad = false
-            
+            if StructVariables.getDataCalled == false {
+                
+                Master.workouts.removeAll()
+                Master.exercises.removeAll()
+                getData()
+                StructVariables.getDataCalled = true
+                delegate.firstLoad = false
+            }
         } else if StructVariables.comingFromLogin == true {
-            Master.workouts.removeAll()
-            Master.exercises.removeAll()
-            getData()
-            StructVariables.comingFromLogin = false
-            
+            if StructVariables.getDataCalled == false {
+                
+                Master.workouts.removeAll()
+                Master.exercises.removeAll()
+                getData()
+                StructVariables.getDataCalled = true
+                StructVariables.comingFromLogin = false
+            }
         }
         
         db.collection("users").document("\(userId)").getDocument { (document, error) in
@@ -68,6 +80,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
             }
         }
+        
+        getLastPerformed()
         
         // Sets the screen for the ad
         bannerView.rootViewController = self
@@ -86,14 +100,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Makes lines that separate tableView cells invisible
         self.tableView.separatorColor = UIColor .clear
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds + 0.2) {
             self.tableView.reloadData()
         }
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        addWorkOutTapped = false
     }
     
     // MARK: - Tableview Functions
@@ -237,18 +247,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Check that a workout was tapped
         if tableView.indexPathForSelectedRow == nil {
             
-            // Wipe the data to be sent over
-            if addWorkOutTapped == true {
-                // Setting data to pass over
-                // Set a variable as an object of the viewcontroller we want to pass data to
-                let sb2 = segue.destination as! AddWorkoutViewController
-                sb2.clear = true
-            }
-            else {
-                // Set a variable as an object of the viewcontroller we want to pass data to
-                let sb2 = segue.destination as! EditWorkoutViewController
-                sb2.clear = false
-            }
+            // Set a variable as an object of the viewcontroller we want to pass data to
+            let sb2 = segue.destination as! EditWorkoutViewController
+            sb2.clear = false
+            
         }
         
         guard tableView.indexPathForSelectedRow != nil else {
@@ -275,6 +277,36 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         getAllWorkoutNames()
     }
     
+    func getLastPerformed() {
+        
+        // Getting the data to show workouts
+        // Path (users/uid/workouts/nameOfWorkout/workoutExercises/nameOfExercise/data)
+        db.collection("users").document("\(userId)").collection("Workouts").order(by: "Order", descending: false).getDocuments { (snapshot, error) in
+            
+            if let error = error {
+                print(error)
+            }
+            else {
+                
+                Master.lastPerformed.removeAll()
+                
+                for document in snapshot!.documents {
+                    
+                    self.db.collection("users").document("\(self.userId)").collection("LastPerformed").document(document.documentID).getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            
+                            let data:[String:Any] = document.data()!
+                            
+                            let record = LastPerformed()
+                            record.addNewRecord(name: document.documentID, lastPerformed: (data["Date"] as! String))
+                            Master.lastPerformed.append(record)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: - Get all workouts
     func getAllWorkoutNames() {
         
@@ -292,6 +324,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     let workout = Workouts()
                     workout.name = document.documentID
                     Master.workouts.append(workout)
+                    
+                    self.db.collection("users").document("\(self.userId)").collection("LastPerformed").document(document.documentID).getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            
+                            let data:[String:Any] = document.data()!
+                            
+                            let record = LastPerformed()
+                            record.addNewRecord(name: document.documentID, lastPerformed: (data["Date"] as! String))
+                            Master.lastPerformed.append(record)
+                        }
+                    }
                     
                     // Get all exercises for a workout
                     self.getAllExercises(workoutName: workout.name)
@@ -377,45 +420,45 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
                 
                 /*
-                if querySnapshot!.documents.count > 0 {
-                    
-                    self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
-                    
-                    //self.mostRecentFunc(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
-                } else {
-                    self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
-                }
-                */
+                 if querySnapshot!.documents.count > 0 {
+                 
+                 self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
+                 
+                 //self.mostRecentFunc(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
+                 } else {
+                 self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
+                 }
+                 */
             }
         }
     }
     
     /*
-    // MARK: - Get most recent
-    func mostRecentFunc(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {
-        
-        // This function checks whether or not there are records in Workout Data, if there is, mostRecentDataExists is set to false and the following function will be ran instead
-        // If mostRecentDataExists is true, then the following function to load the fields with default data is skipped
-        
-        // If there is historical data, it will be used to replace it
-        db.collection("users").document("\(userId)").collection("WorkoutData").document(workoutName).collection(exerciseName).order(by: "Date", descending: true).limit(to: 1).getDocuments() { (querySnapshot, err) in
-            if err != nil {
-                // Error
-            } else {
-                // Query did return something
-                
-                for document in querySnapshot!.documents {
-                    
-                    // Sets the date (mostRecent) as the document ID
-                    self.mostRecent = document.documentID
-                    
-                    // There are records, pull the most recent one
-                    self.repsAndWeightsUpdate(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
-                }
-            }
-        }
-    }
-    */
+     // MARK: - Get most recent
+     func mostRecentFunc(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {
+     
+     // This function checks whether or not there are records in Workout Data, if there is, mostRecentDataExists is set to false and the following function will be ran instead
+     // If mostRecentDataExists is true, then the following function to load the fields with default data is skipped
+     
+     // If there is historical data, it will be used to replace it
+     db.collection("users").document("\(userId)").collection("WorkoutData").document(workoutName).collection(exerciseName).order(by: "Date", descending: true).limit(to: 1).getDocuments() { (querySnapshot, err) in
+     if err != nil {
+     // Error
+     } else {
+     // Query did return something
+     
+     for document in querySnapshot!.documents {
+     
+     // Sets the date (mostRecent) as the document ID
+     self.mostRecent = document.documentID
+     
+     // There are records, pull the most recent one
+     self.repsAndWeightsUpdate(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
+     }
+     }
+     }
+     }
+     */
     // MARK: - Default reps and weights
     
     func repsAndWeights1(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {
@@ -463,60 +506,81 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: - Updated reps and weights
     /*
-    func repsAndWeightsUpdate(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {
-        
-        // Grayed out for now to test new queries where workout is used as the front facing array of data
-        
-        for number in 0...(Master.workouts[workoutArrayIndex].exercises[exerciseArrayIndex].totalSets - 1) {
-            
-            exercise.sets.append(Sets())
-            
-            // Retrives the reps
-            let repsDbCallHistory = db.collection("users").document("\(userId)").collection("WorkoutData").document(workoutName).collection(exerciseName).document(mostRecent).collection("Set\(number + 1)").document("reps")
-            
-            repsDbCallHistory.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    // For every document (Set) in the database, copy the values and add them to the array
-                    
-                    let data:[String:Any] = document.data()!
-                    
-                    exercise.sets[number].reps = data["Reps\(number + 1)"] as! Int
-                }
-                else {
-                    // error
-                }
-            }
-            
-            //Retrives the weights
-            let weightsDbCallHistory = db.collection("users").document("\(userId)").collection("WorkoutData").document(workoutName).collection(exerciseName).document(mostRecent).collection("Set\(number + 1)").document("weights")
-            
-            weightsDbCallHistory.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    // For every document (Set) in the database, copy the values and add them to the array
-                    
-                    let data:[String:Any] = document.data()!
-                    
-                    exercise.sets[number].weights = data["Weight\(number + 1)"] as! Int
-                    
-                    self.tableView.reloadData()
-                }
-                else {
-                    // error
-                }
-            }
-        }
- 
-    }
-         */
+     func repsAndWeightsUpdate(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {
+     
+     // Grayed out for now to test new queries where workout is used as the front facing array of data
+     
+     for number in 0...(Master.workouts[workoutArrayIndex].exercises[exerciseArrayIndex].totalSets - 1) {
+     
+     exercise.sets.append(Sets())
+     
+     // Retrives the reps
+     let repsDbCallHistory = db.collection("users").document("\(userId)").collection("WorkoutData").document(workoutName).collection(exerciseName).document(mostRecent).collection("Set\(number + 1)").document("reps")
+     
+     repsDbCallHistory.getDocument { (document, error) in
+     if let document = document, document.exists {
+     // For every document (Set) in the database, copy the values and add them to the array
+     
+     let data:[String:Any] = document.data()!
+     
+     exercise.sets[number].reps = data["Reps\(number + 1)"] as! Int
+     }
+     else {
+     // error
+     }
+     }
+     
+     //Retrives the weights
+     let weightsDbCallHistory = db.collection("users").document("\(userId)").collection("WorkoutData").document(workoutName).collection(exerciseName).document(mostRecent).collection("Set\(number + 1)").document("weights")
+     
+     weightsDbCallHistory.getDocument { (document, error) in
+     if let document = document, document.exists {
+     // For every document (Set) in the database, copy the values and add them to the array
+     
+     let data:[String:Any] = document.data()!
+     
+     exercise.sets[number].weights = data["Weight\(number + 1)"] as! Int
+     
+     self.tableView.reloadData()
+     }
+     else {
+     // error
+     }
+     }
+     }
+     
+     }
+     */
     // MARK: - Logic help
     
     @IBAction func AddWorkoutTapped(_ sender: Any) {
         
-        // Sets variable for the workout to be true
-        addWorkOutTapped = true
+        StructVariables.numberOfWorkouts = Master.workouts.count
+        
+        // Check if the user has premium
+        Purchases.shared.purchaserInfo { (purchaserInfo, error) in
+            if purchaserInfo?.entitlements.all["pro"]?.isActive != true {
+                
+                // If made into here user doesn't have pro content
+                if StructVariables.numberOfWorkouts >= 5 {
+                    
+                    // Moves to pro view controller
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProViewController") as! ProViewController
+                    newViewController.modalPresentationStyle = .fullScreen
+                    self.present(newViewController, animated: true, completion: nil)
+                }
+            }
+        }
+        
+        // Moves to add workout viewcontroller
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "AddExercise") as! AddWorkoutViewController
+        newViewController.modalPresentationStyle = .fullScreen
+        newViewController.clear = true
+        self.present(newViewController, animated: true, completion: nil)
     }
-    
-    
 }
 
 // Says the viewcontroller conforms to the HomeCellDelegate protocol, we can get the name this way

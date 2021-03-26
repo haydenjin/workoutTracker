@@ -29,3 +29,15 @@ class WorkoutChecker {
     }
     
 }
+
+class LastPerformed {
+    
+    var name = ""
+    var lastPerformed = "--"
+    
+    func addNewRecord(name:String, lastPerformed:String) {
+        self.name = name
+        self.lastPerformed = lastPerformed
+    }
+    
+}

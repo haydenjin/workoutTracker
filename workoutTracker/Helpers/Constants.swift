@@ -28,7 +28,11 @@ class Master {
     // Master Exercises Array
     static var exercises = [Exercises]()
     
+    // Checks which exercises are done at what point
     static var workoutCheck = [WorkoutChecker]()
+    
+    // Stores the last time a workout was performed
+    static var lastPerformed = [LastPerformed]()
 }
 
 class StructVariables {
@@ -41,4 +45,10 @@ class StructVariables {
     
     // Checks if user is coming from loggin screen
     static var comingFromLogin = false
+    
+    // Used so get data is only called once
+    static var getDataCalled = false
+    
+    // Used to keep track of number of workouts
+    static var numberOfWorkouts = 0
 }

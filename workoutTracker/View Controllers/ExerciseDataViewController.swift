@@ -24,6 +24,8 @@ class ExerciseDataViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .light
+        
         tableView.delegate = self
         
         tableView.dataSource = self

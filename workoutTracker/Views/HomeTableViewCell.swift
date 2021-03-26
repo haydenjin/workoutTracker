@@ -21,6 +21,7 @@ class HomeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var workoutName: UILabel!
     
+    @IBOutlet weak var lastPerformed: UILabel!
     
     // Empty variable for the workout
     var workout:Workouts?
@@ -53,6 +54,17 @@ class HomeTableViewCell: UITableViewCell {
         // Start setting the fields
         workoutName.text = workout!.name
         
+        lastPerformed.text = "   Last Performed: ---"
+        
+        guard Master.lastPerformed.count != 0 else {
+            return
+        }
+        
+        for i in 0...Master.lastPerformed.count-1 {
+            if workout!.name == Master.lastPerformed[i].name {
+                lastPerformed.text = "   Last Performed: \(Master.lastPerformed[i].lastPerformed)"
+            }
+        }
     }
     
     // Connection to the button, sends the name of the workout in this case

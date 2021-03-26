@@ -18,6 +18,8 @@ class ProViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .light
+        
         // Get offerings from Rev cat and create buttons for each product
         Purchases.shared.offerings { (offerings, error) in
             if let offerings = offerings {
