@@ -19,7 +19,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var sortButton: UIButton!
     
-    
     // Get a reference to the database
     let db = Firestore.firestore()
     
@@ -42,13 +41,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: - View Functions
     
-    override class func awakeFromNib() {
-        print("Hello")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         overrideUserInterfaceStyle = .light
         
         if delegate.firstLoad == true {
@@ -59,6 +54,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 getData()
                 StructVariables.getDataCalled = true
                 delegate.firstLoad = false
+                getLastPerformed()
             }
         } else if StructVariables.comingFromLogin == true {
             if StructVariables.getDataCalled == false {
@@ -68,6 +64,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 getData()
                 StructVariables.getDataCalled = true
                 StructVariables.comingFromLogin = false
+                getLastPerformed()
             }
         }
         
@@ -559,6 +556,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Check if the user has premium
         Purchases.shared.purchaserInfo { (purchaserInfo, error) in
+            
             if purchaserInfo?.entitlements.all["pro"]?.isActive != true {
                 
                 // If made into here user doesn't have pro content
@@ -569,17 +567,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProViewController") as! ProViewController
                     newViewController.modalPresentationStyle = .fullScreen
                     self.present(newViewController, animated: true, completion: nil)
+                    
+                    return
+                } else {
+                    // Moves to add workout viewcontroller
+                    
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "AddExercise") as! AddWorkoutViewController
+                    newViewController.modalPresentationStyle = .fullScreen
+                    newViewController.clear = true
+                    self.present(newViewController, animated: true, completion: nil)
+                    return
                 }
+            } else {
+                // Moves to add workout viewcontroller
+                
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: "AddExercise") as! AddWorkoutViewController
+                newViewController.modalPresentationStyle = .fullScreen
+                newViewController.clear = true
+                self.present(newViewController, animated: true, completion: nil)
+                return
             }
         }
-        
-        // Moves to add workout viewcontroller
-        
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "AddExercise") as! AddWorkoutViewController
-        newViewController.modalPresentationStyle = .fullScreen
-        newViewController.clear = true
-        self.present(newViewController, animated: true, completion: nil)
     }
 }
 

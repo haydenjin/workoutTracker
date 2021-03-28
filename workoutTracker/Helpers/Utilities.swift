@@ -63,7 +63,7 @@ class Utilities {
     static func isPasswordValid(_ password : String) -> Bool {
         
         // Password must have (One character)(One uppercase character)(One special character)(Is at least 6 characters long)
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}$")
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$#!%*?&])[A-Za-z0-9\\d$@$#!%*?&]{6,}$")
         return passwordTest.evaluate(with: password)
     }
     
@@ -97,17 +97,27 @@ class Utilities {
             self.tableviewCellColor = UIColor(red: 52/255, green: 235/255, blue: 161/255, alpha: 1) //Green
             updateDisplay()
         }
+        
+        static public func teal() {
+            
+            weak var homeViewControllerInstance = HomeViewController()
+            
+            homeViewControllerInstance?.view.backgroundColor = .systemTeal
+            
+            self.backgroundColor = .systemTeal
+            //updateDisplay()
+        }
 
         static public func updateDisplay() {
             let proxyButton = UIButton.appearance()
-            proxyButton.setTitleColor(Themes.buttonTextColor, for: .normal)
-            proxyButton.backgroundColor = Themes.buttonBackgroundColor
+            //proxyButton.setTitleColor(Themes.buttonTextColor, for: .normal)
+            //proxyButton.backgroundColor = Themes.buttonBackgroundColor
 
             let proxyView = UIView.appearance()
             proxyView.backgroundColor = backgroundColor
             
             let tableView = UILabel.appearance()
-            tableView.backgroundColor = tableviewCellColor
+            //tableView.backgroundColor = tableviewCellColor
         }
     }
 }

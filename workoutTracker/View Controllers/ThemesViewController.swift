@@ -32,4 +32,11 @@ class ThemesViewController: UIViewController {
         
         print("turn white")
     }
+    
+    @IBAction func teal(_ sender: Any) {
+        
+        Utilities.Themes.teal()
+        
+        print("turn blue")
+    }
 }

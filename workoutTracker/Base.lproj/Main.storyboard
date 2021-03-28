@@ -592,7 +592,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="H5U-Xe-x43">
-                                <rect key="frame" x="0.0" y="44" width="414" height="165"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="205"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2g-E7-FU9">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
@@ -629,6 +629,13 @@
                                         <state key="normal" title="Teal-White"/>
                                         <connections>
                                             <action selector="tealWhite:" destination="m78-bm-gYS" eventType="touchUpInside" id="5pT-u1-C5N"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRx-9D-TuL">
+                                        <rect key="frame" x="0.0" y="175" width="414" height="30"/>
+                                        <state key="normal" title="Teal"/>
+                                        <connections>
+                                            <action selector="teal:" destination="m78-bm-gYS" eventType="touchUpInside" id="e3s-pQ-oK0"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -2256,7 +2263,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="GzQ-Dt-Avu"/>
         <segue reference="ped-C1-irC"/>
-        <segue reference="Ihh-N4-gOA"/>
+        <segue reference="Hdu-UD-tW8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chart.bar" catalog="system" width="128" height="90"/>

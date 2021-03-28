@@ -17,12 +17,6 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     // Variable for spacing between rows (Sections)
     let cellSpacingHeight: CGFloat = 10
     
-    // Array holding all exercises for a workout
-    //var exerciseArrayCopy = [Exercises]()
-    
-    // Array of Workouts to send back (empty at first)
-    //var workoutsArray = [Workouts]()
-    
     // Get a reference to the database
     let db = Firestore.firestore()
     
