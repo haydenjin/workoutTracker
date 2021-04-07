@@ -10,7 +10,7 @@ import UIKit
 import Purchases
 
 class SettingsViewController: UIViewController {
-
+    
     @IBOutlet weak var getProButton: UIButton!
     
     @IBAction func signOutTapped(_ sender: Any) {
@@ -46,5 +46,31 @@ class SettingsViewController: UIViewController {
     
     @objc func showProContent() {
         self.getProButton.setTitle("You are a pro member already!!!", for: .normal)
+    }
+    
+    @IBAction func themesButton(_ sender: Any) {
+        
+        // Check if the user has premium
+        Purchases.shared.purchaserInfo { (purchaserInfo, error) in
+            
+            if purchaserInfo?.entitlements.all["pro"]?.isActive != true {
+                
+                // Moves to pro view controller
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProViewController") as! ProViewController
+                newViewController.modalPresentationStyle = .fullScreen
+                self.present(newViewController, animated: true, completion: nil)
+                
+            } else {
+                
+                // Moves to themes view controller
+                
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: "themes") as! ThemesViewController
+                newViewController.modalPresentationStyle = .fullScreen
+                self.present(newViewController, animated: true, completion: nil)
+                return
+            }
+        }
     }
 }

@@ -13,6 +13,8 @@ class ExerciseDataViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var addOneRepMax: UIButton!
+    
     // Varable for the cell identifier
     let cellReuseIdentifier = "DataTableViewCell"
     
@@ -23,6 +25,14 @@ class ExerciseDataViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if Master.exercises.count == 0 {
+            
+            addOneRepMax.isEnabled = false
+            
+        } else {
+            addOneRepMax.isEnabled = true
+        }
         
         overrideUserInterfaceStyle = .light
         

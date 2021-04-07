@@ -41,7 +41,7 @@ class DataInputViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         pickerView.delegate = self
         pickerView.dataSource = self
         
-        // Do any additional setup after loading the view.
+        Utilities.addDoneButtonOnKeyboard(weight)
     }
     
     // MARK:- Exercise picker
@@ -61,6 +61,10 @@ class DataInputViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         // This method is triggered whenever the user makes a change to the picker selection.
         // The parameter named row and component represents what was selected.
         
+        guard exerciseNames.count != 0 else {
+            return
+        }
+        
         let selectedNumber = Int(row.description)!
         
         selectedExercise = exerciseNames[selectedNumber]
@@ -69,19 +73,28 @@ class DataInputViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     func getExerciseNames() {
         
+        guard Master.exercises.count != 0 else {
+            return
+        }
+        
         for exercise in 0...Master.exercises.count-1 {
             
             exerciseNames.append(Master.exercises[exercise].name)
         }
+        
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        
+        if weight.text == "" {
+            weight.text = "0"
+        }
         
         // Getting the current date
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd"
         let date = df.string(from: datePicker.date)
-            
+        
         let workout = db.collection("users").document("\(userId)").collection("UserInputData").document("OneRepMax")
         
         workout.setData(["Set": "Not virtual"])

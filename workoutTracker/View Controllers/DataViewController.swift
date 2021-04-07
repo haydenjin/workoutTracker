@@ -58,6 +58,8 @@ class DataViewController: UIViewController, ChartViewDelegate {
     
     var chartPoints: [ChartDataEntry] = []
     
+    var chartPointsTimeline: [ChartDataEntry] = []
+    
     var exerciseIndex = 0
     
     var numOfSets = 0
@@ -97,11 +99,12 @@ class DataViewController: UIViewController, ChartViewDelegate {
         // Setting the back ground color
         lineChart.backgroundColor = .white//UIColor(red: 235/255, green: 239/255, blue: 242/255, alpha: 1) //Shade of gray
         
-        
         // Removing right Y axis
         lineChart.rightAxis.enabled = false
         
         lineChart.legend.enabled = false
+        
+        lineChart.xAxis.drawGridLinesEnabled = false
         
         // Modifying left Y axis
         let yAxis = lineChart.leftAxis
@@ -110,6 +113,7 @@ class DataViewController: UIViewController, ChartViewDelegate {
         yAxis.axisLineColor = .black
         yAxis.granularity = 1
         yAxis.axisLineWidth = 3
+        yAxis.drawGridLinesEnabled = false
         
         // Moving label down to bottom
         let xAxis = lineChart.xAxis
@@ -149,8 +153,60 @@ class DataViewController: UIViewController, ChartViewDelegate {
         self.lineChart.data = data
     }
     
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        print(entry)
+    func updateGraph2() {
+        
+        // Setting the back ground color
+        lineChart.backgroundColor = .white//UIColor(red: 235/255, green: 239/255, blue: 242/255, alpha: 1) //Shade of gray
+        
+        // Removing right Y axis
+        lineChart.rightAxis.enabled = false
+        
+        lineChart.legend.enabled = false
+        
+        // Modifying left Y axis
+        let yAxis = lineChart.leftAxis
+        yAxis.labelFont = .boldSystemFont(ofSize: 12)
+        yAxis.labelTextColor = .black
+        yAxis.axisLineColor = .black
+        yAxis.granularity = 1
+        yAxis.axisLineWidth = 3
+        
+        // Moving label down to bottom
+        let xAxis = lineChart.xAxis
+        xAxis.labelPosition = .bottom
+        xAxis.labelFont = .boldSystemFont(ofSize: 12)
+        xAxis.axisLineColor = .black
+        yAxis.labelTextColor = .black
+        xAxis.valueFormatter = ChartXAxisFormatter()
+        xAxis.setLabelCount(dataSet.count, force: true)
+        xAxis.granularity = 1
+        xAxis.avoidFirstLastClippingEnabled = true
+        xAxis.axisLineWidth = 3
+        
+        // Animate the movement
+        lineChart.animate(xAxisDuration: 0.5)
+        
+        // Creates line that connects the dots
+        let line1 = LineChartDataSet(entries: chartPointsTimeline, label: "Number")
+        
+        // Customizing the lines
+        line1.circleRadius = 6
+        line1.setCircleColors(.purple)
+        line1.setColor(.black)
+        line1.circleHoleColor = UIColor(red: 175/255, green: 248/255, blue: 219/255, alpha: 1)
+        line1.mode = .horizontalBezier
+        line1.lineWidth = 3
+        line1.setColor(.black)
+        line1.drawHorizontalHighlightIndicatorEnabled = false
+        line1.drawVerticalHighlightIndicatorEnabled = false
+        
+        let data = LineChartData()
+        
+        data.setValueTextColor(.black)
+        
+        data.addDataSet(line1)
+        
+        self.lineChart.data = data
     }
     
     // MARK: - Data select
@@ -383,31 +439,124 @@ class DataViewController: UIViewController, ChartViewDelegate {
     
     @IBAction func timeRangeDidChange(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
+        
         case 0:
             dateLabel.text = "Weekly"
             
-            updateGraph()
-            //lineChart.setVisibleXRangeMaximum(1)
+            if chartPoints.count == 0 {
+                viewDidLoad()
+            }
             
+            guard chartPoints.count != 0 else {
+                break
+            }
+            
+            chartPointsTimeline.removeAll()
+            
+            var total = chartPoints.count - 1
+            
+            if total >= 6 {
+                total = 6
+            }
+            
+            for i in 0...total {
+                chartPointsTimeline.append(chartPoints[i])
+            }
+            
+            updateGraph2()
         case 1:
             dateLabel.text = "Monthly"
-            updateGraph()
-            //lineChart.setVisibleXRangeMaximum(30)
+            
+            if chartPoints.count == 0 {
+                viewDidLoad()
+            }
+            
+            guard chartPoints.count != 0 else {
+                break
+            }
+            
+            chartPointsTimeline.removeAll()
+            
+            var total = chartPoints.count - 1
+            
+            if total >= 29 {
+                total = 29
+            }
+            
+            for i in 0...total {
+                chartPointsTimeline.append(chartPoints[i])
+            }
+            
+            updateGraph2()
         case 2:
             dateLabel.text = "Yearly"
-            updateGraph()
             
-            //lineChart.setVisibleXRangeMaximum(365)
+            if chartPoints.count == 0 {
+                viewDidLoad()
+            }
+            
+            guard chartPoints.count != 0 else {
+                break
+            }
+            
+            chartPointsTimeline.removeAll()
+            
+            var total = chartPoints.count - 1
+            
+            if total >= 364 {
+                total = 364
+            }
+            
+            for i in 0...total {
+                chartPointsTimeline.append(chartPoints[i])
+            }
+            
+            updateGraph2()
         case 3:
             dateLabel.text = "All time"
-            updateGraph()
             
-            //lineChart.setVisibleXRangeMaximum(.infinity)
+            if chartPoints.count == 0 {
+                viewDidLoad()
+            }
+            
+            guard chartPoints.count != 0 else {
+                break
+            }
+            
+            chartPointsTimeline.removeAll()
+            
+            let total = chartPoints.count - 1
+            
+            for i in 0...total {
+                chartPointsTimeline.append(chartPoints[i])
+            }
+            
+            updateGraph2()
         default:
             dateLabel.text = "Weekly"
-            updateGraph()
             
-            //lineChart.setVisibleXRangeMaximum(7)
+            if chartPoints.count == 0 {
+                viewDidLoad()
+            }
+            
+            guard chartPoints.count != 0 else {
+                break
+            }
+            
+            chartPointsTimeline.removeAll()
+            
+            var total = chartPoints.count - 1
+            
+            if total >= 6 {
+                total = 6
+            }
+            
+            for i in 0...total {
+                chartPointsTimeline.append(chartPoints[i])
+            }
+            
+            updateGraph2()
+            
         }
     }
     

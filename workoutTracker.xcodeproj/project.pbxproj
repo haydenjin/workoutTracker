@@ -41,6 +41,7 @@
 		BC91EEE624C6911C0074193A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC91EEE524C6911C0074193A /* Utilities.swift */; };
 		BCC17B9E24E32A4900E24ECD /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC17B9D24E32A4900E24ECD /* ExerciseViewController.swift */; };
 		BCC17BA024E4DE8500E24ECD /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC17B9F24E4DE8500E24ECD /* ExerciseTableViewCell.swift */; };
+		BCCDAE8D2613AC510052B3C2 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCDAE8C2613AC510052B3C2 /* Themes.swift */; };
 		BCD4D71824C9385800F4498B /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D71724C9385800F4498B /* PopupViewController.swift */; };
 		BCD9A22A24C68506001F502B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9A22924C68506001F502B /* SignupViewController.swift */; };
 		BCD9A22C24C68514001F502B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9A22B24C68514001F502B /* LoginViewController.swift */; };
@@ -89,6 +90,7 @@
 		BC91EEE524C6911C0074193A /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		BCC17B9D24E32A4900E24ECD /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		BCC17B9F24E4DE8500E24ECD /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
+		BCCDAE8C2613AC510052B3C2 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		BCD4D71724C9385800F4498B /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		BCD9A22924C68506001F502B /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		BCD9A22B24C68514001F502B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				BC29812A24C7E1930058D756 /* Constants.swift */,
 				BC088C1624C8CB6E005ACD22 /* AppManager.swift */,
 				BC103A2B26094A520017A01E /* gif.swift */,
+				BCCDAE8C2613AC510052B3C2 /* Themes.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				BC65EC8124C0B2E600AB3B30 /* HomeViewController.swift in Sources */,
 				BC1039CB260448F30017A01E /* DataTableViewCell.swift in Sources */,
 				BC088C1724C8CB6E005ACD22 /* AppManager.swift in Sources */,
+				BCCDAE8D2613AC510052B3C2 /* Themes.swift in Sources */,
 				BC65EC7D24C0B2E600AB3B30 /* AppDelegate.swift in Sources */,
 				BC91EEE624C6911C0074193A /* Utilities.swift in Sources */,
 				BCE826B825B21FEC00F8F0F3 /* WorkoutStartedViewController.swift in Sources */,
@@ -537,7 +541,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = workoutTracker/workoutTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = H4S2GXSU83;
 				INFOPLIST_FILE = workoutTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -559,7 +563,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = workoutTracker/workoutTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = H4S2GXSU83;
 				INFOPLIST_FILE = workoutTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
