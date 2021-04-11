@@ -102,8 +102,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 // Sets the screen for the ad
                 self.bannerView.rootViewController = self
                 
-                // Id for the add, currently using a test ad
-                self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+                // Id for the ad, (Test ad)
+                //self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+                
+                // Id for the ad, (Live ad)
+                self.bannerView.adUnitID = "ca-app-pub-3755886742417549/4499662760"
                 
                 // Requests an ad
                 self.bannerView.load(GADRequest())
