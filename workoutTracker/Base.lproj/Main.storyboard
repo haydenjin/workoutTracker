@@ -501,7 +501,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jsD-8q-gpI">
-                                <rect key="frame" x="40" y="44" width="334" height="410"/>
+                                <rect key="frame" x="40" y="44" width="334" height="670"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgt-AU-HQO">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="100"/>
@@ -539,8 +539,60 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRf-jC-8kJ">
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrd-VW-vWE">
                                         <rect key="frame" x="0.0" y="230" width="334" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Kyo-CB-fme"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Terms and Conditions"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="v2X-Zg-goM" kind="presentation" modalPresentationStyle="automatic" id="JZG-aE-Y5u"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fk-q8-qzM">
+                                        <rect key="frame" x="0.0" y="280" width="334" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="jEX-gn-VzZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAs-GG-S9j">
+                                        <rect key="frame" x="0.0" y="360" width="334" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="ayl-ut-Sd5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Privacy Policy "/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="QNd-Ac-bNS" kind="presentation" modalPresentationStyle="automatic" id="G7J-D0-Uwr"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdz-lU-5A6">
+                                        <rect key="frame" x="0.0" y="410" width="334" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="T8H-tv-w2i"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRf-jC-8kJ">
+                                        <rect key="frame" x="0.0" y="490" width="334" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="cJT-Pv-VnZ"/>
@@ -557,7 +609,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubw-xA-t81">
-                                        <rect key="frame" x="0.0" y="280" width="334" height="80"/>
+                                        <rect key="frame" x="0.0" y="540" width="334" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="ZWV-F7-6C8"/>
                                         </constraints>
@@ -566,7 +618,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1k3-sa-wBx">
-                                        <rect key="frame" x="0.0" y="360" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="620" width="334" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="8ER-uq-SV6"/>
@@ -835,7 +887,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="umd-BD-Q4K">
-                                <rect key="frame" x="40" y="128" width="334" height="440.5"/>
+                                <rect key="frame" x="40" y="128" width="334" height="614.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WaI-kd-N2m">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
@@ -872,8 +924,34 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0R2-FH-VTJ">
+                                        <rect key="frame" x="0.0" y="350" width="334" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrY-aP-DwE">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="Lsw-bs-JdD"/>
+                                                </constraints>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="rectangle.badge.checkmark" catalog="system" symbolScale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="termsButtonTapped:" destination="j50-mp-Eau" eventType="touchUpInside" id="qfr-a9-bds"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Signing up, you agree to the Terms &amp; Conditions and have read our Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRh-Xc-FNh">
+                                                <rect key="frame" x="60" y="0.0" width="274" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="GTR-UA-ghS"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3L-2P-iX3">
-                                        <rect key="frame" x="0.0" y="350" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="430" width="334" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="rg8-Gd-oy7"/>
                                         </constraints>
@@ -883,11 +961,27 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oMU-bC-fWM">
-                                        <rect key="frame" x="0.0" y="420" width="334" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="500" width="334" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHm-vb-nyB">
+                                        <rect key="frame" x="0.0" y="540.5" width="334" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Terms and Conditions"/>
+                                        <connections>
+                                            <segue destination="v2X-Zg-goM" kind="presentation" id="sjU-WC-tLp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ux3-qt-VYr">
+                                        <rect key="frame" x="0.0" y="587.5" width="334" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Privacy Policy"/>
+                                        <connections>
+                                            <segue destination="QNd-Ac-bNS" kind="presentation" id="5Rw-En-1Ha"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="5F7-0a-Y5I" firstAttribute="height" secondItem="WaI-kd-N2m" secondAttribute="height" id="5RM-Jb-0cB"/>
@@ -908,6 +1002,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="9M9-I8-tDJ"/>
                     <connections>
+                        <outlet property="checkMarkButton" destination="qrY-aP-DwE" id="vUR-qU-OZ2"/>
                         <outlet property="confirmPassword" destination="QUZ-K0-P41" id="BKl-A7-3yn"/>
                         <outlet property="emailTextField" destination="24m-pa-vX0" id="V0N-r5-OZj"/>
                         <outlet property="errorLabel" destination="oMU-bC-fWM" id="czU-39-nNR"/>
@@ -2278,8 +2373,227 @@
             </objects>
             <point key="canvasLocation" x="13" y="725"/>
         </scene>
+        <!--Terms View Controller-->
+        <scene sceneID="E80-M6-Suk">
+            <objects>
+                <viewController storyboardIdentifier="TermsViewController" id="v2X-Zg-goM" customClass="TermsViewController" customModule="workoutTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lXP-0c-To4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="NAK-YT-BCh">
+                                <rect key="frame" x="10" y="0.0" width="394" height="808"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fde-M4-ILm">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="Rjp-FS-WwJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fci-Hl-hns">
+                                        <rect key="frame" x="0.0" y="55" width="394" height="753"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <mutableString key="text">1. Terms
+By accessing this App, accessible from Workout Tracker, you are agreeing to be bound by these Terms and Conditions of Use and agree that you are responsible for the agreement with any applicable local laws. If you disagree with any of these terms, you are prohibited from accessing this site. The materials contained in this App are protected by copyright and trade mark law.
+
+2. Use License
+Permission is granted to temporarily download one copy of the materials on Workout Tracker's App for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+
+modify or copy the materials;
+use the materials for any commercial purpose or for any public display;
+attempt to reverse engineer any software contained on Workout Tracker's Website;
+remove any copyright or other proprietary notations from the materials; or
+transferring the materials to another person or "mirror" the materials on any other server.
+This will let Workout Tracker to terminate upon violations of any of these restrictions. Upon termination, your viewing right will also be terminated and you should destroy any downloaded materials in your possession whether it is printed or electronic format. These Terms of Service has been created with the help of the Terms Of Service Generator and the Privacy Policy Generator.
+
+3. Disclaimer
+All the materials on Workout Tracker’s App are provided "as is". Workout Tracker makes no warranties, may it be expressed or implied, therefore negates all other warranties. Furthermore, Workout Tracker does not make any representations concerning the accuracy or reliability of the use of the materials on its App or otherwise relating to such materials or any sites linked to this App.
+
+4. Limitations
+Workout Tracker or its suppliers will not be hold accountable for any damages that will arise with the use or inability to use the materials on Workout Tracker’s App, even if Workout Tracker or an authorize representative of this App has been notified, orally or written, of the possibility of such damage. Some jurisdiction does not allow limitations on implied warranties or limitations of liability for incidental damages, these limitations may not apply to you.
+
+5. Revisions and Errata
+The materials appearing on Workout Tracker’s App may include technical, typographical, or photographic errors. Workout Tracker will not promise that any of the materials in this Website are accurate, complete, or current. Workout Tracker may change the materials contained on its App at any time without notice. Workout Tracker does not make any commitment to update the materials.
+
+6. Links
+Workout Tracker has not reviewed all of the sites linked to its App and is not responsible for the contents of any such linked site. The presence of any link does not imply endorsement by Workout Tracker of the site. The use of any linked website is at the user’s own risk.
+
+7. Site Terms of Use Modifications
+Workout Tracker may revise these Terms of Use for its App at any time without prior notice. By using this App, you are agreeing to be bound by the current version of these Terms and Conditions of Use.
+
+8. Your Privacy
+Please read our Privacy Policy.
+
+9. Governing Law
+Any claim related to Workout Tracker's Website shall be governed by the laws of ca without regards to its conflict of law provisions.</mutableString>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7wS-Lf-wmG"/>
+                        <color key="backgroundColor" red="0.69803921570000005" green="0.96078431369999995" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="NAK-YT-BCh" firstAttribute="leading" secondItem="7wS-Lf-wmG" secondAttribute="leading" constant="10" id="0Ct-Ut-ffQ"/>
+                            <constraint firstItem="7wS-Lf-wmG" firstAttribute="trailing" secondItem="NAK-YT-BCh" secondAttribute="trailing" constant="10" id="HSW-yY-flU"/>
+                            <constraint firstItem="7wS-Lf-wmG" firstAttribute="bottom" secondItem="NAK-YT-BCh" secondAttribute="bottom" id="Otq-J3-1EF"/>
+                            <constraint firstItem="NAK-YT-BCh" firstAttribute="top" secondItem="7wS-Lf-wmG" secondAttribute="top" id="m58-Zz-sOi"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t2T-uu-gF5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3081" y="-1750"/>
+        </scene>
+        <!--Privacy View Controller-->
+        <scene sceneID="4Z4-1G-vn7">
+            <objects>
+                <viewController storyboardIdentifier="PrivacyViewController" id="QNd-Ac-bNS" customClass="PrivacyViewController" customModule="workoutTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zhu-Yc-5RY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tJ3-5W-qbg">
+                                <rect key="frame" x="10" y="0.0" width="394" height="808"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5c-ep-NIW">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="Yg7-ly-p8k"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwH-OC-10p">
+                                        <rect key="frame" x="0.0" y="55" width="394" height="753"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <mutableString key="text">Hayden Jin built the Workout Tracker app as an Ad Supported app. This SERVICE is provided by Hayden Jin at no cost and is intended for use as is.
+
+This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
+
+If you choose to use my Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that I collect is used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy.
+
+The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Workout Tracker unless otherwise defined in this Privacy Policy.
+
+
+
+Information Collection and Use
+
+
+
+For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to Email, User input data. The information that I request will be retained on your device and is not collected by me in any way.
+
+The app does use third party services that may collect information used to identify you.
+
+Link to privacy policy of third party service providers used by the app
+
+Google Play Services
+AdMob
+Google Analytics for Firebase
+Log Data
+
+
+
+I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.
+
+
+
+Cookies
+
+
+
+Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.
+
+This Service does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.
+
+
+
+Service Providers
+
+
+
+I may employ third-party companies and individuals due to the following reasons:
+
+To facilitate our Service;
+To provide the Service on our behalf;
+To perform Service-related services; or
+To assist us in analyzing how our Service is used.
+I want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
+
+
+
+Security
+
+
+
+I value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and I cannot guarantee its absolute security.
+
+
+
+Links to Other Sites
+
+
+
+This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
+
+
+
+Children’s Privacy
+
+
+
+These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13 years of age. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do necessary actions.
+
+
+
+Changes to This Privacy Policy
+
+
+
+I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page.
+
+This policy is effective as of 2021-04-08
+
+
+
+Contact Us
+
+
+
+If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at haydenjin@gmail.com.
+
+This privacy policy page was created at privacypolicytemplate.net and modified/generated by App Privacy Policy Generator</mutableString>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dLn-FV-bXI"/>
+                        <color key="backgroundColor" red="0.69803921570000005" green="0.96078431369999995" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dLn-FV-bXI" firstAttribute="bottom" secondItem="tJ3-5W-qbg" secondAttribute="bottom" id="6LX-7N-mgU"/>
+                            <constraint firstItem="dLn-FV-bXI" firstAttribute="trailing" secondItem="tJ3-5W-qbg" secondAttribute="trailing" constant="10" id="Idm-7P-ucT"/>
+                            <constraint firstItem="tJ3-5W-qbg" firstAttribute="leading" secondItem="dLn-FV-bXI" secondAttribute="leading" constant="10" id="pIU-nN-Zd3"/>
+                            <constraint firstItem="tJ3-5W-qbg" firstAttribute="top" secondItem="dLn-FV-bXI" secondAttribute="top" id="xX4-Wj-q6e"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YhW-U2-tcY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2328" y="-1750"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="5Rw-En-1Ha"/>
+        <segue reference="sjU-WC-tLp"/>
         <segue reference="GzQ-Dt-Avu"/>
         <segue reference="ped-C1-irC"/>
         <segue reference="Hdu-UD-tW8"/>
@@ -2292,9 +2606,13 @@
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="powersleep" catalog="system" width="128" height="128"/>
+        <image name="rectangle.badge.checkmark" catalog="system" width="128" height="95"/>
         <image name="sportscourt.fill" catalog="system" width="128" height="84"/>
         <image name="table" catalog="system" width="128" height="93"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

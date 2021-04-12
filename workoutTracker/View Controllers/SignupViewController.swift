@@ -22,8 +22,10 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var confirmPassword: UITextField!
+    @IBOutlet weak var checkMarkButton: UIButton!
     
     
+    var buttonAccepted = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +47,12 @@ class SignupViewController: UIViewController {
         Utilities.styleTextField(passwordTextfield)
         Utilities.styleTextField(confirmPassword)
         Utilities.styleFilledButton(signUpButton)
+        
+        Utilities.addDoneButtonOnKeyboard((firstNameTextField))
+        Utilities.addDoneButtonOnKeyboard(lastNameTextField)
+        Utilities.addDoneButtonOnKeyboard(emailTextField)
+        Utilities.addDoneButtonOnKeyboard(passwordTextfield)
+        Utilities.addDoneButtonOnKeyboard(confirmPassword)
     }
     
     // Check the fields and see if the data is correct, if everything is good, it returns nil, or else it returns an error message in the form of a string
@@ -71,6 +79,10 @@ class SignupViewController: UIViewController {
         
         if cleanedPasswork != cleanedConfirmPasswork {
             return "Passwords do not match"
+        }
+        
+        if buttonAccepted == false {
+            return "Please accept the Terms, Conditions, and Privacy Policy"
         }
         
         // Check if email is valid
@@ -137,6 +149,18 @@ class SignupViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func termsButtonTapped(_ sender: Any) {
+        
+        if buttonAccepted == false {
+            buttonAccepted = true
+            checkMarkButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        } else {
+            buttonAccepted = false
+            checkMarkButton.setImage(UIImage(systemName: "rectangle.badge.checkmark"), for: .normal)
+        }
+    }
+    
     
     func transitionToHome() {
         
