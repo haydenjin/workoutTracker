@@ -10,8 +10,10 @@ import UIKit
 import Firebase
 import GoogleMobileAds
 import Purchases
+import AppTrackingTransparency
+import AdSupport
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
     @IBOutlet weak var AddNewWorkout: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -43,7 +45,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         overrideUserInterfaceStyle = .light
         
         if delegate.firstLoad == true {
@@ -85,6 +87,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Assigning the FirstViewController as the delegate of the tableview
         tableView.delegate = self
         
+        bannerView.delegate = self
+        
         // Makes lines that separate tableView cells invisible
         self.tableView.separatorColor = UIColor .clear
         
@@ -95,23 +99,44 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        requestIDFA()
+        
+    }
+    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("Banner loaded successfully")
+        
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("Fail to receive ads")
+        print(error)
+        
+        print(GADMobileAds.sharedInstance().sdkVersion)
+    }
+    
+    func requestIDFA() {
+      ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+        // Tracking authorization completed. Start loading ads here.
         // If user does not have premium load an ad
         Purchases.shared.purchaserInfo { (purchaserInfo, error) in
             if purchaserInfo?.entitlements.all["pro"]?.isActive != true {
                 
-                // Sets the screen for the ad
-                self.bannerView.rootViewController = self
-                
                 // Id for the ad, (Test ad)
-                //self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+                self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
                 
                 // Id for the ad, (Live ad)
                 self.bannerView.adUnitID = "ca-app-pub-3755886742417549/4499662760"
+                
+                // Sets the screen for the ad
+                self.bannerView.rootViewController = self
                 
                 // Requests an ad
                 self.bannerView.load(GADRequest())
             }
         }
+      })
     }
     
     // MARK: - Tableview Functions
@@ -426,11 +451,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 self.repsAndWeights1(workoutName: workoutName, workoutArrayIndex: workoutArrayIndex, exerciseName: exerciseName, exerciseArrayIndex: exerciseArrayIndex, exercise: exercise)
-
+                
             }
         }
     }
-
+    
     // MARK: - Default reps and weights
     
     func repsAndWeights1(workoutName: String, workoutArrayIndex: Int, exerciseName: String, exerciseArrayIndex: Int, exercise: Exercises) {

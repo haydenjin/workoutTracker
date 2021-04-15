@@ -277,7 +277,6 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/UserDefaults (~> 7.0)
     - PromisesObjC (~> 1.2)
-  - Gifu (3.3)
   - Google-Mobile-Ads-SDK (7.69.0):
     - GoogleAppMeasurement (~> 7.0)
     - GoogleUserMessagingPlatform (~> 1.1)
@@ -352,7 +351,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
-  - Gifu
+  - Google-Mobile-Ads-SDK
   - Purchases
 
 SPEC REPOS:
@@ -367,7 +366,6 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
     - FirebaseInstallations
-    - Gifu
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -393,7 +391,6 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: d50e11039e5984d92c8a512be2395f13df747350
   FirebaseFirestore: 1906bf163afdb7c432d2e3b5c40ceb9dd2df5820
   FirebaseInstallations: 971df89b48ae5ee4cc2bf6935f3857a525d28550
-  Gifu: 97c2a3c3865fbc834ab13f797e2e8e7729a1853c
   Google-Mobile-Ads-SDK: 2f288748a42920d1c744946a460896a95b0e9110
   GoogleAppMeasurement: 8d3c0aeede16ab7764144b5a4ca8e1d4323841b7
   GoogleDataTransport: 116c84c4bdeb76be2a7a46de51244368f9794eab
@@ -408,6 +405,6 @@ SPEC CHECKSUMS:
   Purchases: 520fdb59140fed96932a30d02a3ec04858cb541c
   PurchasesCoreSwift: 31c2a3d7394432abbe64d46f0933835de0b33033
 
-PODFILE CHECKSUM: 7ea56d4e7b16817fbd1b88abb75878eeddff1de9
+PODFILE CHECKSUM: 59067e47f999b5e9409983bce155bb7d911977db
 
 COCOAPODS: 1.9.3

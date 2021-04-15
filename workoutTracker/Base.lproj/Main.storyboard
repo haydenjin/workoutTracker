@@ -17,16 +17,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Msg-BJ-9h9" customClass="GADBannerView">
-                                <rect key="frame" x="47" y="763" width="320" height="50"/>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Msg-BJ-9h9" customClass="GADBannerView">
+                                <rect key="frame" x="47" y="753" width="320" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="Deo-yP-3zG"/>
                                     <constraint firstAttribute="height" constant="50" id="rdg-5b-dSK"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3AF-SN-3mc">
-                                <rect key="frame" x="0.0" y="54" width="414" height="709"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3AF-SN-3mc">
+                                <rect key="frame" x="0.0" y="44" width="414" height="697"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ulv-fh-GNF">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
@@ -61,22 +61,22 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwL-ZD-ZRY">
-                                        <rect key="frame" x="0.0" y="40" width="414" height="31.5"/>
+                                        <rect key="frame" x="0.0" y="56" width="414" height="31.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jfr-bT-WCj">
-                                        <rect key="frame" x="0.0" y="71.5" width="414" height="36"/>
+                                        <rect key="frame" x="0.0" y="103.5" width="414" height="29"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    My Workouts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sI-TV-pbZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="324" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="324" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFD-tn-kfS">
-                                                <rect key="frame" x="324" y="0.0" width="90" height="36"/>
+                                                <rect key="frame" x="324" y="0.0" width="90" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="DAA-8x-bYZ"/>
                                                 </constraints>
@@ -91,7 +91,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zum-bX-4G5">
-                                        <rect key="frame" x="0.0" y="107.5" width="414" height="601.5"/>
+                                        <rect key="frame" x="0.0" y="148.5" width="414" height="548.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeCell" rowHeight="70" id="Z2A-fY-IEy" customClass="HomeTableViewCell" customModule="workoutTracker" customModuleProvider="target">
@@ -169,19 +169,18 @@
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                         <color key="backgroundColor" red="0.68627450980392157" green="0.97254901960784312" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="3AF-SN-3mc" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="10" id="CHM-fG-D4Y"/>
-                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="Msg-BJ-9h9" secondAttribute="bottom" id="Ceh-Ic-Tpq"/>
-                            <constraint firstItem="Msg-BJ-9h9" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="P3o-8p-ioO"/>
-                            <constraint firstItem="3AF-SN-3mc" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="10" id="hMC-1e-v2d"/>
-                            <constraint firstAttribute="trailing" secondItem="3AF-SN-3mc" secondAttribute="trailing" id="sfD-JB-Go2"/>
-                            <constraint firstItem="Msg-BJ-9h9" firstAttribute="top" secondItem="3AF-SN-3mc" secondAttribute="bottom" id="xag-dl-hZa"/>
-                            <constraint firstItem="3AF-SN-3mc" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="zFS-tx-6tx"/>
+                            <constraint firstItem="3AF-SN-3mc" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="6Gm-Gv-KeT"/>
+                            <constraint firstItem="3AF-SN-3mc" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="G3w-D7-VWc"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="Msg-BJ-9h9" secondAttribute="bottom" constant="10" id="jBX-Wt-WBM"/>
+                            <constraint firstItem="Msg-BJ-9h9" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="pEU-VS-aFw"/>
+                            <constraint firstItem="Msg-BJ-9h9" firstAttribute="topMargin" secondItem="3AF-SN-3mc" secondAttribute="bottom" constant="20" id="pWW-yp-JEt"/>
+                            <constraint firstItem="3AF-SN-3mc" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="yOO-lt-r9b"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Workouts" image="sportscourt.fill" catalog="system" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="AddNewWorkout" destination="OcQ-T7-gHn" id="AhW-PE-1Al"/>
-                        <outlet property="bannerView" destination="Msg-BJ-9h9" id="5Kv-4r-wAZ"/>
+                        <outlet property="bannerView" destination="Msg-BJ-9h9" id="CW5-tM-ngT"/>
                         <outlet property="sortButton" destination="PFD-tn-kfS" id="nbN-Bq-bLq"/>
                         <outlet property="tableView" destination="Zum-bX-4G5" id="uuC-9S-75Y"/>
                         <outlet property="welcomeLabel" destination="iwL-ZD-ZRY" id="55J-on-oxc"/>
@@ -189,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-694" y="-2510"/>
+            <point key="canvasLocation" x="-694.20289855072474" y="-2510.4910714285711"/>
         </scene>
         <!--Add Workout View Controller-->
         <scene sceneID="z5R-gY-MSc">

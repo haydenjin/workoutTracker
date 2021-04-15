@@ -21,7 +21,6 @@
 		BC15C30324CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC15C30224CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift */; };
 		BC1D142D25CB84FA00EACE7E /* EditWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1D142C25CB84FA00EACE7E /* EditWorkoutViewController.swift */; };
 		BC20590324C6933E0013383C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20590224C6933E0013383C /* RootViewController.swift */; };
-		BC20590524C69A630013383C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC20590424C69A630013383C /* GoogleService-Info.plist */; };
 		BC29812B24C7E1930058D756 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29812A24C7E1930058D756 /* Constants.swift */; };
 		BC2C35C225E2C4E7006219C4 /* EditExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2C35C125E2C4E7006219C4 /* EditExerciseViewController.swift */; };
 		BC2E93B125FD624D003C7601 /* DataInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2E93B025FD624D003C7601 /* DataInputViewController.swift */; };
@@ -41,6 +40,7 @@
 		BC91EEE624C6911C0074193A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC91EEE524C6911C0074193A /* Utilities.swift */; };
 		BC9EEE622624A66D00E9955E /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9EEE612624A66D00E9955E /* TermsViewController.swift */; };
 		BC9EEE652624A75C00E9955E /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9EEE642624A75C00E9955E /* PrivacyViewController.swift */; };
+		BC9EEE69262797EE00E9955E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC9EEE68262797EE00E9955E /* GoogleService-Info.plist */; };
 		BCC17B9E24E32A4900E24ECD /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC17B9D24E32A4900E24ECD /* ExerciseViewController.swift */; };
 		BCC17BA024E4DE8500E24ECD /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC17B9F24E4DE8500E24ECD /* ExerciseTableViewCell.swift */; };
 		BCCDAE8D2613AC510052B3C2 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCDAE8C2613AC510052B3C2 /* Themes.swift */; };
@@ -69,7 +69,6 @@
 		BC15C30224CD0E7600AAF0C4 /* WorkoutExercisesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExercisesTableViewCell.swift; sourceTree = "<group>"; };
 		BC1D142C25CB84FA00EACE7E /* EditWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkoutViewController.swift; sourceTree = "<group>"; };
 		BC20590224C6933E0013383C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		BC20590424C69A630013383C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC29812A24C7E1930058D756 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC2C35C125E2C4E7006219C4 /* EditExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseViewController.swift; sourceTree = "<group>"; };
 		BC2E93B025FD624D003C7601 /* DataInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInputViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +91,7 @@
 		BC91EEE524C6911C0074193A /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		BC9EEE612624A66D00E9955E /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		BC9EEE642624A75C00E9955E /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
+		BC9EEE68262797EE00E9955E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BCC17B9D24E32A4900E24ECD /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		BCC17B9F24E4DE8500E24ECD /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		BCCDAE8C2613AC510052B3C2 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 				BC103A28260947A50017A01E /* giphy.gif */,
 				BC65EC8924C0B2E700AB3B30 /* LaunchScreen.storyboard */,
 				BC65EC8C24C0B2E700AB3B30 /* Info.plist */,
-				BC20590424C69A630013383C /* GoogleService-Info.plist */,
+				BC9EEE68262797EE00E9955E /* GoogleService-Info.plist */,
 			);
 			path = workoutTracker;
 			sourceTree = "<group>";
@@ -294,8 +294,8 @@
 			files = (
 				BC103A29260947A50017A01E /* giphy.gif in Resources */,
 				BC65EC8B24C0B2E700AB3B30 /* LaunchScreen.storyboard in Resources */,
-				BC20590524C69A630013383C /* GoogleService-Info.plist in Resources */,
 				BC65EC8824C0B2E700AB3B30 /* Assets.xcassets in Resources */,
+				BC9EEE69262797EE00E9955E /* GoogleService-Info.plist in Resources */,
 				BC6D1D0225C25B4B00641216 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,7 +549,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = workoutTracker/workoutTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = H4S2GXSU83;
 				INFOPLIST_FILE = workoutTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -572,7 +572,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = workoutTracker/workoutTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = H4S2GXSU83;
 				INFOPLIST_FILE = workoutTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;

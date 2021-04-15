@@ -14,6 +14,7 @@ pod 'Firebase/Firestore'
 pod 'Charts'
 pod 'Firebase/AdMob'
 pod 'Purchases'
+pod 'Google-Mobile-Ads-SDK'
 
 post_install do |pi|
     pi.pods_project.targets.each do |t|
