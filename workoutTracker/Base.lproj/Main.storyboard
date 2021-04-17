@@ -499,52 +499,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jsD-8q-gpI">
-                                <rect key="frame" x="40" y="44" width="334" height="670"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1Uy-7V-Gb0">
+                                <rect key="frame" x="94" y="763" width="226" height="20"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgt-AU-HQO">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="nfh-rR-5sE"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="le7-L1-Fcb">
-                                        <rect key="frame" x="0.0" y="100" width="334" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="w4J-6W-sWg"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Sign Out"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="20"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="signOutTapped:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="hYp-t7-GEQ"/>
-                                            <segue destination="n7x-ib-XPu" kind="presentation" modalPresentationStyle="fullScreen" id="SCM-NU-fIM"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11C-2F-gWV">
-                                        <rect key="frame" x="0.0" y="150" width="334" height="80"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="hRx-cn-fBd"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrd-VW-vWE">
-                                        <rect key="frame" x="0.0" y="230" width="334" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Kyo-CB-fme"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="20"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Terms and Conditions"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -555,22 +516,10 @@
                                             <segue destination="v2X-Zg-goM" kind="presentation" modalPresentationStyle="automatic" id="JZG-aE-Y5u"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fk-q8-qzM">
-                                        <rect key="frame" x="0.0" y="280" width="334" height="80"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="jEX-gn-VzZ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAs-GG-S9j">
-                                        <rect key="frame" x="0.0" y="360" width="334" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="ayl-ut-Sd5"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <rect key="frame" x="144" y="0.0" width="82" height="20"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Privacy Policy "/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -581,23 +530,84 @@
                                             <segue destination="QNd-Ac-bNS" kind="presentation" modalPresentationStyle="automatic" id="G7J-D0-Uwr"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdz-lU-5A6">
-                                        <rect key="frame" x="0.0" y="410" width="334" height="80"/>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="lBw-Zd-5qw"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jsD-8q-gpI">
+                                <rect key="frame" x="40" y="44" width="334" height="336"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgt-AU-HQO">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="T8H-tv-w2i"/>
+                                            <constraint firstAttribute="height" constant="40" id="nfh-rR-5sE"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRf-jC-8kJ">
-                                        <rect key="frame" x="0.0" y="490" width="334" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="le7-L1-Fcb">
+                                        <rect key="frame" x="0.0" y="40" width="334" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="w4J-6W-sWg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="      Sign Out" image="arrowshape.turn.up.right.circle.fill" catalog="system">
+                                            <color key="titleColor" systemColor="systemBlueColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="signOutTapped:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="hYp-t7-GEQ"/>
+                                            <segue destination="n7x-ib-XPu" kind="presentation" modalPresentationStyle="fullScreen" id="SCM-NU-fIM"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qV-7C-pqx">
+                                        <rect key="frame" x="0.0" y="90" width="334" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYb-8p-VsB">
+                                        <rect key="frame" x="0.0" y="122" width="334" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="7XY-i7-pBU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="      Leave a Rating" image="star.fill" catalog="system">
+                                            <color key="titleColor" systemColor="systemBlueColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="leaveRatingTapped:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="AuT-VW-gms"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdz-lU-5A6">
+                                        <rect key="frame" x="0.0" y="172" width="334" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRf-jC-8kJ">
+                                        <rect key="frame" x="0.0" y="204" width="334" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="cJT-Pv-VnZ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Get Pro"/>
+                                        <state key="normal" title="      Get Pro" image="flame.fill" catalog="system">
+                                            <color key="titleColor" systemColor="systemBlueColor"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="20"/>
@@ -608,16 +618,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubw-xA-t81">
-                                        <rect key="frame" x="0.0" y="540" width="334" height="80"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="ZWV-F7-6C8"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="254" width="334" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1k3-sa-wBx">
-                                        <rect key="frame" x="0.0" y="620" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="286" width="334" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="8ER-uq-SV6"/>
@@ -634,6 +641,11 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="ubw-xA-t81" firstAttribute="height" secondItem="Rgt-AU-HQO" secondAttribute="height" multiplier="0.8" id="8Ek-an-6zJ"/>
+                                    <constraint firstItem="Cdz-lU-5A6" firstAttribute="height" secondItem="Rgt-AU-HQO" secondAttribute="height" multiplier="0.8" id="eQ4-rb-miE"/>
+                                    <constraint firstItem="5qV-7C-pqx" firstAttribute="height" secondItem="Rgt-AU-HQO" secondAttribute="height" multiplier="0.8" id="maN-lX-XOR"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
@@ -641,7 +653,9 @@
                         <constraints>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="jsD-8q-gpI" secondAttribute="trailing" constant="40" id="5jC-E2-xeE"/>
                             <constraint firstItem="jsD-8q-gpI" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="40" id="7OG-T7-hYJ"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="1Uy-7V-Gb0" secondAttribute="bottom" constant="30" id="cha-XT-cVN"/>
                             <constraint firstItem="jsD-8q-gpI" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="deV-Zr-fsG"/>
+                            <constraint firstItem="1Uy-7V-Gb0" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="viA-Dv-gUw"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="cPa-gy-q4n"/>
@@ -2591,22 +2605,26 @@ This privacy policy page was created at privacypolicytemplate.net and modified/g
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5Rw-En-1Ha"/>
-        <segue reference="sjU-WC-tLp"/>
+        <segue reference="lvt-AL-tlg"/>
+        <segue reference="G7J-D0-Uwr"/>
+        <segue reference="JZG-aE-Y5u"/>
         <segue reference="GzQ-Dt-Avu"/>
         <segue reference="ped-C1-irC"/>
         <segue reference="Hdu-UD-tW8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="arrowshape.turn.up.right.circle.fill" catalog="system" width="128" height="121"/>
         <image name="chart.bar" catalog="system" width="128" height="90"/>
         <image name="chart.pie.fill" catalog="system" width="128" height="121"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="flame.fill" catalog="system" width="108" height="128"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="powersleep" catalog="system" width="128" height="128"/>
         <image name="rectangle.badge.checkmark" catalog="system" width="128" height="95"/>
         <image name="sportscourt.fill" catalog="system" width="128" height="84"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="table" catalog="system" width="128" height="93"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">

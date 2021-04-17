@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import StoreKit
 
 class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -216,9 +217,30 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
                 
                 Master.workoutCheck.removeAll()
                 
+                // Save the date that workout was performed
+                
+                // Get a reference to the database
+                let db = Firestore.firestore()
+                
+                // Get current user ID
+                let userId = Auth.auth().currentUser!.uid
+                
+                // Getting the current date
+                let df = DateFormatter()
+                df.dateFormat = "MMM-dd"
+                let date = df.string(from: Date())
+
+                db.collection("users").document("\(userId)").collection("LastPerformed").document("\(self.workoutName)").setData(["Date": date])
+                
+                
+                // Ask user to rate the app
+                if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                    SKStoreReviewController.requestReview(in: scene)
+                }
+                
                 self.performSegue(withIdentifier: "returnToHome", sender: self)
             })
-            
+             
             // Cancel option
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action) -> Void in })
 
@@ -229,19 +251,6 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
             self.present(confirmMessage, animated: true, completion: nil)
             
         }
-        
-        // Get a reference to the database
-        let db = Firestore.firestore()
-        
-        // Get current user ID
-        let userId = Auth.auth().currentUser!.uid
-        
-        // Getting the current date
-        let df = DateFormatter()
-        df.dateFormat = "MMM-dd"
-        let date = df.string(from: Date())
-
-        db.collection("users").document("\(userId)").collection("LastPerformed").document("\(workoutName)").setData(["Date": date])
 
         /*
          for workout in exercisesArray {

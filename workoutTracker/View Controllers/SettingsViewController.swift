@@ -8,6 +8,7 @@
 
 import UIKit
 import Purchases
+import StoreKit
 
 class SettingsViewController: UIViewController {
     
@@ -70,6 +71,18 @@ class SettingsViewController: UIViewController {
                 newViewController.modalPresentationStyle = .fullScreen
                 self.present(newViewController, animated: true, completion: nil)
                 return
+            }
+        }
+    }
+    
+    @IBAction func leaveRatingTapped(_ sender: Any) {
+        if let url = URL(string: "https://apps.apple.com/us/app/workout-tracker-progress-log/id1555890610?action=write-review/") {
+            UIApplication.shared.open(url, options: [:]) { (result) in
+                if result {
+                    print("Success")
+                } else {
+                    print("Failed")
+                }
             }
         }
     }

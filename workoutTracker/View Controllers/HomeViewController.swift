@@ -12,6 +12,7 @@ import GoogleMobileAds
 import Purchases
 import AppTrackingTransparency
 import AdSupport
+import StoreKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
@@ -80,6 +81,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
+        // Gets the dates for last time workouts were performed
         getLastPerformed()
         
         // Assigning the FirstViewController as the datasource of the tableview
@@ -100,9 +102,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         
+        // Requesting ads
         requestIDFA()
         
     }
+    
+    // MARK: - Ad Functions
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("Banner loaded successfully")
@@ -124,7 +129,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if purchaserInfo?.entitlements.all["pro"]?.isActive != true {
                 
                 // Id for the ad, (Test ad)
-                self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+                //self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
                 
                 // Id for the ad, (Live ad)
                 self.bannerView.adUnitID = "ca-app-pub-3755886742417549/4499662760"
