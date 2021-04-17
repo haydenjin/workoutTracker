@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -95,7 +96,38 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
                     workout.collection("Set" + String(set)).document("weights").setData(["Weight\(set)": Master.workouts[index].exercises[num].sets[set - 1].weights], merge: true)
                 }
             }
+            /*
+            // 1. Ask the user for permission to send notifications
+            let center = UNUserNotificationCenter.current()
             
+            // 2. Asks for permission
+            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in}
+            
+            // 3. Create the content
+            let content = UNMutableNotificationContent()
+            content.title = "Hello there"
+            content.body = "Look at me"
+            
+            // 4. Create the trigger
+            let date = Date().addingTimeInterval(20)
+            
+            let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .minute, .second], from: date)
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            
+            // 5. Create a request
+            
+            let uuidString = UUID().uuidString
+            
+            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+            
+            // 6. Register request
+            center.add(request) { (error) in
+                
+                // What to do if there's an error
+                
+            }
+            */
             // Transitioning the screen back to add exercise screen
             performSegue(withIdentifier: "unwindSegueToHome", sender: self)
         }

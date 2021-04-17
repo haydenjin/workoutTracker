@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var sortButton: UIButton!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     // Get a reference to the database
     let db = Firestore.firestore()
@@ -71,15 +72,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
-        db.collection("users").document("\(userId)").getDocument { (document, error) in
-            if let document = document, document.exists {
-                
-                let data:[String:Any] = document.data()!
-                
-                self.welcomeLabel.text = "Welcome \(data["firstname"] as! String)! "
-                
-            }
-        }
+        // Gets the user name
+        getUserName()
         
         // Gets the dates for last time workouts were performed
         getLastPerformed()
@@ -510,10 +504,30 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func refreshTapped(_ sender: Any) {
         
+        spinner.startAnimating()
+        
         // Call view did load to re-get the data
         viewDidLoad()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds + 0.7) {
+            self.tableView.reloadData()
+            self.spinner.stopAnimating()
+        }
     }
     
+    // MARK: - Get name of user
+    func getUserName() {
+        
+        db.collection("users").document("\(userId)").getDocument { (document, error) in
+            if let document = document, document.exists {
+                
+                let data:[String:Any] = document.data()!
+                
+                self.welcomeLabel.text = "Welcome \(data["firstname"] as! String)! "
+                
+            }
+        }
+    }
     
     // MARK: - Logic help
     
