@@ -11,6 +11,7 @@
 		BC088C1324C89B29005ACD22 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088C1224C89B29005ACD22 /* AddWorkoutViewController.swift */; };
 		BC088C1524C8A80B005ACD22 /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088C1424C8A80B005ACD22 /* AppContainerViewController.swift */; };
 		BC088C1724C8CB6E005ACD22 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088C1624C8CB6E005ACD22 /* AppManager.swift */; };
+		BC0E86C82634C734009D7BFD /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0E86C72634C734009D7BFD /* UserSettingsViewController.swift */; };
 		BC1039CB260448F30017A01E /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1039CA260448F30017A01E /* DataTableViewCell.swift */; };
 		BC1039CF260506DA0017A01E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1039CE260506DA0017A01E /* StoreKit.framework */; };
 		BC1039D126066B1A0017A01E /* ProViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1039D026066B1A0017A01E /* ProViewController.swift */; };
@@ -58,6 +59,7 @@
 		BC088C1224C89B29005ACD22 /* AddWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutViewController.swift; sourceTree = "<group>"; };
 		BC088C1424C8A80B005ACD22 /* AppContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
 		BC088C1624C8CB6E005ACD22 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		BC0E86C72634C734009D7BFD /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		BC1039CA260448F30017A01E /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
 		BC1039CE260506DA0017A01E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BC1039D026066B1A0017A01E /* ProViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				BC103A2E260A92270017A01E /* forgotPasswordViewController.swift */,
 				BC9EEE612624A66D00E9955E /* TermsViewController.swift */,
 				BC9EEE642624A75C00E9955E /* PrivacyViewController.swift */,
+				BC0E86C72634C734009D7BFD /* UserSettingsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				BCD9A22A24C68506001F502B /* SignupViewController.swift in Sources */,
 				BC088C1324C89B29005ACD22 /* AddWorkoutViewController.swift in Sources */,
 				BC1039D126066B1A0017A01E /* ProViewController.swift in Sources */,
+				BC0E86C82634C734009D7BFD /* UserSettingsViewController.swift in Sources */,
 				BC65EC9524C0BB3200AB3B30 /* Exercises.swift in Sources */,
 				BC2C35C225E2C4E7006219C4 /* EditExerciseViewController.swift in Sources */,
 				BCC17BA024E4DE8500E24ECD /* ExerciseTableViewCell.swift in Sources */,
@@ -557,7 +561,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.HaydenJin.workoutTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -580,7 +584,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.HaydenJin.workoutTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

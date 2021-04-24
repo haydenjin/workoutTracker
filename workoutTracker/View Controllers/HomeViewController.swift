@@ -96,6 +96,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         
+        // Refresh the username if it was changed
+        getUserName()
+        
         // Requesting ads
         requestIDFA()
         
@@ -198,6 +201,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func didTapSort(_ sender: Any) {
         if tableView.isEditing {
             
+            if Master.workouts.count == 0 {
+                return
+            }
+            
             // Get a reference to the database
             let db = Firestore.firestore()
             
@@ -215,6 +222,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             sortButton.setTitleColor(.systemBlue, for: .normal)
         }
         else {
+            
+            if Master.workouts.count == 0 {
+                return
+            }
+            
             tableView.isEditing = true
             
             sortButton.setTitle("Save", for: .normal)

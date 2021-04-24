@@ -110,6 +110,10 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
         
         if tableView.isEditing {
             
+            if Master.workouts.count == 0 {
+                return
+            }
+            
             // Get a reference to the database
             let db = Firestore.firestore()
             
@@ -127,6 +131,11 @@ class WorkoutStartedViewController: UIViewController, UITableViewDelegate, UITab
             sortButton.setTitleColor(.systemBlue, for: .normal)
         }
         else {
+            
+            if Master.workouts.count == 0 {
+                return
+            }
+            
             tableView.isEditing = true
             
             sortButton.setTitle("Save", for: .normal)

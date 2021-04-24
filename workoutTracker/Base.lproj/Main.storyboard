@@ -548,7 +548,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jsD-8q-gpI">
-                                <rect key="frame" x="40" y="44" width="334" height="336"/>
+                                <rect key="frame" x="40" y="44" width="334" height="426"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgt-AU-HQO">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
@@ -559,8 +559,33 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="le7-L1-Fcb">
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Gt-yo-mbc" userLabel="Sign Out">
                                         <rect key="frame" x="0.0" y="40" width="334" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="TMB-em-55W"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="      User Settings" image="person.fill" catalog="system">
+                                            <color key="titleColor" systemColor="systemBlueColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="a83-vb-qFs" kind="presentation" id="4e8-nf-teN"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSh-bY-Fbq">
+                                        <rect key="frame" x="0.0" y="90" width="334" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="le7-L1-Fcb" userLabel="Sign Out">
+                                        <rect key="frame" x="0.0" y="130" width="334" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="w4J-6W-sWg"/>
@@ -580,13 +605,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qV-7C-pqx">
-                                        <rect key="frame" x="0.0" y="90" width="334" height="32"/>
+                                        <rect key="frame" x="0.0" y="180" width="334" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYb-8p-VsB">
-                                        <rect key="frame" x="0.0" y="122" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="212" width="334" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="7XY-i7-pBU"/>
@@ -605,13 +630,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdz-lU-5A6">
-                                        <rect key="frame" x="0.0" y="172" width="334" height="32"/>
+                                        <rect key="frame" x="0.0" y="262" width="334" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRf-jC-8kJ">
-                                        <rect key="frame" x="0.0" y="204" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="294" width="334" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="cJT-Pv-VnZ"/>
@@ -630,13 +655,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubw-xA-t81">
-                                        <rect key="frame" x="0.0" y="254" width="334" height="32"/>
+                                        <rect key="frame" x="0.0" y="344" width="334" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1k3-sa-wBx">
-                                        <rect key="frame" x="0.0" y="286" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="376" width="334" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="8ER-uq-SV6"/>
@@ -656,6 +681,7 @@
                                 <constraints>
                                     <constraint firstItem="ubw-xA-t81" firstAttribute="height" secondItem="Rgt-AU-HQO" secondAttribute="height" multiplier="0.8" id="8Ek-an-6zJ"/>
                                     <constraint firstItem="Cdz-lU-5A6" firstAttribute="height" secondItem="Rgt-AU-HQO" secondAttribute="height" multiplier="0.8" id="eQ4-rb-miE"/>
+                                    <constraint firstItem="lSh-bY-Fbq" firstAttribute="height" secondItem="Rgt-AU-HQO" secondAttribute="height" id="lhx-e5-ebM"/>
                                     <constraint firstItem="5qV-7C-pqx" firstAttribute="height" secondItem="Rgt-AU-HQO" secondAttribute="height" multiplier="0.8" id="maN-lX-XOR"/>
                                 </constraints>
                             </stackView>
@@ -2431,7 +2457,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fci-Hl-hns">
                                         <rect key="frame" x="0.0" y="55" width="394" height="753"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <mutableString key="text">1. Terms
+                                        <string key="text">1. Terms
 By accessing this App, accessible from Workout Tracker, you are agreeing to be bound by these Terms and Conditions of Use and agree that you are responsible for the agreement with any applicable local laws. If you disagree with any of these terms, you are prohibited from accessing this site. The materials contained in this App are protected by copyright and trade mark law.
 
 2. Use License
@@ -2463,7 +2489,7 @@ Workout Tracker may revise these Terms of Use for its App at any time without pr
 Please read our Privacy Policy.
 
 9. Governing Law
-Any claim related to Workout Tracker's Website shall be governed by the laws of ca without regards to its conflict of law provisions.</mutableString>
+Any claim related to Workout Tracker's Website shall be governed by the laws of ca without regards to its conflict of law provisions.</string>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -2508,7 +2534,7 @@ Any claim related to Workout Tracker's Website shall be governed by the laws of 
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwH-OC-10p">
                                         <rect key="frame" x="0.0" y="55" width="394" height="753"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <mutableString key="text">Hayden Jin built the Workout Tracker app as an Ad Supported app. This SERVICE is provided by Hayden Jin at no cost and is intended for use as is.
+                                        <string key="text">Hayden Jin built the Workout Tracker app as an Ad Supported app. This SERVICE is provided by Hayden Jin at no cost and is intended for use as is.
 
 This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
 
@@ -2603,7 +2629,7 @@ Contact Us
 
 If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at haydenjin@gmail.com.
 
-This privacy policy page was created at privacypolicytemplate.net and modified/generated by App Privacy Policy Generator</mutableString>
+This privacy policy page was created at privacypolicytemplate.net and modified/generated by App Privacy Policy Generator</string>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -2625,14 +2651,70 @@ This privacy policy page was created at privacypolicytemplate.net and modified/g
             </objects>
             <point key="canvasLocation" x="-2328" y="-1750"/>
         </scene>
+        <!--User Settings View Controller-->
+        <scene sceneID="ddY-UZ-mYi">
+            <objects>
+                <viewController id="a83-vb-qFs" customClass="UserSettingsViewController" customModule="workoutTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Ja-dl-O1c">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="n9g-X2-G4G">
+                                <rect key="frame" x="10" y="40" width="394" height="160.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsQ-Ce-1WL">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sgo-A6-v44">
+                                        <rect key="frame" x="0.0" y="40.5" width="394" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XH-pn-mRW">
+                                        <rect key="frame" x="0.0" y="110.5" width="394" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="7qf-iM-E3i"/>
+                                        </constraints>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveTapped:" destination="a83-vb-qFs" eventType="touchUpInside" id="sXx-d6-WTU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4XH-pn-mRW" firstAttribute="height" secondItem="sgo-A6-v44" secondAttribute="height" id="vY5-v9-UMX"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Xrb-h3-7Uv"/>
+                        <color key="backgroundColor" red="0.68627450980000004" green="0.97254901959999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Xrb-h3-7Uv" firstAttribute="trailing" secondItem="n9g-X2-G4G" secondAttribute="trailing" constant="10" id="e8I-r0-6Ge"/>
+                            <constraint firstItem="n9g-X2-G4G" firstAttribute="top" secondItem="Xrb-h3-7Uv" secondAttribute="top" constant="40" id="txH-Ho-or0"/>
+                            <constraint firstItem="n9g-X2-G4G" firstAttribute="leading" secondItem="Xrb-h3-7Uv" secondAttribute="leading" constant="10" id="wrf-1z-1vC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nl6-rp-WXC"/>
+                    <connections>
+                        <outlet property="userName" destination="sgo-A6-v44" id="tDA-bp-OjR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WLO-cy-op8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1399" y="-265"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tZ2-ag-YKV"/>
         <segue reference="G7J-D0-Uwr"/>
         <segue reference="JZG-aE-Y5u"/>
         <segue reference="aGT-fH-tbq"/>
         <segue reference="MyI-HY-arf"/>
-        <segue reference="o60-Ha-9KR"/>
+        <segue reference="Hdu-UD-tW8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
@@ -2643,6 +2725,7 @@ This privacy policy page was created at privacypolicytemplate.net and modified/g
         <image name="flame.fill" catalog="system" width="108" height="128"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="highlighter" catalog="system" width="128" height="119"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="powersleep" catalog="system" width="128" height="128"/>
         <image name="rectangle.badge.checkmark" catalog="system" width="128" height="95"/>
